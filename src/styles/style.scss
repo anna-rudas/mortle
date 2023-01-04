@@ -1,0 +1,18 @@
+@import "variables";
+
+html,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
