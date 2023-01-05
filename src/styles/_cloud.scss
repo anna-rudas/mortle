@@ -1,0 +1,63 @@
+.small-cloud-animation {
+  animation-name: small-moving-cloud;
+  animation-direction: alternate;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.23, 1.49, 0.82, -0.19);
+  @include large-screen {
+    animation-duration: 120s;
+  }
+  @include small-screen {
+    animation-duration: 30s;
+  }
+}
+
+@keyframes small-moving-cloud {
+  0% {
+    left: 110%;
+    top: 10%;
+  }
+  40% {
+    top: 15%;
+  }
+  50% {
+    top: 10%;
+  }
+  75% {
+    top: 5%;
+  }
+  100% {
+    left: -50%;
+    top: 10%;
+  }
+}
+
+.large-cloud-animation {
+  animation-name: large-moving-cloud;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-duration: 70s;
+  animation-iteration-count: infinite;
+  @include large-screen {
+    animation-duration: 100s;
+  }
+}
+
+@keyframes large-moving-cloud {
+  0% {
+    left: 110%;
+  }
+  100% {
+    left: -50%;
+  }
+}
+
+.small-cloud {
+  @include cloud(220px, 150px, 15%, 50px, 100%, 10%);
+  @extend .small-cloud-animation;
+}
+
+.large-cloud {
+  @include cloud(600px, 400px, 40%, 100px, 50%, -180px);
+  @extend .large-cloud-animation;
+}
