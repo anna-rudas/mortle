@@ -1,0 +1,67 @@
+@keyframes hover-icon {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.header-con {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $padding-base;
+  color: $text-lightest;
+  font-family: $font-primary;
+
+  .header {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: $gap-base;
+  }
+
+  .btn-header {
+    background: none;
+    fill: $text-lightest;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    max-width: 35px;
+    max-height: 35px;
+    &:hover {
+      animation-name: hover-icon;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+  .icon {
+    width: 100%;
+    height: 100%;
+    fill: inherit;
+  }
+
+  .title {
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    @include large-screen {
+      font-size: 3rem;
+    }
+  }
+}
