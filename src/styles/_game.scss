@@ -1,0 +1,9 @@
+.game {
+  max-width: $max-width;
+  width: 100%;
+  height: 85%;
+  max-height: $max-width;
+  @include small-screen {
+    height: 90%;
+  }
+}

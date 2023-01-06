@@ -25,7 +25,7 @@
 
   .header {
     width: 100%;
-    max-width: 1000px;
+    max-width: $max-width;
     display: flex;
     justify-content: space-around;
     align-items: center;

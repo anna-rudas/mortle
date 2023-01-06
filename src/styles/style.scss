@@ -3,6 +3,7 @@
 @import "cloud";
 @import "background";
 @import "header";
+@import "game";
 
 html,
 #root {
@@ -19,4 +20,13 @@ body {
 .wrapper {
   height: 100%;
   width: 100%;
+}
+
+.game-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: $padding-base;
 }
