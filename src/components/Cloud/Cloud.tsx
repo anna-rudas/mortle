@@ -1,12 +1,12 @@
 import React from "react";
 
 interface CloudProps {
-  cloudClass: string;
+  size: "small" | "large";
 }
 
-function Cloud({ cloudClass }: CloudProps) {
+function Cloud({ size }: CloudProps) {
   return (
-    <div className={cloudClass}>
+    <div className={`${size}-cloud`}>
       <div className="cloud-pt-1"></div>
       <div className="cloud-pt-2"></div>
       <div className="cloud-pt-3"></div>

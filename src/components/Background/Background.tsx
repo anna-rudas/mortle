@@ -6,8 +6,8 @@ function Background() {
   return (
     <div className="background-con">
       <div className="sun"></div>
-      <Cloud cloudClass="small-cloud" />
-      <Cloud cloudClass="large-cloud" />
+      <Cloud size="small" />
+      <Cloud size="large" />
       <Hills />
     </div>
   );
