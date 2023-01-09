@@ -4,6 +4,7 @@
 @import "background";
 @import "header";
 @import "game";
+@import "monster";
 
 html,
 #root {
@@ -29,4 +30,13 @@ body {
   justify-content: center;
   align-items: flex-end;
   padding: $padding-base;
+}
+
+.border {
+  border: 2px solid $border;
+}
+
+.border-shadow {
+  border: 2px solid $border;
+  box-shadow: 5px 5px 0;
 }
