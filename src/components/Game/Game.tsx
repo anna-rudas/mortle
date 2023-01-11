@@ -1,10 +1,10 @@
 import React from "react";
-import GameMonsterMouth from "../GameMonsterMouth/GameMonsterMouth";
+import KeyboardMonsterMouth from "../KeyboardMonsterMouth/KeyboardMonsterMouth";
 
 function Game() {
   return (
     <div className="game-con">
-      <GameMonsterMouth />
+      <KeyboardMonsterMouth />
     </div>
   );
 }

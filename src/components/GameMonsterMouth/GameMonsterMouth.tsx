@@ -7,16 +7,16 @@ rows.fill(0);
 
 function GameMonsterMouth() {
   return (
-    <div className="monster-mouth">
-      <div className="teeth-con">
+    <div className="game-monster-mouth">
+      <div className="game-teeth-con">
         {rows.map((currentRow, index) => {
           return (
-            <div key={index} className="row">
+            <div key={index} className="teeth-row">
               {columns.map((currentColumn, index) => {
                 return (
-                  <div className="game-teeth-con" key={index}>
+                  <div className="game-tooth-con" key={index}>
                     <input
-                      className="game-teeth-input"
+                      className="game-tooth-input"
                       type="text"
                       maxLength={1}
                       autoComplete="off"

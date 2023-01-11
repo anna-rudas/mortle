@@ -61,3 +61,31 @@
     @content;
   }
 }
+
+@mixin monster-mouth($aspect-ratio, $max-width) {
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $monster-mouth;
+  padding: $padding-base;
+  width: 95%;
+  height: fit-content;
+  min-width: 100px;
+  aspect-ratio: $aspect-ratio;
+  max-width: $max-width;
+}
+
+@mixin teeth-con($aspect-ratio) {
+  background-color: $letter-no-spot;
+  border-radius: $border-radius-medium;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: $aspect-ratio;
+  gap: $gap-base * 2;
+  padding: $gap-base * 2;
+  @include small-screen {
+    gap: $gap-base;
+    padding: $gap-base;
+  }
+}
