@@ -6,17 +6,18 @@
 @import "game";
 @import "monster-mouths";
 @import "monster-eyes";
+@import "monster-feet";
 
 html,
-#root {
+#root,
+body {
   height: 100%;
 }
 
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: 100%;
 }
 
 .wrapper {
@@ -37,7 +38,6 @@ body {
   border: 2px solid $border;
 }
 
-.border-shadow {
-  border: 2px solid $border;
+.box-shadow {
   box-shadow: 5px 5px 0;
 }

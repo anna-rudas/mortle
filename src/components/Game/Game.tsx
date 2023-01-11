@@ -1,11 +1,11 @@
 import React from "react";
-import MonsterEyes from "../MonsterEyes/MonsterEyes";
+import MonsterFeet from "../MonsterFeet/MonsterFeet";
 
 function Game() {
   return (
     <div className="game-con">
-      <MonsterEyes duration="slow" />
-      <MonsterEyes duration="fast" />
+      <MonsterFeet monsterType="game" />
+      <MonsterFeet monsterType="keyboard" />
     </div>
   );
 }
