@@ -89,3 +89,11 @@
     padding: $gap-base;
   }
 }
+
+@mixin eye-ball-animation($anim-direction, $duration) {
+  animation-name: eye-ball-anim;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: $anim-direction;
+}

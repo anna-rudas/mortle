@@ -1,0 +1,94 @@
+@keyframes eye-ball-anim {
+  0% {
+    top: 10px;
+    right: 18px;
+  }
+  10% {
+    top: 10px;
+    right: 18px;
+  }
+  20% {
+    top: 15px;
+  }
+  30% {
+    top: 18px;
+  }
+  40% {
+    top: 15px;
+    right: 10px;
+  }
+  50% {
+    top: 15px;
+    right: 0px;
+  }
+  60% {
+    top: 15px;
+    right: 0px;
+  }
+  70% {
+    top: 5px;
+    right: 0px;
+  }
+  80% {
+    top: 5px;
+    right: 5px;
+  }
+  90% {
+    top: 5px;
+    right: 10px;
+  }
+  100% {
+    top: 10px;
+    right: 18px;
+  }
+}
+
+.eyes-con {
+  width: 100%;
+  height: 100%;
+  max-width: 180px;
+  min-width: 100px;
+  max-height: 80px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $gap-base * 3;
+}
+
+.eye-border {
+  @extend .border;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background-color: $monster-eyes;
+  width: 100%;
+  height: fit-content;
+  min-width: 40px;
+  max-width: 70px;
+  min-height: 40px;
+  max-height: 70px;
+  position: relative;
+}
+
+.eye-ball {
+  min-width: 20px;
+  max-width: 70px;
+  min-height: 20px;
+  max-height: 70px;
+  height: 65%;
+  width: 65%;
+  aspect-ratio: 1;
+  background-color: $border;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.eye-ball-slow {
+  @extend .eye-ball;
+  @include eye-ball-animation(normal, 8s);
+}
+
+.eye-ball-fast {
+  @extend .eye-ball;
+  @include eye-ball-animation(reverse, 5s);
+}
