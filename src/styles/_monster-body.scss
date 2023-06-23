@@ -1,0 +1,59 @@
+.keyboard-monster-body-con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  height: 40%;
+  width: 100%;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.game-monster-body-con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  height: 60%;
+  aspect-ratio: 2/3;
+}
+
+.keyboard-monster-face {
+  height: 80%;
+  width: 100%;
+  background-color: $monster-keyboard;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: $padding-base;
+  @extend .border;
+  @extend .box-shadow;
+  border-radius: $border-radius-large;
+  gap: $gap-base * 2;
+  flex-grow: 1;
+  @include large-height {
+    padding: $padding-base * 3;
+  }
+}
+
+.game-monster-face {
+  height: 90%;
+  width: 100%;
+  background-color: $monster-game;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: $padding-base;
+  @extend .border;
+  @extend .box-shadow;
+  border-radius: $border-radius-large;
+  gap: $gap-base * 2;
+  flex-grow: 1;
+  @include large-height {
+    padding: $padding-base * 3;
+  }
+}

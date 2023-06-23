@@ -1,28 +1,89 @@
 .game-monster-mouth {
-  @include monster-mouth(1, 260px);
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $monster-mouth;
+  padding: $padding-base;
+  width: 100%;
+  aspect-ratio: 1;
+  @include small-screen {
+    padding: 7px;
+  }
 }
 
 .keyboard-monster-mouth {
-  @include monster-mouth(auto, 510px);
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $monster-mouth;
+  padding: $padding-base;
+  width: 100%;
+  height: 80%;
+  @include small-screen {
+    padding: 7px;
+  }
 }
 
 .game-teeth-con {
-  @include teeth-con(1);
+  background-color: $letter-no-spot;
+  border-radius: $border-radius-medium;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  gap: $gap-base;
+  padding: $gap-base;
+  @include large-height {
+    gap: $gap-base * 2;
+    padding: $gap-base * 2;
+  }
+  @include small-height {
+    padding: 2px;
+    gap: 2px;
+  }
 }
 
 .keyboard-teeth-con {
-  @include teeth-con(auto);
+  background-color: $letter-no-spot;
+  border-radius: $border-radius-medium;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $gap-base;
+  padding: $gap-base;
+  width: 100%;
+  height: 100%;
+  @include small-height {
+    padding: 2px;
+    gap: 2px;
+  }
 }
 
-.teeth-row {
+.game-teeth-row {
   display: flex;
-  gap: $gap-base * 2;
+  gap: $gap-base;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: fit-content;
-  @include small-screen {
-    gap: $gap-base;
+  @include large-height {
+    gap: $gap-base * 2;
+  }
+  @include small-height {
+    gap: 2px;
+  }
+}
+
+.keyboard-teeth-row {
+  display: flex;
+  gap: $gap-base;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  flex-grow: 1;
+  @include small-height {
+    gap: 2px;
   }
 }
 
@@ -38,9 +99,12 @@
 
 .keyboard-tooth-con {
   @extend .monster-tooth-con;
-  height: 50px;
+  max-height: 70px;
+  min-height: 10px;
+  height: 100%;
   min-width: 10px;
-  max-width: 40px;
+  max-width: 50px;
+  width: 100%;
   font-size: 1.5rem;
   @include small-screen {
     font-size: 1rem;
@@ -51,10 +115,6 @@
   @extend .monster-tooth-con;
   height: 100%;
   width: 100%;
-  min-width: 25px;
-  max-width: 40px;
-  min-height: 25px;
-  max-height: 40px;
   aspect-ratio: 1;
   font-size: 2rem;
   @include small-screen {
@@ -106,11 +166,16 @@
   pointer-events: none;
 }
 
-.teeth-row svg {
+.keyboard-teeth-row svg {
   fill: $text-darkest;
   stroke: $text-darkest;
   width: 100%;
   height: 100%;
   max-width: 40px;
   min-width: 20px;
+  min-height: 20px;
+  max-height: 40px;
+  @include small-screen {
+    min-height: 15px;
+  }
 }

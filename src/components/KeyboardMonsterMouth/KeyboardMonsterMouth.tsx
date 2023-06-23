@@ -7,7 +7,7 @@ function KeyboardMonsterMouth() {
       <div className="keyboard-teeth-con">
         {keyboardLetters.map((currentRow, currentRowIndex) => {
           return (
-            <div key={currentRowIndex} className="teeth-row">
+            <div key={currentRowIndex} className="keyboard-teeth-row">
               {currentRow.map((currentLetter, currentLetterIndex) => {
                 return (
                   <div key={currentLetterIndex} className="keyboard-tooth-con">

@@ -8,14 +8,12 @@ function MonsterFeet({ monsterType }: MonsterFeetProps) {
   return (
     <div className="feet-con">
       <div className="foot">
-        <div className={`left-vertical-part ${monsterType}-monster-bg`}></div>
-        <div className={`left-horizontal-part ${monsterType}-monster-bg`}></div>
+        <div className={`${monsterType}-left-vertical-part`}></div>
+        <div className={`${monsterType}-left-horizontal-part`}></div>
       </div>
       <div className="foot">
-        <div className={`right-vertical-part ${monsterType}-monster-bg`}></div>
-        <div
-          className={`right-horizontal-part ${monsterType}-monster-bg`}
-        ></div>
+        <div className={`${monsterType}-right-vertical-part`}></div>
+        <div className={`${monsterType}-right-horizontal-part`}></div>
       </div>
     </div>
   );

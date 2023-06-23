@@ -11,7 +11,7 @@ function GameMonsterMouth() {
       <div className="game-teeth-con">
         {rows.map((currentRow, index) => {
           return (
-            <div key={index} className="teeth-row">
+            <div key={index} className="game-teeth-row">
               {columns.map((currentColumn, index) => {
                 return (
                   <div className="game-tooth-con" key={index}>

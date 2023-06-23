@@ -62,38 +62,32 @@
   }
 }
 
-@mixin monster-mouth($aspect-ratio, $max-width) {
-  @extend .border;
-  border-radius: $border-radius-large;
-  background-color: $monster-mouth;
-  padding: $padding-base;
-  width: 95%;
-  height: fit-content;
-  min-width: 100px;
-  aspect-ratio: $aspect-ratio;
-  max-width: $max-width;
-}
-
-@mixin teeth-con($aspect-ratio) {
-  background-color: $letter-no-spot;
-  border-radius: $border-radius-medium;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: $aspect-ratio;
-  gap: $gap-base * 2;
-  padding: $gap-base * 2;
-  @include small-screen {
-    gap: $gap-base;
-    padding: $gap-base;
+@mixin large-height() {
+  @media (min-height: 900px) {
+    @content;
   }
 }
 
-@mixin eye-ball-animation($anim-direction, $duration) {
-  animation-name: eye-ball-anim;
+@mixin small-height() {
+  @media (max-height: 700px) {
+    @content;
+  }
+}
+
+@mixin vertical-feet-animation($anim-direction, $duration, $delay) {
+  animation-name: vertical-anim;
   animation-duration: $duration;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: $anim-direction;
+  animation-delay: $delay;
+}
+
+@mixin horizontal-feet-animation($anim-direction, $duration, $delay) {
+  animation-name: horizontal-anim;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: $anim-direction;
+  animation-delay: $delay;
 }
