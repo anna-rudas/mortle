@@ -21,7 +21,6 @@
   align-items: center;
   padding: $padding-base;
   color: $text-lightest;
-  font-family: $font-primary;
 
   .header {
     width: 100%;
@@ -33,31 +32,21 @@
   }
 
   .btn-header {
-    background: none;
+    @extend .icon-btn;
     fill: $text-lightest;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    max-width: 35px;
-    max-height: 35px;
-    &:hover {
-      animation-name: hover-icon;
-      animation-duration: 1s;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
+    @media (hover: hover) {
+      &:hover {
+        animation-name: hover-icon;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
     }
   }
 
-  .icon {
-    width: 100%;
-    height: 100%;
-    fill: inherit;
-  }
-
-  .title {
+  .header-title {
+    @extend .title-text;
     font-size: 2rem;
-    text-transform: uppercase;
-    text-decoration: none;
     cursor: pointer;
     color: inherit;
     @include large-screen {

@@ -1,0 +1,67 @@
+import React, { useEffect } from "react";
+import CloseIcon from "../../icons/CloseIcon";
+import { howToPlayContent, howToPlayClassNames } from "../../constants";
+
+interface HowToPlayProps {
+  closeHowToPlay: () => void;
+}
+
+function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
+  useEffect(() => {
+    const closeModal = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeHowToPlay();
+      }
+    };
+    window.removeEventListener("keydown", closeModal);
+    window.addEventListener("keydown", closeModal);
+  });
+
+  return (
+    <div className="modal-con">
+      <div className="modal-content-howto">
+        <button className="btn-close" onClick={closeHowToPlay}>
+          <CloseIcon />
+        </button>
+        <h2 className="modal-title">How to play</h2>
+        <div className="howto-text">
+          <p>Guess the word in 5 tries</p>
+          <p>Each guess must be a valid 5 letter word</p>
+          <p>
+            The color of the tiles will change to show how close your guess was
+            to the word
+          </p>
+        </div>
+        <div className="howto-examples-con">
+          {howToPlayContent.map((current, index) => {
+            return (
+              <div className="examples" key={index}>
+                <div className="example-letters">
+                  {current.exampleWord
+                    .split("")
+                    .map((currentLetter, letterIndex) => {
+                      return (
+                        <div
+                          className={`letter-box ${
+                            letterIndex === index + 1
+                              ? howToPlayClassNames[index]
+                              : ""
+                          }`}
+                          key={letterIndex}
+                        >
+                          <span>{currentLetter}</span>
+                        </div>
+                      );
+                    })}
+                </div>
+                <p>{current.explanation}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default HowToPlay;

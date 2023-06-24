@@ -1,0 +1,240 @@
+.modal-con {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $padding-base;
+}
+
+.modal-content {
+  @extend .box-shadow;
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $text-bubble;
+  position: relative;
+  padding: $padding-base * 5;
+  width: 90%;
+  height: fit-content;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base * 4;
+  @include small-screen {
+    padding: $padding-base * 3 $padding-base * 2;
+    width: 100%;
+  }
+  @include small-height {
+    gap: $gap-base * 2;
+    padding: $padding-base * 2 $padding-base * 2;
+  }
+  @include large-height {
+    gap: $gap-base * 6;
+  }
+}
+
+.modal-content-statistics {
+  @extend .modal-content;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modal-content-howto {
+  @extend .modal-content;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.btn-close {
+  @extend .icon-btn;
+  position: absolute;
+  top: $padding-base;
+  right: $padding-base;
+  fill: $text-bubble;
+}
+
+.modal-title {
+  @extend .title-text;
+  font-size: 3rem;
+  color: $text-darkest;
+  @include small-screen {
+    font-size: 2rem;
+  }
+}
+
+.howto-text {
+  @extend .base-text;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base * 2;
+  @include small-height {
+    gap: $gap-base;
+  }
+}
+
+.howto-examples-con {
+  @extend .base-text;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base * 2;
+  @include small-height {
+    gap: $gap-base;
+  }
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base;
+  @include large-height {
+    gap: $gap-base * 2;
+  }
+}
+
+.example-letters {
+  display: flex;
+  gap: $gap-base * 2;
+}
+
+.letter-box {
+  padding: $padding-base;
+  @extend .border;
+  @extend .box-shadow;
+  border-radius: $border-radius-medium;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  @include small-screen {
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+  }
+  @include small-height {
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+  }
+}
+
+.letter-correct {
+  background-color: $letter-correct-spot;
+  color: $text-darkest;
+  span {
+    color: $text-darkest;
+  }
+}
+
+.letter-wrong {
+  background-color: $letter-wrong-spot;
+  color: $text-darkest;
+  span {
+    color: $text-darkest;
+  }
+}
+
+.letter-no {
+  background-color: $letter-no-spot;
+  color: $text-darkest;
+  span {
+    color: $text-lightest;
+  }
+}
+
+.statistics-sum-con {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: $gap-base * 5;
+}
+
+.statistics-sum {
+  @extend .border;
+  @extend .box-shadow;
+  border-radius: $border-radius-medium;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  @include small-screen {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.statistics-number {
+  @extend .base-text;
+  font-size: 45px !important;
+  @include small-screen {
+    font-size: 30px !important;
+  }
+}
+
+.subtitle {
+  margin-top: $gap-base * 3;
+}
+
+.statistics-text {
+  @extend .base-text;
+  text-transform: uppercase;
+}
+
+.statistics-chart {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 200px;
+  gap: $gap-base * 2;
+}
+
+.chart {
+  width: 20%;
+  min-width: 20px;
+  max-width: 70px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: $gap-base;
+}
+
+.statistics-bar {
+  background-color: $border;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: $padding-base 0;
+}
+
+.statistics-percentage {
+  @extend .base-text;
+  text-transform: uppercase;
+  color: $text-lightest;
+  background-color: $border;
+  @include small-screen {
+    font-size: 12px !important;
+  }
+}
+
+.statistics-chart-number {
+  @extend .base-text;
+  font-size: 20px !important;
+  height: 10%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.h0 {
+  height: 20%;
+}
