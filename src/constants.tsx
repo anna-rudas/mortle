@@ -1,6 +1,7 @@
 import React from "react";
 import EnterIcon from "./icons/EnterIcon";
 import BackspaceIcon from "./icons/BackspaceIcon";
+import { StatsData } from "./types";
 
 export const keyboardLetters = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -27,4 +28,59 @@ export const howToPlayClassNames = [
   "letter-correct",
   "letter-wrong",
   "letter-no",
+];
+
+export const dummyData: StatsData = [
+  {
+    guessed: true,
+    guessedAt: 3,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 1,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: true,
+    guessedAt: 3,
+  },
+  {
+    guessed: true,
+    guessedAt: 3,
+  },
+  {
+    guessed: true,
+    guessedAt: 2,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
 ];

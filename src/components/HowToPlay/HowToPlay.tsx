@@ -36,7 +36,7 @@ function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
           {howToPlayContent.map((current, index) => {
             return (
               <div className="examples" key={index}>
-                <div className="example-letters">
+                <div className="example-word">
                   {current.exampleWord
                     .split("")
                     .map((currentLetter, letterIndex) => {

@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: column;
   gap: $gap-base * 4;
+  cursor: default;
   @include small-screen {
     padding: $padding-base * 3 $padding-base * 2;
     width: 100%;
@@ -94,7 +95,7 @@
   }
 }
 
-.example-letters {
+.example-word {
   display: flex;
   gap: $gap-base * 2;
 }
@@ -153,7 +154,7 @@
   gap: $gap-base * 5;
 }
 
-.statistics-sum {
+.statistics-box {
   @extend .border;
   @extend .box-shadow;
   border-radius: $border-radius-medium;
@@ -169,7 +170,7 @@
   }
 }
 
-.statistics-number {
+.box-number {
   @extend .base-text;
   font-size: 45px !important;
   @include small-screen {
@@ -177,16 +178,18 @@
   }
 }
 
-.subtitle {
-  margin-top: $gap-base * 3;
-}
-
-.statistics-text {
+.box-text {
   @extend .base-text;
   text-transform: uppercase;
 }
 
-.statistics-chart {
+.chart-title {
+  margin-top: $gap-base * 3;
+  @extend .base-text;
+  text-transform: uppercase;
+}
+
+.chart-con {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -194,10 +197,10 @@
   gap: $gap-base * 2;
 }
 
-.chart {
+.bar-con {
   width: 20%;
   min-width: 20px;
-  max-width: 70px;
+  max-width: 60px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -206,16 +209,17 @@
   gap: $gap-base;
 }
 
-.statistics-bar {
+.bar {
   background-color: $border;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: $padding-base 0;
+  padding: $gap-base 0;
+  min-height: 30px;
 }
 
-.statistics-percentage {
+.bar-percentage {
   @extend .base-text;
   text-transform: uppercase;
   color: $text-lightest;
@@ -225,16 +229,8 @@
   }
 }
 
-.statistics-chart-number {
+.bar-chart-number {
   @extend .base-text;
   font-size: 20px !important;
   height: 10%;
-}
-
-.h100 {
-  height: 100%;
-}
-
-.h0 {
-  height: 20%;
 }
