@@ -1,0 +1,61 @@
+.results-title {
+  @extend .base-text;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+
+.results-text {
+  @extend .base-text;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base;
+  justify-content: center;
+  align-items: center;
+}
+
+.results-solution {
+  @extend .base-text;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2rem !important;
+  color: $text-darkest;
+  @include small-screen {
+    font-size: 1rem !important;
+  }
+}
+
+.results-def {
+  @extend .base-text;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.results-btn-con {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.results-btns {
+  @extend .border;
+  @extend .box-shadow;
+  border-radius: $border-radius-medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: $text-bubble;
+  padding: 5px;
+  @extend .base-text;
+  text-transform: uppercase;
+  font-size: 1rem !important;
+  font-weight: bold;
+  cursor: pointer;
+}

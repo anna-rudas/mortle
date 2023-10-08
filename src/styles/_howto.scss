@@ -1,0 +1,52 @@
+.howto-con {
+  @extend .base-text;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base * 2;
+  @include small-height {
+    gap: $gap-base;
+  }
+}
+
+.howto-text-con {
+  @extend .howto-con;
+  width: 100%;
+  max-width: 450px;
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base;
+  @include large-height {
+    gap: $gap-base * 2;
+  }
+}
+
+.example-word {
+  display: flex;
+  gap: $gap-base * 2;
+}
+
+.letter-box {
+  padding: $padding-base;
+  @extend .border;
+  @extend .box-shadow;
+  border-radius: $border-radius-medium;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  @include small-screen {
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+  }
+  @include small-height {
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+  }
+}

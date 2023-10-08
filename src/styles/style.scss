@@ -9,6 +9,9 @@
 @import "monster-feet";
 @import "monster-body";
 @import "modals";
+@import "howto";
+@import "stats";
+@import "results";
 
 html,
 #root,
@@ -76,4 +79,28 @@ body {
   width: 100%;
   height: 100%;
   fill: inherit;
+}
+
+.letter-correct {
+  background-color: $letter-correct-spot;
+  color: $text-darkest;
+  span {
+    color: $text-darkest;
+  }
+}
+
+.letter-wrong {
+  background-color: $letter-wrong-spot;
+  color: $text-darkest;
+  span {
+    color: $text-darkest;
+  }
+}
+
+.letter-no {
+  background-color: $letter-no-spot;
+  color: $text-darkest;
+  span {
+    color: $text-lightest;
+  }
 }

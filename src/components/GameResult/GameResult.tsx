@@ -40,7 +40,7 @@ function GameResult({
   }, [wordDefinition]);
 
   return (
-    <div className={`modal-con ${isReview ? "modal-con-review" : ""}`}>
+    <div className={`${isReview ? "modal-con modal-con-no-bg" : "modal-con"}`}>
       <div
         className={`modal-content-results ${
           isReview ? "review-game" : "see-results"

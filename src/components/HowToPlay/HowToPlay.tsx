@@ -24,7 +24,7 @@ function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
           <CloseIcon />
         </button>
         <h2 className="modal-title">How to play</h2>
-        <div className="howto-text">
+        <div className="howto-text-con">
           <p>Guess the word in 5 tries</p>
           <p>Each guess must be a valid 5 letter word</p>
           <p>
@@ -32,7 +32,7 @@ function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
             to the word
           </p>
         </div>
-        <div className="howto-examples-con">
+        <div className="howto-con">
           {howToPlayContent.map((current, index) => {
             return (
               <div className="examples" key={index}>
