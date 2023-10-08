@@ -6,6 +6,12 @@
   justify-content: center;
   align-items: center;
   padding: $padding-base;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-con-review {
+  @extend .modal-con;
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .modal-content {
@@ -47,12 +53,65 @@
   align-items: flex-start;
 }
 
+.modal-content-results {
+  @extend .box-shadow;
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $text-bubble;
+  position: fixed;
+  padding: $padding-base * 3;
+  width: 90%;
+  height: fit-content;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base * 4;
+  cursor: default;
+  justify-content: space-around;
+  align-items: center;
+  width: 700px;
+  @include small-height {
+    gap: $gap-base * 2;
+  }
+  @include medium-height {
+    width: 350px;
+  }
+  @include large-height {
+    gap: $gap-base * 6;
+  }
+  @include small-screen {
+    width: 270px;
+  }
+}
+
+.see-results {
+  inset: 0 !important;
+  margin: auto !important;
+}
+
+.review-game {
+  right: -672px !important;
+  @include medium-height {
+    right: -327px !important;
+  }
+  @include small-screen {
+    right: -246px !important;
+  }
+}
+
 .btn-close {
   @extend .icon-btn;
   position: absolute;
   top: $padding-base;
   right: $padding-base;
   fill: $text-bubble;
+}
+
+.btn-arrow {
+  @extend .icon-btn;
+  position: absolute;
+  fill: $text-bubble;
+  left: -7px;
 }
 
 .modal-title {
@@ -233,4 +292,66 @@
   @extend .base-text;
   font-size: 20px !important;
   height: 10%;
+}
+
+.results-title {
+  @extend .base-text;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+
+.results-text {
+  @extend .base-text;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base;
+  justify-content: center;
+  align-items: center;
+}
+
+.results-solution {
+  @extend .base-text;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2rem !important;
+  color: $text-darkest;
+  @include small-screen {
+    font-size: 1rem !important;
+  }
+}
+
+.results-def {
+  @extend .base-text;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.results-btn-con {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.results-btns {
+  @extend .border;
+  @extend .box-shadow;
+  border-radius: $border-radius-medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: $text-bubble;
+  padding: 5px;
+  @extend .base-text;
+  text-transform: uppercase;
+  font-size: 1rem !important;
+  font-weight: bold;
+  cursor: pointer;
 }

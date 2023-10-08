@@ -1,6 +1,8 @@
 import React from "react";
-import MonsterFeet from "../MonsterFeet/MonsterFeet";
 import MonsterBody from "../MonsterBody/MonsterBody";
+
+//TODO: stop eye and leg animations when game over
+//TODO: change eye and leg animations when win/lose
 
 function Game() {
   return (

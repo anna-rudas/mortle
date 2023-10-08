@@ -84,3 +84,21 @@ export const dummyData: StatsData = [
     guessedAt: 5,
   },
 ];
+
+export const resultTexts = {
+  winFirst: [
+    "Oh my god, first try? Congrats!",
+    "That's crazy, you got it on the first try!",
+  ],
+  winLast: ["Phew, that was close.", "Very last minute, but you got it!"],
+  winMiddle: ["Nice one!", "You did it!", "Yay, you've guessed it!"],
+  lose: ["Aw shucks, better luck next time.", "Well, you tried."],
+  noDefWin: [
+    "Who knows what this word means, but you've guessed it!",
+    "Congrats, but like what does this word even mean?",
+  ],
+  noDefLose: [
+    "Oh my god, what does this word even mean??",
+    "No wonder you lost buddy, I can't even tell you what this word means.",
+  ],
+};
