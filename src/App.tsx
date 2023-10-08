@@ -54,7 +54,7 @@ function App() {
 
   useEffect(() => {
     if (randomWord != "") {
-      //testing word: rotas
+      //testing word: rotas ${randomWord}
       fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${randomWord}`)
         .then((response) => {
           return response.json();

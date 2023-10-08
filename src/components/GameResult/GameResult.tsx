@@ -64,8 +64,15 @@ function GameResult({
           <div className="results-def">
             {wordDefinition.def.meanings.map(
               (currentMeaning: any, index: number) => {
-                //TODO: small 1, medium 2, large 3 definitions
-                if (index > 0) {
+                let tempIndex = 1;
+                if (window.innerHeight >= 900) {
+                  tempIndex = 2;
+                }
+                if (window.innerHeight <= 720) {
+                  tempIndex = 0;
+                }
+
+                if (index > tempIndex) {
                   return;
                 } else
                   return (
