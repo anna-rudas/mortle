@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../context";
 
 function GameMonsterMouth() {
-  const [currentRow, setCurrentRow] = useState(0);
+  const { currentRow, setCurrentRow } = useContext(AppContext);
 
   const columns = new Array(5);
   const rows = new Array(5);

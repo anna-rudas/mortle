@@ -8,6 +8,7 @@ import HowToPlay from "./components/HowToPlay/HowToPlay";
 import Statistics from "./components/Statistics/Statistics";
 import GameResult from "./components/GameResult/GameResult";
 import { WordDefinition } from "./types";
+import AppContextProvider from "./context";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -93,5 +94,14 @@ function App() {
   );
 }
 
-export default App;
-createRoot(document.getElementById("root")!).render(<App />);
+function AppWithProvider() {
+  return (
+    <AppContextProvider>
+      <App />
+    </AppContextProvider>
+  );
+}
+
+export default AppWithProvider;
+
+createRoot(document.getElementById("root")!).render(<AppWithProvider />);
