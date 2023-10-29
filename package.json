@@ -9,7 +9,7 @@
     "dev": "parcel src/index.html"
   },
   "keywords": [],
-  "author": "",
+  "author": "Anna Rudas <rudas.annamaria@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.2",

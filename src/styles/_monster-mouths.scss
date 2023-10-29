@@ -155,6 +155,14 @@
   }
 }
 
+.input-disabled {
+  cursor: default;
+}
+
+.input-enabled {
+  cursor: pointer;
+}
+
 .keyboard-teeth-con > :last-child > :first-child,
 .keyboard-teeth-con > :last-child > :last-child {
   flex-grow: 2;

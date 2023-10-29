@@ -12,7 +12,7 @@ import { WordDefinition } from "./types";
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [isStatisticsOpen, setIsStatisticsOpen] = useState(false);
-  const [isResultsOpen, setIsResultsOpen] = useState(true);
+  const [isResultsOpen, setIsResultsOpen] = useState(false);
   const [randomWord, setRandomWord] = useState("");
   const [wordMeaning, setWordMeaning] = useState<WordDefinition>({
     isDef: false,
