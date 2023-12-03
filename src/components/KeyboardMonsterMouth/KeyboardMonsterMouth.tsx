@@ -1,14 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
 import { keyboardLetters } from "../../constants";
+import { AppContext } from "../../context";
 
 function KeyboardMonsterMouth() {
-  const handleClickInputs = (event: any, rowIndex: any, letterIndex: any) => {
+  const { currentRow, currentColumn, setCurrentRow, setCurrentColumn } =
+    useContext(AppContext);
+
+  const handleClickInputs = (
+    event: React.MouseEvent<HTMLElement>,
+    rowIndex: number,
+    letterIndex: number
+  ) => {
+    const inputElement: HTMLElement | null = document.getElementById(
+      `${currentRow},${currentColumn}`
+    );
     if (rowIndex === 2 && letterIndex === 0) {
-      console.log("enter");
+      //clicked enter
+      if (currentRow != 4) {
+        setCurrentRow(currentRow + 1);
+        setCurrentColumn(0);
+      }
     } else if (rowIndex === 2 && letterIndex === 8) {
-      console.log("backspace");
+      //clicked backspace
+      if (
+        (inputElement as HTMLInputElement).value.length == 0 &&
+        currentColumn != 0
+      ) {
+        const mize = currentColumn - 1;
+        setCurrentColumn(mize);
+        const ize: any = document.getElementById(`${currentRow},${mize}`);
+        ize.value = "";
+      } else {
+        (inputElement as HTMLInputElement).value = "";
+      }
     } else {
-      console.log(event.target.innerText);
+      //clicked letter
+      const inputElement: any = document.getElementById(
+        `${currentRow},${currentColumn}`
+      );
+      if (inputElement) {
+        const eventTarget = event.target as HTMLElement;
+        inputElement.value = eventTarget.innerText;
+      }
+      if (currentColumn != 4) {
+        setCurrentColumn(currentColumn + 1);
+      }
     }
   };
 

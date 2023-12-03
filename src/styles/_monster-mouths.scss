@@ -118,7 +118,7 @@
   height: 100%;
   width: 100%;
   aspect-ratio: 1;
-  font-size: 2rem;
+  font-size: 1.6rem;
   @include small-screen {
     font-size: 1.4rem;
   }
@@ -150,17 +150,10 @@
   text-align: center;
   text-transform: uppercase;
   caret-color: transparent;
+  cursor: default;
   &:focus {
     outline: none;
   }
-}
-
-.input-disabled {
-  cursor: default;
-}
-
-.input-enabled {
-  cursor: pointer;
 }
 
 .keyboard-teeth-con > :last-child > :first-child,

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { createRoot } from "react-dom/client";
 import Background from "./components/Background/Background";
 import Game from "./components/Game/Game";
@@ -9,6 +9,7 @@ import Statistics from "./components/Statistics/Statistics";
 import GameResult from "./components/GameResult/GameResult";
 import { WordDefinition } from "./types";
 import AppContextProvider from "./context";
+import { AppContext } from "./context";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -19,6 +20,50 @@ function App() {
     isDef: false,
     def: {},
   });
+  const { currentRow, setCurrentRow, currentColumn, setCurrentColumn } =
+    useContext(AppContext);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyEvent);
+    return () => document.removeEventListener("keydown", handleKeyEvent);
+  });
+
+  const handleKeyEvent = (event: KeyboardEvent) => {
+    const inputElement: HTMLElement | null = document.getElementById(
+      `${currentRow},${currentColumn}`
+    );
+    (inputElement as HTMLInputElement).focus();
+    if (event.key === "Backspace") {
+      if (
+        (inputElement as HTMLInputElement).value.length == 0 &&
+        currentColumn != 0
+      ) {
+        setCurrentColumn(currentColumn - 1);
+        const prevElement: any = document.getElementById(
+          `${currentRow},${currentColumn - 1}`
+        );
+        prevElement.value = "";
+      } else {
+        (inputElement as HTMLInputElement).value = "";
+      }
+    } else if (event.key === "Enter") {
+      if (currentRow != 4) {
+        setCurrentRow(currentRow + 1);
+        setCurrentColumn(0);
+        window.setTimeout(
+          () => document.getElementById(`${currentRow + 1},0`)?.focus(),
+          0
+        );
+      }
+    } else if (event.keyCode > 64 && event.keyCode < 91) {
+      if (inputElement) {
+        (inputElement as HTMLInputElement).value = event.key;
+      }
+      if (currentColumn != 4) {
+        setCurrentColumn(currentColumn + 1);
+      }
+    }
+  };
 
   const openHowToPlay = () => {
     setIsHowToPlayOpen(true);
