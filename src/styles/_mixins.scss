@@ -1,55 +1,3 @@
-@mixin cloud-pt() {
-  height: auto;
-  width: 35%;
-  background-color: $cloud;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  position: absolute;
-}
-
-@mixin cloud($max, $min, $width, $bottom-rad, $op, $top-pos) {
-  max-height: $max;
-  max-width: $max;
-  min-height: $min;
-  min-width: $min;
-  aspect-ratio: 1;
-  height: auto;
-  width: $width;
-  position: absolute;
-  top: $top-pos;
-  z-index: 2;
-  opacity: $op;
-
-  .cloud-pt-1 {
-    @include cloud-pt();
-    bottom: 15%;
-    left: 15%;
-  }
-
-  .cloud-pt-2 {
-    @include cloud-pt();
-    bottom: 25%;
-    left: 35%;
-  }
-
-  .cloud-pt-3 {
-    @include cloud-pt();
-    bottom: 10%;
-    right: 15%;
-  }
-
-  .cloud-bottom {
-    height: 35%;
-    width: 100%;
-    background-color: $cloud;
-    border-radius: $bottom-rad;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-}
-
 @mixin small-screen() {
   @media (max-width: map-get($breakpoints, "small")) {
     @content;
@@ -78,22 +26,4 @@
   @media (max-height: 600px) {
     @content;
   }
-}
-
-@mixin vertical-feet-animation($anim-direction, $duration, $delay) {
-  animation-name: vertical-anim;
-  animation-duration: $duration;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: $anim-direction;
-  animation-delay: $delay;
-}
-
-@mixin horizontal-feet-animation($anim-direction, $duration, $delay) {
-  animation-name: horizontal-anim;
-  animation-duration: $duration;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: $anim-direction;
-  animation-delay: $delay;
 }

@@ -1,5 +1,6 @@
 @import "variables";
 @import "mixins";
+@import "animations";
 @import "cloud";
 @import "background";
 @import "header";
@@ -12,6 +13,7 @@
 @import "howto";
 @import "stats";
 @import "results";
+@import "loading";
 
 html,
 #root,

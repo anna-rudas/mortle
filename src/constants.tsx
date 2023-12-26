@@ -15,11 +15,11 @@ export const howToPlayContent = [
     explanation: "The letter is in the word and in the correct spot.",
   },
   {
-    exampleWord: "PROUD",
+    exampleWord: "LOVES",
     explanation: "The letter is in the word but in the wrong spot.",
   },
   {
-    exampleWord: "LEAVE",
+    exampleWord: "BASIL",
     explanation: "The letter is not in the word in any spot.",
   },
 ];
@@ -93,12 +93,4 @@ export const resultTexts = {
   winLast: ["Phew, that was close.", "Very last minute, but you got it!"],
   winMiddle: ["Nice one!", "You did it!", "Yay, you've guessed it!"],
   lose: ["Aw shucks, better luck next time.", "Well, you tried."],
-  noDefWin: [
-    "Who knows what this word means, but you've guessed it!",
-    "Congrats, but like what does this word even mean?",
-  ],
-  noDefLose: [
-    "Oh my god, what does this word even mean??",
-    "No wonder you lost buddy, I can't even tell you what this word means.",
-  ],
 };

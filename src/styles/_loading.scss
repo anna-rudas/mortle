@@ -1,0 +1,38 @@
+.little-monsters-con {
+  display: flex;
+  width: 100%;
+  gap: $gap-base * 2;
+  justify-content: center;
+}
+
+.monsters-con {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  justify-content: flex-end;
+  align-items: center;
+  animation: bounce 1s infinite;
+}
+
+.little-game-monster-con {
+  @extend .monsters-con;
+}
+
+.little-keyboard-monster-con {
+  @extend .monsters-con;
+  animation-delay: 0.5s;
+}
+
+.little-game-monster {
+  width: 55px;
+  height: 60px;
+  background-color: $text-darkest;
+  border-radius: $border-radius-small;
+}
+
+.little-keyboard-monster {
+  width: 70px;
+  height: 40px;
+  background-color: $text-darkest;
+  border-radius: $border-radius-small;
+}

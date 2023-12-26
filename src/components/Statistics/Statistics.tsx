@@ -3,6 +3,8 @@ import CloseIcon from "../../icons/CloseIcon";
 import { dummyData } from "../../constants";
 import { StatsData } from "../../types";
 
+//TODO: save results in local storage and add functinality
+
 interface HowToPlayProps {
   closeStatistics: () => void;
 }

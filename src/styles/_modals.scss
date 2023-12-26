@@ -7,6 +7,7 @@
   align-items: center;
   padding: $padding-base;
   background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
 }
 
 .modal-con-no-bg {
@@ -82,6 +83,16 @@
   @include small-screen {
     width: 270px;
   }
+}
+
+.modal-content-loading {
+  @extend .modal-content;
+  height: 90%;
+  max-height: 200px;
+  max-width: 350px;
+  position: relative;
+  padding: $padding-base * 3;
+  align-items: center;
 }
 
 .see-results {

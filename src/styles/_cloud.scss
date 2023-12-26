@@ -1,3 +1,55 @@
+@mixin cloud-pt() {
+  height: auto;
+  width: 35%;
+  background-color: $cloud;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: absolute;
+}
+
+@mixin cloud($max, $min, $width, $bottom-rad, $op, $top-pos) {
+  max-height: $max;
+  max-width: $max;
+  min-height: $min;
+  min-width: $min;
+  aspect-ratio: 1;
+  height: auto;
+  width: $width;
+  position: absolute;
+  top: $top-pos;
+  z-index: 2;
+  opacity: $op;
+
+  .cloud-pt-1 {
+    @include cloud-pt();
+    bottom: 15%;
+    left: 15%;
+  }
+
+  .cloud-pt-2 {
+    @include cloud-pt();
+    bottom: 25%;
+    left: 35%;
+  }
+
+  .cloud-pt-3 {
+    @include cloud-pt();
+    bottom: 10%;
+    right: 15%;
+  }
+
+  .cloud-bottom {
+    height: 35%;
+    width: 100%;
+    background-color: $cloud;
+    border-radius: $bottom-rad;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
 .small-cloud-animation {
   animation-name: small-moving-cloud;
   animation-direction: alternate;
@@ -12,26 +64,6 @@
   }
 }
 
-@keyframes small-moving-cloud {
-  0% {
-    left: 110%;
-    top: 10%;
-  }
-  40% {
-    top: 15%;
-  }
-  50% {
-    top: 10%;
-  }
-  75% {
-    top: 5%;
-  }
-  100% {
-    left: -50%;
-    top: 10%;
-  }
-}
-
 .large-cloud-animation {
   animation-name: large-moving-cloud;
   animation-direction: normal;
@@ -40,15 +72,6 @@
   animation-iteration-count: infinite;
   @include large-screen {
     animation-duration: 100s;
-  }
-}
-
-@keyframes large-moving-cloud {
-  0% {
-    left: 110%;
-  }
-  100% {
-    left: -50%;
   }
 }
 
