@@ -11,19 +11,18 @@ import LoadingGame from "./components/LoadingGame/LoadingGame";
 import { WordDefinition } from "./types";
 import AppContextProvider from "./context";
 import { AppContext } from "./context";
+import { wordDefTest } from "./test/test-data";
 
 //TODO: on mobile, stop mobile keyboard from popping up for input
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [isStatisticsOpen, setIsStatisticsOpen] = useState(false);
-  const [isResultsOpen, setIsResultsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [randomWord, setRandomWord] = useState("");
-  const [wordMeaning, setWordMeaning] = useState<WordDefinition>({
-    isDef: false,
-    def: {},
-  });
+  const [isResultsOpen, setIsResultsOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [solutionWordDef, setSolutionWordDef] = useState<WordDefinition | null>(
+    null
+  );
   const { currentRow, setCurrentRow, currentColumn, setCurrentColumn } =
     useContext(AppContext);
 
@@ -44,10 +43,10 @@ function App() {
           currentColumn != 0
         ) {
           setCurrentColumn(currentColumn - 1);
-          const prevElement: any = document.getElementById(
+          const prevElement: HTMLInputElement | null = document.getElementById(
             `${currentRow},${currentColumn - 1}`
-          );
-          prevElement.value = "";
+          ) as HTMLInputElement;
+          if (prevElement) prevElement.value = "";
         } else {
           (inputElement as HTMLInputElement).value = "";
         }
@@ -86,44 +85,42 @@ function App() {
   const closeStatistics = () => {
     setIsStatisticsOpen(false);
   };
-  const openGameResult = () => {
-    setIsResultsOpen(true);
-  };
+  // const openGameResult = () => {
+  //   setIsResultsOpen(true);
+  // };
   const closeGameResult = () => {
     setIsResultsOpen(false);
   };
 
-  const getRandomWord = async () => {
-    fetch("https://random-word-api.herokuapp.com/word?length=5")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        //TODO: have to check that it has a definition, otherwise retry (need loading state)
-        setRandomWord(data[0]);
-      })
-      .catch((error) => {
-        //TODO: retry (need loading state), otherwise let user know that couldn't fetch word
-        console.error(error);
-      });
-  };
+  // const getRandomWord = (): Promise<string> => {
+  //   return fetch("https://random-word-api.herokuapp.com/word?length=5")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       //setRandomWord(data[0]);
+  //       return data[0];
+  //     })
+  //     .catch((error) => {
+  //       //TODO handle error
+  //       console.error(error);
+  //     });
+  // };
 
-  const getWordDefinition = async (wordToCheck: string) => {
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordToCheck}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        if (data.title) {
-          setWordMeaning({ isDef: false, def: {} });
-        } else {
-          setWordMeaning({ isDef: true, def: data[0] });
-        }
-      })
-      .catch((error) => {
-        //TODO: retry (need loading state)
-        console.error(error);
-      });
+  // const getWordDefinition = (
+  //   wordToCheck: string
+  // ): Promise<WordDefinition | null> => {
+  //   return fetch(
+  //     `https://api.dictionaryapi.dev/api/v2/entries/en/${wordToCheck}`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => data[0] || null)
+  //     .catch((error) => {
+  //       //TODO handle error
+  //       console.error(error);
+  //     });
+  // };
+
+  const getWordDefinitionTest = (): WordDefinition => {
+    return wordDefTest;
   };
 
   const checkInputWord = () => {
@@ -135,10 +132,30 @@ function App() {
     return true;
   };
 
+  const getSolutionWithDefinition = async () => {
+    const loopMax = 10;
+    let loopCounter = 0;
+
+    while (loopCounter < loopMax) {
+      loopCounter++;
+      //const randomWord: string = await getRandomWord();
+      // const randomWordDef: WordDefinition | null = await getWordDefinition(
+      //   randomWord
+      // );
+      const randomWordDef = getWordDefinitionTest();
+      if (randomWordDef) {
+        //TODO: no need for storing randomword, its in randomworddef
+        setSolutionWordDef(randomWordDef);
+        return;
+      }
+    }
+
+    //TODO: couldnt get a def after trying 10 times --> error boundary
+    console.log("some error");
+  };
+
   useEffect(() => {
-    //TODO: init here
-    //loading until we get a word that has a definition
-    //stop loading state, ready to play
+    getSolutionWithDefinition().then(() => setIsLoading(false));
   }, []);
 
   return (
@@ -150,10 +167,9 @@ function App() {
         {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
         {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
       </div>
-      {isResultsOpen && (
+      {isResultsOpen && solutionWordDef && (
         <GameResult
-          wordDefinition={wordMeaning}
-          solutionWord={randomWord}
+          wordDefinition={solutionWordDef}
           closeGameResult={closeGameResult}
         />
       )}

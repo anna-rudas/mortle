@@ -5,15 +5,10 @@ import ArrowIcon from "../../icons/ArrowIcon";
 
 interface GameResultProps {
   wordDefinition: WordDefinition;
-  solutionWord: string;
   closeGameResult: () => void;
 }
 
-function GameResult({
-  solutionWord,
-  wordDefinition,
-  closeGameResult,
-}: GameResultProps) {
+function GameResult({ wordDefinition, closeGameResult }: GameResultProps) {
   const [isReview, setIsReview] = useState(false);
 
   const openReview = () => {
@@ -58,11 +53,11 @@ function GameResult({
         </div>
         <div className="results-text">
           <div>The solution is:</div>
-          <div className="results-solution">{solutionWord}</div>
+          <div className="results-solution">{wordDefinition.word}</div>
         </div>
-        {wordDefinition.isDef && (
+        {wordDefinition && (
           <div className="results-def">
-            {wordDefinition.def.meanings.map(
+            {wordDefinition.meanings.map(
               (currentMeaning: any, index: number) => {
                 let tempIndex = 1;
                 if (window.innerHeight >= 900) {
@@ -84,7 +79,7 @@ function GameResult({
             )}
           </div>
         )}
-        {!wordDefinition.isDef && <div>noDefWin or noDefLose text</div>}
+        {!wordDefinition && <div>noDefWin or noDefLose text</div>}
         <div className="results-btn-con">
           <button className="results-btns" onClick={closeGameResult}>
             Play again

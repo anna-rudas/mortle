@@ -4,6 +4,9 @@ export type StatsData = {
 }[];
 
 export type WordDefinition = {
-  isDef: boolean;
-  def: any;
+  word: string;
+  meanings: Array<{
+    partOfSpeech: string;
+    definitions: Array<{ definition: string }>;
+  }>;
 };
