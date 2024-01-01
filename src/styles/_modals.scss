@@ -12,6 +12,7 @@
 
 .modal-con-no-bg {
   background-color: rgba(0, 0, 0, 0) !important;
+  backdrop-filter: none;
 }
 
 .modal-content {

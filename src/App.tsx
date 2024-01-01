@@ -12,6 +12,7 @@ import { WordDefinition } from "./types";
 import AppContextProvider from "./context";
 import { AppContext } from "./context";
 import { wordDefTest } from "./test/test-data";
+import { dummyResultsData } from "./test/test-data";
 
 //TODO: on mobile, stop mobile keyboard from popping up for input
 
@@ -170,6 +171,7 @@ function App() {
       {isResultsOpen && solutionWordDef && (
         <GameResult
           wordDefinition={solutionWordDef}
+          guessedAtData={dummyResultsData}
           closeGameResult={closeGameResult}
         />
       )}

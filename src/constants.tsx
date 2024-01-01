@@ -1,7 +1,6 @@
 import React from "react";
 import EnterIcon from "./icons/EnterIcon";
 import BackspaceIcon from "./icons/BackspaceIcon";
-import { StatsData } from "./types";
 
 export const keyboardLetters = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -40,67 +39,33 @@ export const howToPlayClassNames = [
   "letter-no",
 ];
 
-export const dummyData: StatsData = [
-  {
-    guessed: true,
-    guessedAt: 3,
-  },
-  {
-    guessed: false,
-  },
-  {
-    guessed: true,
-    guessedAt: 5,
-  },
-  {
-    guessed: true,
-    guessedAt: 1,
-  },
-  {
-    guessed: false,
-  },
-  {
-    guessed: true,
-    guessedAt: 3,
-  },
-  {
-    guessed: true,
-    guessedAt: 3,
-  },
-  {
-    guessed: true,
-    guessedAt: 2,
-  },
-  {
-    guessed: false,
-  },
-  {
-    guessed: false,
-  },
-  {
-    guessed: true,
-    guessedAt: 5,
-  },
-  {
-    guessed: true,
-    guessedAt: 5,
-  },
-  {
-    guessed: true,
-    guessedAt: 5,
-  },
-  {
-    guessed: true,
-    guessedAt: 5,
-  },
-];
-
 export const resultTexts = {
   winFirst: [
     "Oh my god, first try? Congrats!",
     "That's crazy, you got it on the first try!",
+    "Amazing!",
+    "Oh my god! That was quick.",
+    "This is too easy for you, eh?",
   ],
-  winLast: ["Phew, that was close.", "Very last minute, but you got it!"],
-  winMiddle: ["Nice one!", "You did it!", "Yay, you've guessed it!"],
-  lose: ["Aw shucks, better luck next time.", "Well, you tried."],
+  winLast: [
+    "Phew, that was close.",
+    "Very last minute, but you got it!",
+    "Better late than never!",
+    "Wow! Cutting it close.",
+    "You make me believe in miracles.",
+  ],
+  winMiddle: [
+    "Nice one!",
+    "You got it!",
+    "Yay, you've guessed it!",
+    "Cheers!",
+    "You've guessed it!",
+  ],
+  lose: [
+    "Aw shucks, better luck next time.",
+    "Well, you tried.",
+    "Not the end of the world.",
+    "It happens.",
+    "Aw that' sad. But you can just try again!",
+  ],
 };
