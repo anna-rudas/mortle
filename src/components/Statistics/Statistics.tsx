@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "../../icons/CloseIcon";
-import { dummyData } from "../../constants";
+import { dummyData } from "../../test/test-data";
 import { StatsData } from "../../types";
 
 //TODO: save results in local storage and add functinality
@@ -24,13 +24,13 @@ function Statistics({ closeStatistics }: HowToPlayProps) {
     window.addEventListener("keydown", closeModal);
   });
 
-  const calcWinPer = (data: StatsData) => {
+  const calcWinPer = (data: StatsData[]) => {
     const timesPlayed = data.length;
     const timesWon = data.filter((currentData) => currentData.guessed);
     return Math.round((timesWon.length / timesPlayed) * 100);
   };
 
-  const calcBarPer = (data: StatsData): number[] => {
+  const calcBarPer = (data: StatsData[]): number[] => {
     const temp = [0, 0, 0, 0, 0];
     const timesWon = data.filter((currentData) => currentData.guessed);
     timesWon.map((current) => {

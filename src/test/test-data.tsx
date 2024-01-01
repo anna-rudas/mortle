@@ -1,3 +1,5 @@
+import { StatsData } from "../types";
+
 export const wordDefTest = {
   word: "chant",
   phonetic: "/tʃænt/",
@@ -87,3 +89,63 @@ export const wordDefTest = {
 };
 
 export const wordtest = ["chant"];
+
+export const dummyData: StatsData[] = [
+  {
+    guessed: true,
+    guessedAt: 3,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 1,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: true,
+    guessedAt: 3,
+  },
+  {
+    guessed: true,
+    guessedAt: 3,
+  },
+  {
+    guessed: true,
+    guessedAt: 2,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: false,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+  {
+    guessed: true,
+    guessedAt: 5,
+  },
+];
+
+export const dummyResultsData: StatsData = {
+  guessed: true,
+  guessedAt: 3,
+};
