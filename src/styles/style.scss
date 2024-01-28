@@ -86,7 +86,13 @@ body {
 .letter-correct {
   background-color: $letter-correct-spot;
   color: $text-darkest;
+  input {
+    color: $text-darkest;
+  }
   span {
+    color: $text-darkest;
+  }
+  button {
     color: $text-darkest;
   }
 }
@@ -94,15 +100,27 @@ body {
 .letter-wrong {
   background-color: $letter-wrong-spot;
   color: $text-darkest;
+  input {
+    color: $text-darkest;
+  }
   span {
+    color: $text-darkest;
+  }
+  button {
     color: $text-darkest;
   }
 }
 
 .letter-no {
   background-color: $letter-no-spot;
-  color: $text-darkest;
+  color: $text-lightest;
+  input {
+    color: $text-lightest;
+  }
   span {
+    color: $text-lightest;
+  }
+  button {
     color: $text-lightest;
   }
 }

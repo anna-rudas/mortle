@@ -15,6 +15,7 @@ import { wordDefTest } from "./test/test-data";
 import { dummyResultsData } from "./test/test-data";
 
 //TODO: on mobile, stop mobile keyboard from popping up for input
+//TODO: when enter on last line, special case, but still gotta disable line so user cant delete letters or input anything else
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -32,7 +33,7 @@ function App() {
     return () => document.removeEventListener("keydown", handleKeyEvent);
   });
 
-  const handleKeyEvent = (event: KeyboardEvent) => {
+  const handleKeyEvent = async (event: KeyboardEvent) => {
     if (!isResultsOpen && !isStatisticsOpen && !isHowToPlayOpen && !isLoading) {
       const inputElement: HTMLElement | null = document.getElementById(
         `${currentRow},${currentColumn}`
@@ -52,9 +53,12 @@ function App() {
           (inputElement as HTMLInputElement).value = "";
         }
       } else if (event.key === "Enter") {
-        if (!checkInputWord()) {
+        //TODO: disable input while await
+        const isInputWordValid = await checkInputWord();
+        if (!isInputWordValid) {
           return;
         }
+
         if (currentRow != 4) {
           setCurrentRow(currentRow + 1);
           setCurrentColumn(0);
@@ -124,13 +128,109 @@ function App() {
     return wordDefTest;
   };
 
-  const checkInputWord = () => {
-    //TODO: get all the letters from the current row, check if its the solution
-    //if yes, it is solved
-    //if no, check if it has a definition
-    //if it doesnt, it is considered not a valid word, we have to let the user know
-    //if it does, its a valid word, we can color the tiles and keyboard accordingly and proceed to the next row
-    return true;
+  const checkInputWord = async () => {
+    const inputWord = new Array(5);
+
+    //get the input word
+    for (let i = 0; i < 5; i++) {
+      const inputLetter: string = (
+        document.getElementById(`${currentRow},${i}`) as HTMLInputElement
+      )?.value;
+      inputWord[i] = inputLetter.toLowerCase();
+    }
+
+    if (inputWord.join("") == solutionWordDef?.word.toLowerCase()) {
+      //input is the solution
+      inputWord.forEach((inputLetter, inputLetterIndex) => {
+        modifyLetterColor(inputLetterIndex, "letter-correct");
+        modifyKeyboardLetterColor(inputLetter, "letter-correct");
+      });
+      //TODO: game over
+      return true;
+    } else if (inputWord.join("").split("").length == 5) {
+      // const getInputWordDef: WordDefinition | null = await getWordDefinition(
+      //   inputWord.join("")
+      // );
+
+      const getInputWordDef: WordDefinition | null = getWordDefinitionTest();
+
+      if (getInputWordDef) {
+        //input word is valid (5 letters and def)
+        const solutionWord = solutionWordDef?.word.toLowerCase().split("");
+        inputWord.forEach((inputLetter, inputLetterIndex) => {
+          if (solutionWord && solutionWord.indexOf(inputLetter) < 0) {
+            modifyLetterColor(inputLetterIndex, "letter-no");
+            modifyKeyboardLetterColor(inputLetter, "letter-no");
+          }
+          if (solutionWord && solutionWord[inputLetterIndex] == inputLetter) {
+            modifyLetterColor(inputLetterIndex, "letter-correct");
+            modifyKeyboardLetterColor(inputLetter, "letter-correct");
+          } else if (solutionWord) {
+            const timesInSolution =
+              solutionWord.join().split(inputLetter).length - 1;
+
+            const incorrectIndexes = [];
+            let correctTimes = 0;
+
+            for (let j = 0; j < inputWord.length; j++) {
+              if (inputWord[j] === inputLetter) {
+                if (inputWord[j] === solutionWord[j]) {
+                  correctTimes++;
+                } else {
+                  incorrectIndexes.push(j);
+                }
+              }
+            }
+            const yellowTimes = timesInSolution - correctTimes;
+
+            for (let j = 0; j < incorrectIndexes.length; j++) {
+              if (inputLetterIndex === incorrectIndexes[j]) {
+                if (j < yellowTimes) {
+                  modifyLetterColor(inputLetterIndex, "letter-wrong");
+                  modifyKeyboardLetterColor(inputLetter, "letter-wrong");
+                } else {
+                  modifyLetterColor(inputLetterIndex, "letter-no");
+                }
+              }
+            }
+          }
+        });
+
+        return true;
+      } else {
+        //input word is not valid (no def)
+        return false;
+      }
+    } else {
+      //input word is not valid (not 5 letters)
+      return false;
+    }
+  };
+
+  const modifyLetterColor = (letterIndex: number, className: string) => {
+    const letterElement = document.getElementById(
+      `${currentRow},${letterIndex}`
+    );
+    letterElement?.parentElement?.classList.add(`${className}`);
+  };
+
+  const modifyKeyboardLetterColor = (
+    inputLetter: string,
+    className: string
+  ) => {
+    const keyboardLetters: any = document.querySelectorAll(
+      ".keyboard-tooth-con"
+    );
+
+    keyboardLetters.forEach((currentKey: any) => {
+      if (
+        currentKey.innerText.toLowerCase() == inputLetter &&
+        !currentKey.classList.contains("letter-correct")
+      ) {
+        currentKey.classList.remove("letter-wrong");
+        currentKey.classList.add(`${className}`);
+      }
+    });
   };
 
   const getSolutionWithDefinition = async () => {
@@ -145,7 +245,6 @@ function App() {
       // );
       const randomWordDef = getWordDefinitionTest();
       if (randomWordDef) {
-        //TODO: no need for storing randomword, its in randomworddef
         setSolutionWordDef(randomWordDef);
         return;
       }

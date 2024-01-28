@@ -26,21 +26,23 @@ function KeyboardMonsterMouth() {
         (inputElement as HTMLInputElement).value.length == 0 &&
         currentColumn != 0
       ) {
-        const mize = currentColumn - 1;
-        setCurrentColumn(mize);
-        const ize: any = document.getElementById(`${currentRow},${mize}`);
-        ize.value = "";
+        const tempColumn = currentColumn - 1;
+        setCurrentColumn(tempColumn);
+        const elementToDelete: HTMLElement | null = document.getElementById(
+          `${currentRow},${tempColumn}`
+        );
+        (elementToDelete as HTMLInputElement).value = "";
       } else {
         (inputElement as HTMLInputElement).value = "";
       }
     } else {
       //clicked letter
-      const inputElement: any = document.getElementById(
+      const inputElement: HTMLElement | null = document.getElementById(
         `${currentRow},${currentColumn}`
       );
       if (inputElement) {
         const eventTarget = event.target as HTMLElement;
-        inputElement.value = eventTarget.innerText;
+        (inputElement as HTMLInputElement).value = eventTarget.innerText;
       }
       if (currentColumn != 4) {
         setCurrentColumn(currentColumn + 1);
