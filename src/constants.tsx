@@ -36,7 +36,7 @@ export const howToPlayContent = [
   },
 ];
 
-export const howToPlayClassNames = [
+export const letterColoringClasses = [
   "letter-correct",
   "letter-wrong",
   "letter-no",

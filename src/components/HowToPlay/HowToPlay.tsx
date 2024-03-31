@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CloseIcon from "../../icons/CloseIcon";
-import { howToPlayContent, howToPlayClassNames } from "../../constants";
+import { howToPlayContent, letterColoringClasses } from "../../constants";
 
 interface HowToPlayProps {
   closeHowToPlay: () => void;
@@ -44,7 +44,7 @@ function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
                         <div
                           className={`letter-box ${
                             letterIndex === index + 1
-                              ? howToPlayClassNames[index]
+                              ? letterColoringClasses[index]
                               : ""
                           }`}
                           key={letterIndex}

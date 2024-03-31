@@ -7,13 +7,10 @@ import HowToPlay from "./components/HowToPlay/HowToPlay";
 import Statistics from "./components/Statistics/Statistics";
 import GameResult from "./components/GameResult/GameResult";
 import LoadingGame from "./components/LoadingGame/LoadingGame";
-import { WordDefinition } from "./types";
 import AppContextProvider, { AppContext } from "./context";
-import { wordDefTest, dummyResultsData } from "./test/test-data";
+import { dummyResultsData } from "./test/test-data";
 import { wordLength, numberOfTries } from "./constants";
-
-//TODO: on mobile, stop mobile keyboard from popping up for input
-//TODO: when enter on last line, special case, but still gotta disable line so user cant delete letters or input anything else
+import { checkInputWord, getWordDefinitionTest } from "./helpers";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -54,8 +51,11 @@ function App() {
           }
         } else if (event.key === "Enter") {
           //TODO: disable input while await
-
-          const isInputWordValid = await checkInputWord();
+          const isInputWordValid = await checkInputWord(
+            currentRow,
+            inputLetters,
+            solutionWordDef
+          );
           if (!isInputWordValid) {
             return;
           }
@@ -63,12 +63,9 @@ function App() {
           setLastDoneRow(lastDoneRow + 1);
           setCurrentRow(currentRow + 1);
           setCurrentColumn(0);
-          window.setTimeout(
-            () => document.getElementById(`${currentRow + 1},0`)?.focus(),
-            0
-          );
         } else if (event.keyCode > 64 && event.keyCode < 91) {
-          setInputLetterValue(event.key);
+          //TODO
+          setInputLetterValue(event.key.toLocaleUpperCase());
           if (currentColumn != wordLength - 1) {
             setCurrentColumn(currentColumn + 1);
           }
@@ -123,37 +120,6 @@ function App() {
   //     });
   // };
 
-  const getWordDefinitionTest = (): WordDefinition => {
-    return wordDefTest;
-  };
-
-  const checkInputWord = async () => {
-    const inputWord = inputLetters[currentRow];
-
-    if (inputWord.join("") == solutionWordDef?.word.toLowerCase()) {
-      //input is the solution
-      //TODO: game over
-      return true;
-    } else if (inputWord.join("").split("").length == 5) {
-      // const getInputWordDef: WordDefinition | null = await getWordDefinition(
-      //   inputWord.join("")
-      // );
-
-      const getInputWordDef: WordDefinition | null = getWordDefinitionTest();
-
-      if (getInputWordDef) {
-        //input word is valid (5 letters and def)
-        return true;
-      } else {
-        //input word is not valid (no def)
-        return false;
-      }
-    } else {
-      //input word is not valid (not 5 letters)
-      return false;
-    }
-  };
-
   const getSolutionWithDefinition = async () => {
     const loopMax = 10;
     let loopCounter = 0;
@@ -184,7 +150,7 @@ function App() {
       <Background />
       <div className="game-content">
         <Header openHowToPlay={openHowToPlay} openStatistics={openStatistics} />
-        <Game />
+        {!isLoading && <Game />}
         {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
         {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
       </div>
