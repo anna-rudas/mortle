@@ -63,8 +63,7 @@ function App() {
           setLastDoneRow(lastDoneRow + 1);
           setCurrentRow(currentRow + 1);
           setCurrentColumn(0);
-        } else if (event.keyCode > 64 && event.keyCode < 91) {
-          //TODO
+        } else if (event.key.length == 1) {
           setInputLetterValue(event.key.toLocaleUpperCase());
           if (currentColumn != wordLength - 1) {
             setCurrentColumn(currentColumn + 1);

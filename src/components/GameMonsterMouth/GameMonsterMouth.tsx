@@ -1,21 +1,25 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context";
-import { compareInputAndSolution } from "../../helpers";
+import { compareInputAndSolution, className } from "../../helpers";
+import { LetterColorClass } from "../../types";
 
 function GameMonsterMouth() {
   const { currentRow, inputLetters, solutionWordDef, lastDoneRow } =
     useContext(AppContext);
 
-  const colorInputLetter = (rowIndex: number, columnIndex: number) => {
-    if (lastDoneRow > rowIndex) {
-      const coloring = compareInputAndSolution(
-        rowIndex,
-        inputLetters,
-        solutionWordDef
-      );
-      return coloring[columnIndex];
+  const colorInputLetter = (
+    rowIndex: number,
+    columnIndex: number
+  ): LetterColorClass | null => {
+    if (lastDoneRow <= rowIndex) {
+      return null;
     }
-    return "";
+    const coloring = compareInputAndSolution(
+      rowIndex,
+      inputLetters,
+      solutionWordDef
+    );
+    return coloring[columnIndex];
   };
 
   return (
@@ -27,10 +31,10 @@ function GameMonsterMouth() {
               {currRow.map((currLetter, columnIndex) => {
                 return (
                   <div
-                    className={
-                      "game-tooth-con " +
+                    {...className(
+                      "game-tooth-con",
                       colorInputLetter(rowIndex, columnIndex)
-                    }
+                    )}
                     key={columnIndex}
                   >
                     <input

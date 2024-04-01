@@ -10,3 +10,5 @@ export type WordDefinition = {
     definitions: Array<{ definition: string }>;
   }>;
 };
+
+export type LetterColorClass = "letter-correct" | "letter-wrong" | "letter-no";

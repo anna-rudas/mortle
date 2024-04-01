@@ -6,7 +6,12 @@ import {
   letterColoringClasses,
 } from "../../constants";
 import { AppContext } from "../../context";
-import { checkInputWord, compareInputAndSolution } from "../../helpers";
+import {
+  checkInputWord,
+  compareInputAndSolution,
+  className,
+} from "../../helpers";
+import { LetterColorClass } from "../../types";
 
 function KeyboardMonsterMouth() {
   const {
@@ -62,13 +67,15 @@ function KeyboardMonsterMouth() {
     }
   };
 
-  const colorKeyboardLetter = (currentLetter: string | JSX.Element) => {
-    //TODO add comments
-
+  const colorKeyboardLetter = (
+    currentLetter: string | JSX.Element
+  ): LetterColorClass | null => {
     if (typeof currentLetter == "string") {
+      //order of colors: correct, wrong, no
       for (const colorClass of letterColoringClasses) {
         for (let i = lastDoneRow - 1; i >= 0; i--) {
           if (!inputLetters[i].includes(currentLetter)) {
+            //if letter not in current row, skip
             continue;
           }
 
@@ -78,6 +85,7 @@ function KeyboardMonsterMouth() {
             solutionWordDef
           );
 
+          //if the same color and same letter
           if (
             colorClassResults.some(
               (currentColorClass, classIdx) =>
@@ -90,6 +98,7 @@ function KeyboardMonsterMouth() {
         }
       }
     }
+    return null;
   };
 
   return (
@@ -102,10 +111,10 @@ function KeyboardMonsterMouth() {
                 return (
                   <div
                     key={currentLetterIndex}
-                    className={[
+                    {...className(
                       "keyboard-tooth-con",
-                      colorKeyboardLetter(currentLetter),
-                    ].join(" ")}
+                      colorKeyboardLetter(currentLetter)
+                    )}
                   >
                     <button
                       onClick={() =>

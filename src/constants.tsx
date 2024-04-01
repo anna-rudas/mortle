@@ -1,6 +1,7 @@
 import React from "react";
 import EnterIcon from "./icons/EnterIcon";
 import BackspaceIcon from "./icons/BackspaceIcon";
+import { LetterColorClass } from "./types";
 
 export const wordLength = 5;
 export const numberOfTries = 5;
@@ -36,7 +37,7 @@ export const howToPlayContent = [
   },
 ];
 
-export const letterColoringClasses = [
+export const letterColoringClasses: LetterColorClass[] = [
   "letter-correct",
   "letter-wrong",
   "letter-no",
