@@ -11,12 +11,17 @@ import AppContextProvider, { AppContext } from "./context";
 import { dummyResultsData } from "./test/test-data";
 import { wordLength, numberOfTries } from "./constants";
 import { checkInputWord, getWordDefinitionTest } from "./helpers";
+import { ErrorBoundary, useErrorBoundary } from "react-error-boundary";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
+import { WordDefinition } from "./types";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [isStatisticsOpen, setIsStatisticsOpen] = useState(false);
   const [isResultsOpen, setIsResultsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { showBoundary } = useErrorBoundary();
 
   const {
     currentRow,
@@ -100,8 +105,7 @@ function App() {
   //       return data[0];
   //     })
   //     .catch((error) => {
-  //       //TODO handle error
-  //       console.error(error);
+  //       showBoundary(error);
   //     });
   // };
 
@@ -114,8 +118,7 @@ function App() {
   //     .then((response) => response.json())
   //     .then((data) => data[0] || null)
   //     .catch((error) => {
-  //       //TODO handle error
-  //       console.error(error);
+  //       showBoundary(error);
   //     });
   // };
 
@@ -125,19 +128,23 @@ function App() {
 
     while (loopCounter < loopMax) {
       loopCounter++;
-      //const randomWord: string = await getRandomWord();
+
+      //real data
+      // const randomWord: string = await getRandomWord();
       // const randomWordDef: WordDefinition | null = await getWordDefinition(
       //   randomWord
       // );
+
+      //test data
       const randomWordDef = getWordDefinitionTest();
+
       if (randomWordDef) {
         setSolutionWordDef(randomWordDef);
         return;
       }
     }
 
-    //TODO: couldnt get a def after trying 10 times --> error boundary
-    console.log("some error");
+    showBoundary("Could not get solution word.");
   };
 
   useEffect(() => {
@@ -165,11 +172,17 @@ function App() {
   );
 }
 
+const logError = (error: Error) => {
+  console.error("Unexpected error: ", error);
+};
+
 function AppWithProvider() {
   return (
-    <AppContextProvider>
-      <App />
-    </AppContextProvider>
+    <ErrorBoundary FallbackComponent={ErrorPage} onError={logError}>
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
+    </ErrorBoundary>
   );
 }
 

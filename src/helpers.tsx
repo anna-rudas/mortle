@@ -42,10 +42,9 @@ export const compareInputAndSolution = (
   inputLetters: readonly string[][],
   solutionWordDef: WordDefinition | null
 ): LetterColorClass[] => {
-  if (solutionWordDef === null) {
-    throw new Error("unreachable");
+  if (!solutionWordDef) {
+    throw new Error("Solution word unreachable.");
   }
-  //TODO error
 
   const inputWord = inputLetters[rowIndex];
   const solutionWord = solutionWordDef.word.toLocaleUpperCase();
