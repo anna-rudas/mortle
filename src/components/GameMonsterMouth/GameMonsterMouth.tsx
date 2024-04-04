@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context";
-import { compareInputAndSolution, className } from "../../helpers";
+import { className } from "../../helpers";
 import { LetterColorClass } from "../../types";
 
 function GameMonsterMouth() {
-  const { currentRow, inputLetters, solutionWordDef, lastDoneRow } =
+  const { currentRow, inputLetters, lastDoneRow, compareInputAndSolution } =
     useContext(AppContext);
 
   const colorInputLetter = (
@@ -14,11 +14,7 @@ function GameMonsterMouth() {
     if (lastDoneRow <= rowIndex) {
       return null;
     }
-    const coloring = compareInputAndSolution(
-      rowIndex,
-      inputLetters,
-      solutionWordDef
-    );
+    const coloring = compareInputAndSolution(rowIndex);
     return coloring[columnIndex];
   };
 

@@ -6,11 +6,7 @@ import {
   letterColoringClasses,
 } from "../../constants";
 import { AppContext } from "../../context";
-import {
-  checkInputWord,
-  compareInputAndSolution,
-  className,
-} from "../../helpers";
+import { className } from "../../helpers";
 import { LetterColorClass } from "../../types";
 
 function KeyboardMonsterMouth() {
@@ -21,9 +17,11 @@ function KeyboardMonsterMouth() {
     setCurrentColumn,
     inputLetters,
     setInputLetterValue,
-    solutionWordDef,
     lastDoneRow,
     setLastDoneRow,
+    checkInputWord,
+    compareInputAndSolution,
+    setIsFetching,
   } = useContext(AppContext);
 
   const handleClickInputs = async (
@@ -34,11 +32,9 @@ function KeyboardMonsterMouth() {
     if (currentRow < numberOfTries) {
       if (rowIndex === 2 && letterIndex === 0) {
         //clicked enter
-        const isInputWordValid = await checkInputWord(
-          currentRow,
-          inputLetters,
-          solutionWordDef
-        );
+        setIsFetching(true);
+        const isInputWordValid = await checkInputWord(currentRow);
+        setIsFetching(false);
         if (!isInputWordValid) {
           return;
         }
@@ -79,11 +75,7 @@ function KeyboardMonsterMouth() {
             continue;
           }
 
-          const colorClassResults = compareInputAndSolution(
-            i,
-            inputLetters,
-            solutionWordDef
-          );
+          const colorClassResults = compareInputAndSolution(i);
 
           //if the same color and same letter
           if (

@@ -6,6 +6,11 @@ import { LetterColorClass } from "./types";
 export const wordLength = 5;
 export const numberOfTries = 5;
 
+export const generalErrorMsg =
+  "Unexpected error. Refresh the page or try again later.";
+
+export const invalidSubmitWarning = "Your guess must be a valid 5 letter word.";
+
 export const keyboardLetters = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
   ["A", "S", "D", "F", "G", "H", "J", "K", "L"],

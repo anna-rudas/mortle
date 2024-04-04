@@ -6,7 +6,7 @@ function ErrorPage() {
     <div className="wrapper">
       <Background />
       <div className="modal-con">
-        <div className="modal-content-loading">
+        <div className="modal-content-centered">
           <h2 className="modal-title">Sorry</h2>
           <div className="base-text">
             Unexpected error. Refresh the page or try again later.

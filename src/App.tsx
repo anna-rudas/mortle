@@ -9,11 +9,22 @@ import GameResult from "./components/GameResult/GameResult";
 import LoadingGame from "./components/LoadingGame/LoadingGame";
 import AppContextProvider, { AppContext } from "./context";
 import { dummyResultsData } from "./test/test-data";
-import { wordLength, numberOfTries } from "./constants";
-import { checkInputWord, getWordDefinitionTest } from "./helpers";
+import {
+  wordLength,
+  numberOfTries,
+  generalErrorMsg,
+  invalidSubmitWarning,
+} from "./constants";
+import {
+  getWordDefinitionTest,
+  getRandomWord,
+  getWordDefinition,
+} from "./helpers";
 import { ErrorBoundary, useErrorBoundary } from "react-error-boundary";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import { WordDefinition } from "./types";
+import WarningModal from "./components/WarningModal/WarningModal";
+import ErrorModal from "./components/ErrorModal/ErrorModal";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -34,6 +45,10 @@ function App() {
     setSolutionWordDef,
     lastDoneRow,
     setLastDoneRow,
+    checkInputWord,
+    isFetching,
+    setIsFetching,
+    isWordInvalidWarning,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -42,7 +57,14 @@ function App() {
   });
 
   const handleKeyEvent = async (event: KeyboardEvent) => {
-    if (!isResultsOpen && !isStatisticsOpen && !isHowToPlayOpen && !isLoading) {
+    if (
+      !isResultsOpen &&
+      !isStatisticsOpen &&
+      !isHowToPlayOpen &&
+      !isLoading &&
+      !isFetching &&
+      !isWordInvalidWarning
+    ) {
       if (currentRow < numberOfTries) {
         if (event.key === "Backspace") {
           if (
@@ -55,12 +77,9 @@ function App() {
             setInputLetterValue("");
           }
         } else if (event.key === "Enter") {
-          //TODO: disable input while await
-          const isInputWordValid = await checkInputWord(
-            currentRow,
-            inputLetters,
-            solutionWordDef
-          );
+          setIsFetching(true);
+          const isInputWordValid = await checkInputWord(currentRow);
+          setIsFetching(false);
           if (!isInputWordValid) {
             return;
           }
@@ -97,45 +116,20 @@ function App() {
     setIsResultsOpen(false);
   };
 
-  // const getRandomWord = (): Promise<string> => {
-  //   return fetch("https://random-word-api.herokuapp.com/word?length=5")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       //setRandomWord(data[0]);
-  //       return data[0];
-  //     })
-  //     .catch((error) => {
-  //       showBoundary(error);
-  //     });
-  // };
-
-  // const getWordDefinition = (
-  //   wordToCheck: string
-  // ): Promise<WordDefinition | null> => {
-  //   return fetch(
-  //     `https://api.dictionaryapi.dev/api/v2/entries/en/${wordToCheck}`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => data[0] || null)
-  //     .catch((error) => {
-  //       showBoundary(error);
-  //     });
-  // };
-
   const getSolutionWithDefinition = async () => {
-    const loopMax = 10;
+    const loopMax = 5;
     let loopCounter = 0;
 
     while (loopCounter < loopMax) {
       loopCounter++;
 
-      //real data
+      //----real data
       // const randomWord: string = await getRandomWord();
       // const randomWordDef: WordDefinition | null = await getWordDefinition(
       //   randomWord
       // );
 
-      //test data
+      //----test data
       const randomWordDef = getWordDefinitionTest();
 
       if (randomWordDef) {
@@ -156,7 +150,7 @@ function App() {
       <Background />
       <div className="game-content">
         <Header openHowToPlay={openHowToPlay} openStatistics={openStatistics} />
-        {!isLoading && <Game />}
+        {!isLoading && solutionWordDef?.word != "undefined" && <Game />}
         {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
         {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
       </div>
@@ -168,6 +162,13 @@ function App() {
         />
       )}
       {isLoading && <LoadingGame />}
+      {isWordInvalidWarning && (
+        <WarningModal warningMsg={invalidSubmitWarning} />
+      )}
+      {((!isLoading && solutionWordDef?.word == "undefined") ||
+        (!isLoading && !solutionWordDef)) && (
+        <ErrorModal errorMsg={generalErrorMsg} />
+      )}
     </div>
   );
 }
