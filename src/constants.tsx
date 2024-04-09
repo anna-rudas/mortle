@@ -54,7 +54,7 @@ export const resultTexts = {
     "That's crazy, you got it on the first try!",
     "Amazing!",
     "Oh my god! That was quick.",
-    "This is too easy for you, eh?",
+    "This is too easy for you!",
   ],
   winLast: [
     "Phew, that was close.",

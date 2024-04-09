@@ -86,16 +86,20 @@
   gap: $gap-base * 3;
 }
 
-.eye-border {
-  @extend .border;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  background-color: $monster-eyes;
-  height: 100%;
+.eyes-base {
   min-height: 30px;
   max-height: 80px;
+  height: 100%;
   position: relative;
   overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.eye-border {
+  @extend .border;
+  @extend .eyes-base;
+  background-color: $monster-eyes;
 }
 
 .eye-ball {
@@ -124,4 +128,24 @@
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: reverse;
+}
+
+.eyes-game-over {
+  @extend .eyes-base;
+  border: 3px solid $border;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  div {
+    display: none;
+  }
+}
+
+.eyes-happy {
+  @extend .eyes-game-over;
+  transform: rotate(-45deg);
+}
+
+.eyes-sad {
+  @extend .eyes-game-over;
+  transform: rotate(135deg);
 }

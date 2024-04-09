@@ -1,12 +1,15 @@
 import { WordDefinition } from "./types";
 import { wordDefTest } from "./test/test-data";
+import { wordLength } from "./constants";
 
 export const getWordDefinitionTest = (): WordDefinition => {
   return wordDefTest;
 };
 
 export async function getRandomWord(): Promise<string> {
-  return fetch("https://random-word-api.herokuapp.com/word?length=5")
+  return fetch(
+    `https://random-word-api.herokuapp.com/word?length=${wordLength}`
+  )
     .then((response) => response.json())
     .then((data) => {
       return data[0];

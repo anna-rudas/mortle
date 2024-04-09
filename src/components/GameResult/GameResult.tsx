@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { StatsData, WordDefinition } from "../../types";
+import React, { useContext, useEffect, useState } from "react";
 import CloseIcon from "../../icons/CloseIcon";
 import ArrowIcon from "../../icons/ArrowIcon";
 import { resultTexts } from "../../constants";
+import { AppContext } from "../../context";
 
-interface GameResultProps {
-  wordDefinition: WordDefinition;
-  guessedAtData: StatsData;
-  closeGameResult: () => void;
-}
-
-function GameResult({
-  wordDefinition,
-  guessedAtData,
-  closeGameResult,
-}: GameResultProps) {
+function GameResult() {
   const [isReview, setIsReview] = useState(false);
+
+  const { solutionWordDef, currentGameResultsData, resetGame } =
+    useContext(AppContext);
 
   const toggleReview = () => {
     setIsReview(!isReview);
@@ -25,14 +18,13 @@ function GameResult({
     const max = 4;
     const min = 0;
     const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-    console.log(randomIndex);
 
-    if (!guessedAtData.guessed) {
+    if (!currentGameResultsData.guessed) {
       return resultTexts.lose[randomIndex];
     } else {
-      if (guessedAtData.guessedAt == 1) {
+      if (currentGameResultsData.guessedAt == 1) {
         return resultTexts.winFirst[randomIndex];
-      } else if (guessedAtData.guessedAt == 5) {
+      } else if (currentGameResultsData.guessedAt == 5) {
         return resultTexts.winLast[randomIndex];
       } else return resultTexts.winMiddle[randomIndex];
     }
@@ -48,21 +40,22 @@ function GameResult({
     window.addEventListener("keydown", showReview);
   });
 
-  //testing
-  // useEffect(() => {
-  //   console.log(wordDefinition);
-  // }, [wordDefinition]);
-
   return (
-    <div className={`${isReview ? "modal-con modal-con-no-bg" : "modal-con"}`}>
+    <div
+      className={`fade-in-animation ${
+        isReview ? "modal-con modal-con-no-bg" : "modal-con"
+      }`}
+    >
       <div
         className={`modal-content-results ${
           isReview ? "review-game" : "see-results"
         }`}
       >
-        <button className="btn-arrow" onClick={toggleReview}>
-          <ArrowIcon />
-        </button>
+        {isReview && (
+          <button className="btn-arrow" onClick={toggleReview}>
+            <ArrowIcon />
+          </button>
+        )}
         <button className="btn-close" onClick={toggleReview}>
           <CloseIcon />
         </button>
@@ -70,11 +63,11 @@ function GameResult({
         <div className="results-title">{resultReactionText()}</div>
         <div className="results-text">
           <div>The solution was:</div>
-          <div className="results-solution">{wordDefinition.word}</div>
+          <div className="results-solution">{solutionWordDef?.word}</div>
         </div>
-        {wordDefinition && (
+        {solutionWordDef && (
           <div className="results-def">
-            {wordDefinition.meanings.map((currentMeaning, index: number) => {
+            {solutionWordDef.meanings.map((currentMeaning, index: number) => {
               let tempIndex = 1;
               if (window.innerHeight >= 900) {
                 tempIndex = 2;
@@ -95,7 +88,7 @@ function GameResult({
           </div>
         )}
         <div className="results-btn-con">
-          <button className="results-btns" onClick={closeGameResult}>
+          <button className="results-btns" onClick={resetGame}>
             Play again
           </button>
           <button className="results-btns" onClick={toggleReview}>

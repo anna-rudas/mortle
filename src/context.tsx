@@ -1,7 +1,12 @@
 import React, { ReactNode, createContext, useState } from "react";
 import { wordLength, numberOfTries } from "./constants";
-import { WordDefinition, LetterColorClass } from "./types";
-import { getWordDefinitionTest, getWordDefinition } from "./helpers";
+import { WordDefinition, LetterColorClass, StatsData } from "./types";
+import {
+  getWordDefinitionTest,
+  getWordDefinition,
+  getRandomWord,
+} from "./helpers";
+import { useErrorBoundary } from "react-error-boundary";
 
 interface AppContextInterface {
   currentRow: number;
@@ -11,15 +16,19 @@ interface AppContextInterface {
   inputLetters: readonly string[][];
   setInputLetterValue: (newVal: string, isPrevVal?: boolean) => void;
   solutionWordDef: WordDefinition | null;
-  setSolutionWordDef: (value: WordDefinition) => void;
   lastDoneRow: number;
   setLastDoneRow: (value: number) => void;
-  showInvalidWordWarning: () => void;
   isWordInvalidWarning: boolean;
   checkInputWord: (currentRow: number) => Promise<boolean>;
   compareInputAndSolution: (rowIndex: number) => LetterColorClass[];
   isFetching: boolean;
   setIsFetching: (value: boolean) => void;
+  isGameOver: boolean;
+  currentGameResultsData: StatsData;
+  resetGame: () => void;
+  getSolutionWithDefinition: () => Promise<void>;
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
 }
 
 const defaultContextValue: AppContextInterface = {
@@ -30,15 +39,19 @@ const defaultContextValue: AppContextInterface = {
   inputLetters: [],
   setInputLetterValue: () => {},
   solutionWordDef: { word: "", meanings: [] },
-  setSolutionWordDef: () => {},
   lastDoneRow: 0,
   setLastDoneRow: () => {},
-  showInvalidWordWarning: () => {},
   isWordInvalidWarning: false,
   checkInputWord: async () => false,
   compareInputAndSolution: () => [],
   isFetching: false,
   setIsFetching: () => {},
+  isGameOver: false,
+  currentGameResultsData: { guessed: false },
+  resetGame: () => {},
+  getSolutionWithDefinition: async () => {},
+  isLoading: true,
+  setIsLoading: () => {},
 };
 
 export const AppContext =
@@ -58,6 +71,12 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [lastDoneRow, setLastDoneRow] = useState(0);
   const [isWordInvalidWarning, setIsWordInvalidWarning] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [currentGameResultsData, setCurrentGameResultsData] =
+    useState<StatsData>({ guessed: false });
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { showBoundary } = useErrorBoundary();
 
   const setInputLetterValue = (newVal: string, isPrevVal?: boolean) => {
     const tempInputLetters: string[][] = [...inputLetters];
@@ -76,14 +95,43 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     }, 2000);
   };
 
+  const getSolutionWithDefinition = async () => {
+    const loopMax = 5;
+    let loopCounter = 0;
+
+    while (loopCounter < loopMax) {
+      loopCounter++;
+
+      //----real data
+      // const randomWord: string = await getRandomWord();
+      // const randomWordDef: WordDefinition | null = await getWordDefinition(
+      //   randomWord
+      // );
+
+      //----test data
+      const randomWordDef = getWordDefinitionTest();
+
+      if (randomWordDef) {
+        setSolutionWordDef(randomWordDef);
+        return;
+      }
+    }
+
+    showBoundary("Could not get solution word.");
+  };
+
   const checkInputWord = async (currentRow: number) => {
     const inputWord = inputLetters[currentRow];
 
     if (
       inputWord.join("").toUpperCase() == solutionWordDef?.word.toUpperCase()
     ) {
-      //input is the solution
-      //TODO: game over
+      setIsGameOver(true);
+      setCurrentGameResultsData({ guessed: true, guessedAt: currentRow + 1 });
+      return true;
+    } else if (currentRow == wordLength - 1) {
+      setIsGameOver(true);
+      setCurrentGameResultsData({ guessed: false });
       return true;
     } else if (inputWord.join("").split("").length == wordLength) {
       //---real data
@@ -155,6 +203,19 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     });
   };
 
+  const resetGame = () => {
+    setIsLoading(true);
+    setIsGameOver(false);
+    setCurrentGameResultsData({ guessed: false });
+    setInputLetters(
+      new Array(numberOfTries).fill(0).map(() => new Array(wordLength).fill(""))
+    );
+    setCurrentRow(0);
+    setCurrentColumn(0);
+    setLastDoneRow(0);
+    getSolutionWithDefinition().then(() => setIsLoading(false));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -165,15 +226,19 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         inputLetters,
         setInputLetterValue,
         solutionWordDef,
-        setSolutionWordDef,
         lastDoneRow,
         setLastDoneRow,
-        showInvalidWordWarning,
         isWordInvalidWarning,
         checkInputWord,
         compareInputAndSolution,
         isFetching,
         setIsFetching,
+        isGameOver,
+        currentGameResultsData,
+        resetGame,
+        getSolutionWithDefinition,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

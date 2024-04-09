@@ -125,6 +125,13 @@
   animation-duration: 2s;
 }
 
+.fade-in-animation {
+  animation-name: fade-in;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1.5s;
+}
+
 .see-results {
   inset: 0 !important;
   margin: auto !important;

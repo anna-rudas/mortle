@@ -8,31 +8,20 @@ import Statistics from "./components/Statistics/Statistics";
 import GameResult from "./components/GameResult/GameResult";
 import LoadingGame from "./components/LoadingGame/LoadingGame";
 import AppContextProvider, { AppContext } from "./context";
-import { dummyResultsData } from "./test/test-data";
 import {
   wordLength,
   numberOfTries,
   generalErrorMsg,
   invalidSubmitWarning,
 } from "./constants";
-import {
-  getWordDefinitionTest,
-  getRandomWord,
-  getWordDefinition,
-} from "./helpers";
-import { ErrorBoundary, useErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
-import { WordDefinition } from "./types";
 import WarningModal from "./components/WarningModal/WarningModal";
 import ErrorModal from "./components/ErrorModal/ErrorModal";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [isStatisticsOpen, setIsStatisticsOpen] = useState(false);
-  const [isResultsOpen, setIsResultsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const { showBoundary } = useErrorBoundary();
 
   const {
     currentRow,
@@ -42,13 +31,15 @@ function App() {
     inputLetters,
     setInputLetterValue,
     solutionWordDef,
-    setSolutionWordDef,
     lastDoneRow,
     setLastDoneRow,
     checkInputWord,
     isFetching,
     setIsFetching,
     isWordInvalidWarning,
+    isGameOver,
+    isLoading,
+    resetGame,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -58,7 +49,7 @@ function App() {
 
   const handleKeyEvent = async (event: KeyboardEvent) => {
     if (
-      !isResultsOpen &&
+      !isGameOver &&
       !isStatisticsOpen &&
       !isHowToPlayOpen &&
       !isLoading &&
@@ -109,40 +100,9 @@ function App() {
   const closeStatistics = () => {
     setIsStatisticsOpen(false);
   };
-  // const openGameResult = () => {
-  //   setIsResultsOpen(true);
-  // };
-  const closeGameResult = () => {
-    setIsResultsOpen(false);
-  };
-
-  const getSolutionWithDefinition = async () => {
-    const loopMax = 5;
-    let loopCounter = 0;
-
-    while (loopCounter < loopMax) {
-      loopCounter++;
-
-      //----real data
-      // const randomWord: string = await getRandomWord();
-      // const randomWordDef: WordDefinition | null = await getWordDefinition(
-      //   randomWord
-      // );
-
-      //----test data
-      const randomWordDef = getWordDefinitionTest();
-
-      if (randomWordDef) {
-        setSolutionWordDef(randomWordDef);
-        return;
-      }
-    }
-
-    showBoundary("Could not get solution word.");
-  };
 
   useEffect(() => {
-    getSolutionWithDefinition().then(() => setIsLoading(false));
+    resetGame();
   }, []);
 
   return (
@@ -154,13 +114,7 @@ function App() {
         {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
         {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
       </div>
-      {isResultsOpen && solutionWordDef && (
-        <GameResult
-          wordDefinition={solutionWordDef}
-          guessedAtData={dummyResultsData}
-          closeGameResult={closeGameResult}
-        />
-      )}
+      {isGameOver && <GameResult />}
       {isLoading && <LoadingGame />}
       {isWordInvalidWarning && (
         <WarningModal warningMsg={invalidSubmitWarning} />
