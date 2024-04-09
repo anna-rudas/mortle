@@ -1,10 +1,12 @@
 import React, { ReactNode, createContext, useState } from "react";
-import { wordLength, numberOfTries } from "./constants";
+import { wordLength, numberOfTries, statisticsKey } from "./constants";
 import { WordDefinition, LetterColorClass, StatsData } from "./types";
 import {
   getWordDefinitionTest,
   getWordDefinition,
   getRandomWord,
+  getStats,
+  saveStats,
 } from "./helpers";
 import { useErrorBoundary } from "react-error-boundary";
 
@@ -126,12 +128,10 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     if (
       inputWord.join("").toUpperCase() == solutionWordDef?.word.toUpperCase()
     ) {
-      setIsGameOver(true);
-      setCurrentGameResultsData({ guessed: true, guessedAt: currentRow + 1 });
+      handleGameOver(true);
       return true;
     } else if (currentRow == wordLength - 1) {
-      setIsGameOver(true);
-      setCurrentGameResultsData({ guessed: false });
+      handleGameOver(false);
       return true;
     } else if (inputWord.join("").split("").length == wordLength) {
       //---real data
@@ -201,6 +201,23 @@ function AppContextProvider({ children }: AppContextProviderProps) {
       }
       return "letter-no";
     });
+  };
+
+  const updateSavedStatistics = (currGameData: StatsData) => {
+    const savedStatistics = getStats();
+    const updatedStatistics = [...savedStatistics, currGameData];
+    saveStats(updatedStatistics);
+  };
+
+  const handleGameOver = (hasGuessed: boolean) => {
+    setIsGameOver(true);
+    if (hasGuessed) {
+      updateSavedStatistics({ guessed: true, guessedAt: currentRow + 1 });
+      setCurrentGameResultsData({ guessed: true, guessedAt: currentRow + 1 });
+    } else {
+      updateSavedStatistics({ guessed: false });
+      setCurrentGameResultsData({ guessed: false });
+    }
   };
 
   const resetGame = () => {

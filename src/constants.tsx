@@ -5,6 +5,7 @@ import { LetterColorClass } from "./types";
 
 export const wordLength = 5;
 export const numberOfTries = 5;
+export const statisticsKey = "savedWordleStatistics";
 
 export const generalErrorMsg =
   "Unexpected error. Refresh the page or try again later.";

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CloseIcon from "../../icons/CloseIcon";
-import { dummyData } from "../../test/test-data";
 import { StatsData } from "../../types";
-
-//TODO: save results in local storage and add functinality
+import { getStats } from "../../helpers";
 
 interface HowToPlayProps {
   closeStatistics: () => void;
@@ -26,31 +24,40 @@ function Statistics({ closeStatistics }: HowToPlayProps) {
 
   const calcWinPer = (data: StatsData[]) => {
     const timesPlayed = data.length;
-    const timesWon = data.filter((currentData) => currentData.guessed);
-    return Math.round((timesWon.length / timesPlayed) * 100);
+    if (timesPlayed == 0) {
+      return 0;
+    } else {
+      const timesWon = data.filter((currentData) => currentData.guessed);
+      return Math.round((timesWon.length / timesPlayed) * 100);
+    }
   };
 
   const calcBarPer = (data: StatsData[]): number[] => {
     const temp = [0, 0, 0, 0, 0];
     const timesWon = data.filter((currentData) => currentData.guessed);
-    timesWon.map((current) => {
-      if (current.guessedAt) {
-        temp[current.guessedAt - 1] = temp[current.guessedAt - 1] + 1;
-      }
-    });
+    if (timesWon.length == 0) {
+      return temp;
+    } else {
+      timesWon.map((current) => {
+        if (current.guessedAt) {
+          temp[current.guessedAt - 1] = temp[current.guessedAt - 1] + 1;
+        }
+      });
 
-    const barChartData = temp.map((current) =>
-      Math.round((current / timesWon.length) * 100)
-    );
+      const chartData = temp.map((current) =>
+        Math.round((current / timesWon.length) * 100)
+      );
 
-    return barChartData;
+      return chartData;
+    }
   };
 
   useEffect(() => {
-    setTimesPlayed(dummyData.length);
-    setWinPercent(calcWinPer(dummyData));
-    setBarChartData(calcBarPer(dummyData));
-  }, [dummyData]);
+    const savedStatistics = getStats();
+    setTimesPlayed(savedStatistics.length);
+    setWinPercent(calcWinPer(savedStatistics));
+    setBarChartData(calcBarPer(savedStatistics));
+  }, []);
 
   return (
     <div className="modal-con">
