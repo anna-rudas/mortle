@@ -76,6 +76,6 @@ export const resultTexts = {
     "Well, you tried.",
     "Not the end of the world.",
     "It happens.",
-    "Aw that' sad. But you can just try again!",
+    "Aw that's sad. But you can just try again!",
   ],
 };

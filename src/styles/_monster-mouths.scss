@@ -111,6 +111,9 @@
   @include small-screen {
     font-size: 1rem;
   }
+  button {
+    color: $text-darkest;
+  }
 }
 
 .game-tooth-con {
@@ -119,6 +122,11 @@
   width: 100%;
   aspect-ratio: 1;
   font-size: 1.6rem;
+  input {
+    //default input colors
+    color: $text-darkest;
+    -webkit-text-fill-color: $text-darkest;
+  }
   @include small-screen {
     font-size: 1.4rem;
   }

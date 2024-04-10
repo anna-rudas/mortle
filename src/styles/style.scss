@@ -28,6 +28,10 @@ body {
   box-sizing: border-box;
 }
 
+button {
+  color: $text-darkest;
+}
+
 .wrapper {
   height: 100%;
   width: 100%;
@@ -87,8 +91,11 @@ body {
 .letter-correct {
   background-color: $letter-correct-spot;
   color: $text-darkest;
-  input {
+  input:disabled {
+    opacity: 1;
+    -webkit-opacity: 1;
     color: $text-darkest;
+    -webkit-text-fill-color: $text-darkest;
   }
   span {
     color: $text-darkest;
@@ -101,8 +108,11 @@ body {
 .letter-wrong {
   background-color: $letter-wrong-spot;
   color: $text-darkest;
-  input {
+  input:disabled {
+    opacity: 1;
+    -webkit-opacity: 1;
     color: $text-darkest;
+    -webkit-text-fill-color: $text-darkest;
   }
   span {
     color: $text-darkest;
@@ -115,8 +125,11 @@ body {
 .letter-no {
   background-color: $letter-no-spot;
   color: $text-lightest;
-  input {
+  input:disabled {
+    opacity: 1;
+    -webkit-opacity: 1;
     color: $text-lightest;
+    -webkit-text-fill-color: $text-lightest;
   }
   span {
     color: $text-lightest;
