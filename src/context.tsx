@@ -1,5 +1,5 @@
 import React, { ReactNode, createContext, useState } from "react";
-import { wordLength, numberOfTries, statisticsKey } from "./constants";
+import { wordLength, numberOfTries } from "./constants";
 import { WordDefinition, LetterColorClass, StatsData } from "./types";
 import {
   getWordDefinitionTest,
@@ -130,9 +130,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     ) {
       handleGameOver(true);
       return true;
-    } else if (currentRow == wordLength - 1) {
-      handleGameOver(false);
-      return true;
     } else if (inputWord.join("").split("").length == wordLength) {
       //---real data
       // const getInputWordDef: WordDefinition | null = await getWordDefinition(
@@ -144,6 +141,9 @@ function AppContextProvider({ children }: AppContextProviderProps) {
 
       if (getInputWordDef) {
         //input word is valid (5 letters and def)
+        if (currentRow == wordLength - 1) {
+          handleGameOver(false);
+        }
         return true;
       } else {
         //input word is not valid (no def)
