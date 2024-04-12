@@ -98,7 +98,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   };
 
   const getSolutionWithDefinition = async () => {
-    const loopMax = 5;
+    const loopMax = 7;
     let loopCounter = 0;
 
     while (loopCounter < loopMax) {

@@ -18,6 +18,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import WarningModal from "./components/WarningModal/WarningModal";
 import ErrorModal from "./components/ErrorModal/ErrorModal";
+import LoadingSecondary from "./components/LoadingSecondary/LoadingSecondary";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -123,6 +124,7 @@ function App() {
         (!isLoading && !solutionWordDef)) && (
         <ErrorModal errorMsg={generalErrorMsg} />
       )}
+      {isFetching && <LoadingSecondary />}
     </div>
   );
 }
