@@ -2,7 +2,6 @@ import React, { ReactNode, createContext, useState } from "react";
 import { wordLength, numberOfTries } from "./constants";
 import { WordDefinition, LetterColorClass, StatsData } from "./types";
 import {
-  getWordDefinitionTest,
   getWordDefinition,
   getRandomWord,
   getStats,
@@ -127,9 +126,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
 
   const checkInputWord = async (currentRow: number) => {
     const inputWord = inputLetters[currentRow];
-
-    //testing env variables
-    if (filter.isProfane(inputWord.join(""))) return false;
 
     if (
       inputWord.join("").toUpperCase() == solutionWordDef?.word.toUpperCase()
