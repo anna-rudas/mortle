@@ -13,6 +13,8 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.2",
+    "@types/bad-words": "^3.0.3",
+    "@types/node": "^20.12.7",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
@@ -32,6 +34,7 @@
     "last 2 Chrome versions"
   ],
   "dependencies": {
+    "bad-words": "^3.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13"

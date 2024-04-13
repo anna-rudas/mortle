@@ -9,6 +9,7 @@ import {
   saveStats,
 } from "./helpers";
 import { useErrorBoundary } from "react-error-boundary";
+import Filter from "bad-words";
 
 interface AppContextInterface {
   currentRow: number;
@@ -79,6 +80,8 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   const { showBoundary } = useErrorBoundary();
+  const blockList = process.env.REACT_APP_BLOCKLIST;
+  const filter = new Filter({ list: blockList?.split(" ") });
 
   const setInputLetterValue = (newVal: string, isPrevVal?: boolean) => {
     const tempInputLetters: string[][] = [...inputLetters];
@@ -98,22 +101,22 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   };
 
   const getSolutionWithDefinition = async () => {
-    const loopMax = 7;
+    const loopMax = 10;
     let loopCounter = 0;
 
     while (loopCounter < loopMax) {
       loopCounter++;
 
       //----real data
-      // const randomWord: string = await getRandomWord();
-      // const randomWordDef: WordDefinition | null = await getWordDefinition(
-      //   randomWord
-      // );
+      const randomWord: string = await getRandomWord();
+      const randomWordDef: WordDefinition | null = await getWordDefinition(
+        randomWord
+      );
 
       //----test data
-      const randomWordDef = getWordDefinitionTest();
+      //const randomWordDef = getWordDefinitionTest();
 
-      if (randomWordDef) {
+      if (randomWordDef && !filter.isProfane(randomWordDef.word)) {
         setSolutionWordDef(randomWordDef);
         return;
       }
@@ -125,6 +128,9 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const checkInputWord = async (currentRow: number) => {
     const inputWord = inputLetters[currentRow];
 
+    //testing env variables
+    if (filter.isProfane(inputWord.join(""))) return false;
+
     if (
       inputWord.join("").toUpperCase() == solutionWordDef?.word.toUpperCase()
     ) {
@@ -132,12 +138,12 @@ function AppContextProvider({ children }: AppContextProviderProps) {
       return true;
     } else if (inputWord.join("").split("").length == wordLength) {
       //---real data
-      // const getInputWordDef: WordDefinition | null = await getWordDefinition(
-      //   inputWord.join("")
-      // );
+      const getInputWordDef: WordDefinition | null = await getWordDefinition(
+        inputWord.join("")
+      );
 
       //---test data
-      const getInputWordDef: WordDefinition | null = getWordDefinitionTest();
+      //const getInputWordDef: WordDefinition | null = getWordDefinitionTest();
 
       if (getInputWordDef) {
         //input word is valid (5 letters and def)
