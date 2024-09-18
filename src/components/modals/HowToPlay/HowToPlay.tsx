@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
-import CloseIcon from "../../assets/icons/CloseIcon";
-import { howToPlayContent, letterColoringClasses } from "../../data/constants";
+import CloseIcon from "../../../assets/icons/CloseIcon";
+import {
+  howToPlayContent,
+  letterColoringClasses,
+} from "../../../data/constants";
 
 interface HowToPlayProps {
   closeHowToPlay: () => void;

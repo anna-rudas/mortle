@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import CloseIcon from "../../assets/icons/CloseIcon";
-import ArrowIcon from "../../assets/icons/ArrowIcon";
-import { resultTexts } from "../../data/constants";
-import { AppContext } from "../../context/context";
+import CloseIcon from "../../../assets/icons/CloseIcon";
+import ArrowIcon from "../../../assets/icons/ArrowIcon";
+import { resultTexts } from "../../../data/constants";
+import { AppContext } from "../../../context/context";
 
 function GameResult() {
   const [isReview, setIsReview] = useState(false);

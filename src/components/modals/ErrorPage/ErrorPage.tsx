@@ -1,5 +1,5 @@
 import React from "react";
-import Background from "../Background/Background";
+import Background from "../../features/Background/Background";
 
 function ErrorPage() {
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CloseIcon from "../../assets/icons/CloseIcon";
-import { StatsData } from "../../types/types";
-import { getStats } from "../../utilities/helpers";
+import CloseIcon from "../../../assets/icons/CloseIcon";
+import { StatsData } from "../../../types/types";
+import { getStats } from "../../../utilities/helpers";
 
 interface HowToPlayProps {
   closeStatistics: () => void;

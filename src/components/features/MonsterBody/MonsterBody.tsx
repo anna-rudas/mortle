@@ -1,6 +1,6 @@
 import React from "react";
-import MonsterEyes from "../MonsterEyes/MonsterEyes";
-import MonsterFeet from "../MonsterFeet/MonsterFeet";
+import MonsterEyes from "../../templates/MonsterEyes/MonsterEyes";
+import MonsterFeet from "../../templates/MonsterFeet/MonsterFeet";
 import KeyboardMonsterMouth from "../KeyboardMonsterMouth/KeyboardMonsterMouth";
 import GameMonsterMouth from "../GameMonsterMouth/GameMonsterMouth";
 

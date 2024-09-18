@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
 import { createRoot } from "react-dom/client";
-import Background from "./components/Background/Background";
-import Game from "./components/Game/Game";
-import Header from "./components/Header/Header";
-import HowToPlay from "./components/HowToPlay/HowToPlay";
-import Statistics from "./components/Statistics/Statistics";
-import GameResult from "./components/GameResult/GameResult";
-import LoadingGame from "./components/LoadingGame/LoadingGame";
+import Background from "./components/features/Background/Background";
+import Game from "./components/features/Game/Game";
+import Header from "./components/features/Header/Header";
+import HowToPlay from "./components/modals/HowToPlay/HowToPlay";
+import Statistics from "./components/features/Statistics/Statistics";
+import GameResult from "./components/modals/GameResult/GameResult";
+import LoadingGame from "./components/loaders/LoadingGame/LoadingGame";
 import AppContextProvider, { AppContext } from "./context/context";
 import {
   wordLength,
@@ -15,10 +15,10 @@ import {
   invalidSubmitWarning,
 } from "./data/constants";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorPage from "./components/ErrorPage/ErrorPage";
-import WarningModal from "./components/WarningModal/WarningModal";
-import ErrorModal from "./components/ErrorModal/ErrorModal";
-import LoadingSecondary from "./components/LoadingSecondary/LoadingSecondary";
+import ErrorPage from "./components/modals/ErrorPage/ErrorPage";
+import WarningModal from "./components/modals/WarningModal/WarningModal";
+import ErrorModal from "./components/modals/ErrorModal/ErrorModal";
+import LoadingSecondary from "./components/loaders/LoadingSecondary/LoadingSecondary";
 
 function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);

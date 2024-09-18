@@ -1,5 +1,5 @@
 import React from "react";
-import MonsterFeet from "../MonsterFeet/MonsterFeet";
+import MonsterFeet from "../../templates/MonsterFeet/MonsterFeet";
 
 export default function LoadingGame() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import QuestionMarkIcon from "../../assets/icons/QuestionMarkIcon";
-import StatsIcon from "../../assets/icons/StatsIcon";
+import QuestionMarkIcon from "../../../assets/icons/QuestionMarkIcon";
+import StatsIcon from "../../../assets/icons/StatsIcon";
 
 interface HeaderProps {
   openHowToPlay: () => void;
