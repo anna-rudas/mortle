@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CloseIcon from "../../../assets/icons/CloseIcon";
 import { StatsData } from "../../../types/types";
 import { getStats } from "../../../utilities/helpers";
+import CloseButton from "../../buttons/CloseButton/CloseButton";
 
 interface HowToPlayProps {
   closeStatistics: () => void;
@@ -62,9 +62,7 @@ function Statistics({ closeStatistics }: HowToPlayProps) {
   return (
     <div className="modal-con">
       <div className="modal-content-statistics">
-        <button className="btn-close" onClick={closeStatistics}>
-          <CloseIcon />
-        </button>
+        <CloseButton handleClick={closeStatistics} />
         <h2 className="modal-title">Statistics</h2>
         <div className="statistics-sum-con">
           <div className="statistics-box">

@@ -32,7 +32,7 @@
   }
 
   .btn-header {
-    @extend .icon-btn;
+    @extend .btn-icon-base;
     fill: $text-lightest;
     @media (hover: hover) {
       &:hover {

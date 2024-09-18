@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import CloseIcon from "../../../assets/icons/CloseIcon";
 import {
   howToPlayContent,
   letterColoringClasses,
 } from "../../../data/constants";
+import CloseButton from "../../buttons/CloseButton/CloseButton";
 
 interface HowToPlayProps {
   closeHowToPlay: () => void;
@@ -23,9 +23,7 @@ function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
   return (
     <div className="modal-con">
       <div className="modal-content-howto">
-        <button className="btn-close" onClick={closeHowToPlay}>
-          <CloseIcon />
-        </button>
+        <CloseButton handleClick={closeHowToPlay} />
         <h2 className="modal-title">How to play</h2>
         <div className="howto-text-con">
           <p>Guess the word in 5 tries</p>

@@ -178,16 +178,8 @@ $delayAmounts: (1s, 2s, 3s, 4s);
   animation-duration: 1.5s;
 }
 
-.btn-close {
-  @extend .icon-btn;
-  position: absolute;
-  top: $padding-base;
-  right: $padding-base;
-  fill: $text-bubble;
-}
-
 .btn-arrow {
-  @extend .icon-btn;
+  @extend .btn-icon-base;
   position: relative;
   fill: $text-bubble;
   transform: rotate(-90deg);

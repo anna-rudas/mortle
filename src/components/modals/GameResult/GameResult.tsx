@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import CloseIcon from "../../../assets/icons/CloseIcon";
 import ArrowIcon from "../../../assets/icons/ArrowIcon";
 import { resultTexts } from "../../../data/constants";
 import { AppContext } from "../../../context/context";
+import CloseButton from "../../buttons/CloseButton/CloseButton";
+import PrimaryButton from "../../buttons/PrimaryButton/PrimaryButton";
 
 function GameResult() {
   const [isReview, setIsReview] = useState(false);
@@ -48,9 +49,7 @@ function GameResult() {
     >
       {!isReview && (
         <div className="modal-content-results">
-          <button className="btn-close" onClick={toggleReview}>
-            <CloseIcon />
-          </button>
+          <CloseButton handleClick={toggleReview} />
           <h2 className="modal-title">Results</h2>
           <div className="results-title">{resultReactionText()}</div>
           <div className="results-text">
@@ -80,12 +79,8 @@ function GameResult() {
             </div>
           )}
           <div className="results-btn-con">
-            <button className="results-btns" onClick={resetGame}>
-              Play again
-            </button>
-            <button className="results-btns" onClick={toggleReview}>
-              Review
-            </button>
+            <PrimaryButton handleClick={resetGame} buttonText="Play again" />
+            <PrimaryButton handleClick={toggleReview} buttonText="Review" />
           </div>
         </div>
       )}
