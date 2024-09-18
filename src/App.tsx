@@ -4,7 +4,7 @@ import Background from "./components/features/Background/Background";
 import Game from "./components/features/Game/Game";
 import Header from "./components/features/Header/Header";
 import HowToPlay from "./components/modals/HowToPlay/HowToPlay";
-import Statistics from "./components/features/Statistics/Statistics";
+import Statistics from "./components/modals/Statistics/Statistics";
 import GameResult from "./components/modals/GameResult/GameResult";
 import LoadingGame from "./components/loaders/LoadingGame/LoadingGame";
 import AppContextProvider, { AppContext } from "./context/context";
