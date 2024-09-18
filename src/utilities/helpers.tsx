@@ -1,6 +1,6 @@
-import { StatsData, WordDefinition } from "./types";
-import { wordDefTest } from "./test/test-data";
-import { statisticsKey, wordLength } from "./constants";
+import { StatsData, WordDefinition } from "../types/types";
+import { wordDefTest } from "../data/test-data";
+import { statisticsKey, wordLength } from "../data/constants";
 
 export const getWordDefinitionTest = (): WordDefinition => {
   return wordDefTest;

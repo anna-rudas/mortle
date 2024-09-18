@@ -1,7 +1,7 @@
 import React from "react";
-import EnterIcon from "./icons/EnterIcon";
-import BackspaceIcon from "./icons/BackspaceIcon";
-import { LetterColorClass } from "./types";
+import EnterIcon from "../assets/icons/EnterIcon";
+import BackspaceIcon from "../assets/icons/BackspaceIcon";
+import { LetterColorClass } from "../types/types";
 
 export const wordLength = 5;
 export const numberOfTries = 5;

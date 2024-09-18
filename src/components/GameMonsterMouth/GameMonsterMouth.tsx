@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { AppContext } from "../../context";
-import { className } from "../../helpers";
-import { LetterColorClass } from "../../types";
+import { AppContext } from "../../context/context";
+import { className } from "../../utilities/helpers";
+import { LetterColorClass } from "../../types/types";
 
 function GameMonsterMouth() {
   const { currentRow, inputLetters, lastDoneRow, compareInputAndSolution } =

@@ -4,10 +4,10 @@ import {
   wordLength,
   numberOfTries,
   letterColoringClasses,
-} from "../../constants";
-import { AppContext } from "../../context";
-import { className } from "../../helpers";
-import { LetterColorClass } from "../../types";
+} from "../../data/constants";
+import { AppContext } from "../../context/context";
+import { className } from "../../utilities/helpers";
+import { LetterColorClass } from "../../types/types";
 
 function KeyboardMonsterMouth() {
   const {

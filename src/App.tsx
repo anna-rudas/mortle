@@ -7,13 +7,13 @@ import HowToPlay from "./components/HowToPlay/HowToPlay";
 import Statistics from "./components/Statistics/Statistics";
 import GameResult from "./components/GameResult/GameResult";
 import LoadingGame from "./components/LoadingGame/LoadingGame";
-import AppContextProvider, { AppContext } from "./context";
+import AppContextProvider, { AppContext } from "./context/context";
 import {
   wordLength,
   numberOfTries,
   generalErrorMsg,
   invalidSubmitWarning,
-} from "./constants";
+} from "./data/constants";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import WarningModal from "./components/WarningModal/WarningModal";

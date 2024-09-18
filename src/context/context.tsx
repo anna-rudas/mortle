@@ -1,12 +1,12 @@
 import React, { ReactNode, createContext, useState } from "react";
-import { wordLength, numberOfTries } from "./constants";
-import { WordDefinition, LetterColorClass, StatsData } from "./types";
+import { wordLength, numberOfTries } from "../data/constants";
+import { WordDefinition, LetterColorClass, StatsData } from "../types/types";
 import {
   getWordDefinition,
   getRandomWord,
   getStats,
   saveStats,
-} from "./helpers";
+} from "../utilities/helpers";
 import { useErrorBoundary } from "react-error-boundary";
 import Filter from "bad-words";
 
