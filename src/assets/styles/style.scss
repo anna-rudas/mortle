@@ -1,140 +1,19 @@
-@import "variables";
-@import "mixins";
-@import "animations";
-@import "cloud";
-@import "background";
-@import "header";
-@import "game";
-@import "monster-mouths";
-@import "monster-eyes";
-@import "monster-feet";
-@import "monster-body";
-@import "modals";
-@import "howto";
-@import "stats";
-@import "results";
-@import "loading";
-
-html,
-#root,
-body {
-  height: 100%;
-  overflow: hidden;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-button {
-  color: $text-darkest;
-}
-
-.wrapper {
-  height: 100%;
-  width: 100%;
-}
-
-.game-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: $padding-base;
-}
-
-.border {
-  border: 2px solid $border;
-}
-
-.box-shadow {
-  box-shadow: 5px 5px 0 $border;
-}
-
-.title-text {
-  font-family: $font-primary;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.base-text {
-  font-family: $font-secondary;
-  font-size: 1rem;
-}
-
-.icon-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  max-width: 35px;
-  max-height: 35px;
-  @include large-height {
-    max-width: 40px;
-    max-height: 40px;
-  }
-  @include large-screen {
-    max-width: 40px;
-    max-height: 40px;
-  }
-}
-
-.icon {
-  width: 100%;
-  height: 100%;
-  fill: inherit;
-}
-
-.letter-correct {
-  background-color: $letter-correct-spot;
-  color: $text-darkest;
-  input:disabled {
-    opacity: 1;
-    -webkit-opacity: 1;
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
-  }
-  span {
-    color: $text-darkest;
-  }
-  button {
-    color: $text-darkest;
-  }
-}
-
-.letter-wrong {
-  background-color: $letter-wrong-spot;
-  color: $text-darkest;
-  input:disabled {
-    opacity: 1;
-    -webkit-opacity: 1;
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
-  }
-  span {
-    color: $text-darkest;
-  }
-  button {
-    color: $text-darkest;
-  }
-}
-
-.letter-no {
-  background-color: $letter-no-spot;
-  color: $text-lightest;
-  input:disabled {
-    opacity: 1;
-    -webkit-opacity: 1;
-    color: $text-lightest;
-    -webkit-text-fill-color: $text-lightest;
-  }
-  span {
-    color: $text-lightest;
-  }
-  button {
-    color: $text-lightest;
-  }
-}
+@import "./global/variables";
+@import "./global/colors";
+@import "./global/fonts";
+@import "./global/mixins";
+@import "./global/shared";
+@import "./global/animations";
+@import "./global/modals";
+@import "./components/features/cloud";
+@import "./components/features/background";
+@import "./components/features/header";
+@import "./components/features/game";
+@import "./components/features/monster-mouths";
+@import "./components/templates/monster-eyes";
+@import "./components/templates/monster-feet";
+@import "./components/features/monster-body";
+@import "./components/features/howto";
+@import "./components/features/stats";
+@import "./components/modals/results";
+@import "./components/loaders/loading";

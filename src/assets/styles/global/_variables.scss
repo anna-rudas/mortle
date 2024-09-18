@@ -1,0 +1,11 @@
+$border-radius-small: 3px;
+$border-radius-medium: 5px;
+$border-radius-large: 12px;
+$padding-base: 10px;
+$gap-base: 5px;
+$max-width: 1000px;
+
+$breakpoints: (
+  "small": 480px,
+  "large": 1280px,
+);
