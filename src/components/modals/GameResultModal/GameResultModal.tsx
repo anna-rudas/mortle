@@ -5,7 +5,7 @@ import { AppContext } from "../../../context/context";
 import CloseButton from "../../buttons/CloseButton/CloseButton";
 import PrimaryButton from "../../buttons/PrimaryButton/PrimaryButton";
 
-function GameResult() {
+function GameResultModal() {
   const [isReview, setIsReview] = useState(false);
 
   const { solutionWordDef, currentGameResultsData, resetGame } =
@@ -95,4 +95,4 @@ function GameResult() {
   );
 }
 
-export default GameResult;
+export default GameResultModal;

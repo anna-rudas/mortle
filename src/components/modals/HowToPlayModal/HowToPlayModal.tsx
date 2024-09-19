@@ -5,11 +5,11 @@ import {
 } from "../../../data/constants";
 import CloseButton from "../../buttons/CloseButton/CloseButton";
 
-interface HowToPlayProps {
+interface HowToPlayModalProps {
   closeHowToPlay: () => void;
 }
 
-function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
+function HowToPlayModal({ closeHowToPlay }: HowToPlayModalProps) {
   useEffect(() => {
     const closeModal = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -65,4 +65,4 @@ function HowToPlay({ closeHowToPlay }: HowToPlayProps) {
   );
 }
 
-export default HowToPlay;
+export default HowToPlayModal;

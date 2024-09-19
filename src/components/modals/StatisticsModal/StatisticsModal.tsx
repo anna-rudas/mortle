@@ -3,11 +3,11 @@ import { StatsData } from "../../../types/types";
 import { getStats } from "../../../utilities/helpers";
 import CloseButton from "../../buttons/CloseButton/CloseButton";
 
-interface HowToPlayProps {
+interface StatisticsModalProps {
   closeStatistics: () => void;
 }
 
-function Statistics({ closeStatistics }: HowToPlayProps) {
+function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
   const [timesPlayed, setTimesPlayed] = useState(0);
   const [winPercent, setWinPercent] = useState(0);
   const [barChartData, setBarChartData] = useState<number[]>([]);
@@ -92,4 +92,4 @@ function Statistics({ closeStatistics }: HowToPlayProps) {
   );
 }
 
-export default Statistics;
+export default StatisticsModal;
