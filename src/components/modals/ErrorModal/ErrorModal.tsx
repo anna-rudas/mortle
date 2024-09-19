@@ -8,8 +8,8 @@ function ErrorModal({ errorMsg }: ErrorModalProps) {
   return (
     <div className="modal-con">
       <div className="modal-content-centered">
-        <h2 className="modal-title">Sorry</h2>
-        <div className="base-text">{errorMsg}</div>
+        <h2 className="text-title">Sorry</h2>
+        <div className="text-normal">{errorMsg}</div>
       </div>
     </div>
   );

@@ -184,12 +184,3 @@ $delayAmounts: (1s, 2s, 3s, 4s);
   fill: $text-bubble;
   transform: rotate(-90deg);
 }
-
-.modal-title {
-  @extend .title-text;
-  font-size: 3rem;
-  color: $text-darkest;
-  @include small-screen {
-    font-size: 2rem;
-  }
-}

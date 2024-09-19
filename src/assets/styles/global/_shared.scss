@@ -1,20 +1,3 @@
-html,
-#root,
-body {
-  height: 100%;
-  overflow: hidden;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-button {
-  color: $text-darkest;
-}
-
 .wrapper {
   height: 100%;
   width: 100%;
@@ -37,17 +20,6 @@ button {
   box-shadow: 5px 5px 0 $border;
 }
 
-.title-text {
-  font-family: $font-primary;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.base-text {
-  font-family: $font-secondary;
-  font-size: 1rem;
-}
-
 .icon {
   width: 100%;
   height: 100%;
@@ -65,9 +37,11 @@ button {
   }
   span {
     color: $text-darkest;
+    -webkit-text-fill-color: $text-darkest;
   }
   button {
     color: $text-darkest;
+    -webkit-text-fill-color: $text-darkest;
   }
 }
 
@@ -82,9 +56,11 @@ button {
   }
   span {
     color: $text-darkest;
+    -webkit-text-fill-color: $text-darkest;
   }
   button {
     color: $text-darkest;
+    -webkit-text-fill-color: $text-darkest;
   }
 }
 
@@ -99,8 +75,10 @@ button {
   }
   span {
     color: $text-lightest;
+    -webkit-text-fill-color: $text-lightest;
   }
   button {
     color: $text-lightest;
+    -webkit-text-fill-color: $text-lightest;
   }
 }

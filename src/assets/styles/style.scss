@@ -18,3 +18,20 @@
 @import "./components/modals/results";
 @import "./components/loaders/loading";
 @import "./global/shared";
+
+html,
+#root,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  color: $text-darkest;
+}

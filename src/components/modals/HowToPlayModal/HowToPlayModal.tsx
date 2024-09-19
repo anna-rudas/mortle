@@ -24,14 +24,16 @@ function HowToPlayModal({ closeHowToPlay }: HowToPlayModalProps) {
     <div className="modal-con">
       <div className="modal-content-howto">
         <CloseButton handleClick={closeHowToPlay} />
-        <h2 className="modal-title">How to play</h2>
+        <h2 className="text-title">How to play</h2>
         <div className="howto-text-con">
-          <p>Guess the word in 5 tries</p>
-          <p>Each guess must be a valid 5 letter word</p>
-          <p>
+          <span className="text-normal">Guess the word in 5 tries</span>
+          <span className="text-normal">
+            Each guess must be a valid 5 letter word
+          </span>
+          <span className="text-normal">
             The color of the tiles will change to show how close your guess was
             to the word
-          </p>
+          </span>
         </div>
         <div className="howto-con">
           {howToPlayContent.map((current, index) => {
@@ -43,7 +45,7 @@ function HowToPlayModal({ closeHowToPlay }: HowToPlayModalProps) {
                     .map((currentLetter, letterIndex) => {
                       return (
                         <div
-                          className={`letter-box ${
+                          className={`text-input-large letter-box ${
                             letterIndex === index + 1
                               ? letterColoringClasses[index]
                               : ""
@@ -55,7 +57,7 @@ function HowToPlayModal({ closeHowToPlay }: HowToPlayModalProps) {
                       );
                     })}
                 </div>
-                <p>{current.explanation}</p>
+                <span className="text-normal">{current.explanation}</span>
               </div>
             );
           })}

@@ -7,8 +7,8 @@ function ErrorPage() {
       <Background />
       <div className="modal-con">
         <div className="modal-content-centered">
-          <h2 className="modal-title">Sorry</h2>
-          <div className="base-text">
+          <h2 className="text-title">Sorry</h2>
+          <div className="text-normal">
             Unexpected error. Refresh the page or try again later.
           </div>
         </div>

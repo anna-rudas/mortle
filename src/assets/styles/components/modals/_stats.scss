@@ -3,6 +3,7 @@
   width: 100%;
   justify-content: center;
   gap: $gap-base * 5;
+  margin-bottom: $gap-base * 3;
 }
 
 .statistics-box {
@@ -19,25 +20,6 @@
     width: 80px;
     height: 80px;
   }
-}
-
-.box-number {
-  @extend .base-text;
-  font-size: 45px !important;
-  @include small-screen {
-    font-size: 30px !important;
-  }
-}
-
-.box-text {
-  @extend .base-text;
-  text-transform: uppercase;
-}
-
-.chart-title {
-  margin-top: $gap-base * 3;
-  @extend .base-text;
-  text-transform: uppercase;
 }
 
 .chart-con {
@@ -71,17 +53,10 @@
 }
 
 .bar-percentage {
-  @extend .base-text;
-  text-transform: uppercase;
   color: $text-lightest;
   background-color: $border;
-  @include small-screen {
-    font-size: 12px !important;
-  }
 }
 
 .bar-chart-number {
-  @extend .base-text;
-  font-size: 20px !important;
   height: 10%;
 }

@@ -89,8 +89,6 @@
 .monster-tooth-con {
   background-color: $monster-teeth;
   border-radius: $border-radius-small;
-  font-family: $font-secondary;
-  font-weight: bold;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -107,13 +105,6 @@
   min-width: 10px;
   max-width: 50px;
   width: 100%;
-  font-size: 1.5rem;
-  @include small-screen {
-    font-size: 1rem;
-  }
-  button {
-    color: $text-darkest;
-  }
 }
 
 .game-tooth-con {
@@ -121,29 +112,18 @@
   height: 100%;
   width: 100%;
   aspect-ratio: 1;
-  font-size: 1.6rem;
-  input {
-    //default input colors
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
-  }
-  @include small-screen {
-    font-size: 1.4rem;
-  }
 }
 
 .monster-tooth {
   border: none;
-  cursor: pointer;
+
   width: 100%;
   height: 100%;
   background-color: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
 }
 
 .keyboard-tooth-btn {
+  cursor: pointer;
   @extend .monster-tooth;
   display: flex;
   justify-content: center;
@@ -156,7 +136,7 @@
   @extend .monster-tooth;
   padding: 0;
   text-align: center;
-  text-transform: uppercase;
+
   caret-color: transparent;
   cursor: default;
   &:focus {

@@ -116,7 +116,7 @@ function KeyboardMonsterMouth() {
                           currentLetter
                         )
                       }
-                      className="keyboard-tooth-btn"
+                      className="text-input-small keyboard-tooth-btn"
                     >
                       {currentLetter}
                     </button>

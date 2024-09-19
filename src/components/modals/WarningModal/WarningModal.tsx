@@ -8,7 +8,7 @@ function WarningModal({ warningMsg }: WarningModalProps) {
   return (
     <div className="modal-con-secondary fade-out-animation">
       <div className="modal-content-warning">
-        <div className="base-text">{warningMsg}</div>
+        <div className="text-normal">{warningMsg}</div>
       </div>
     </div>
   );

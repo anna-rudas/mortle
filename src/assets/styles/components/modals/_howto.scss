@@ -1,5 +1,4 @@
 .howto-con {
-  @extend .base-text;
   display: flex;
   flex-direction: column;
   gap: $gap-base * 2;
@@ -38,15 +37,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
   @include small-screen {
     width: 40px;
     height: 40px;
-    font-size: 30px;
   }
   @include small-height {
     width: 35px;
     height: 35px;
-    font-size: 25px;
   }
 }

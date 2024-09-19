@@ -14,7 +14,7 @@ function Header({ openHowToPlay, openStatistics }: HeaderProps) {
         <button className="btn-header" onClick={openHowToPlay}>
           <QuestionMarkIcon />
         </button>
-        <a href="." className="header-title">
+        <a href="." className="text-game-title">
           Mortle
         </a>
         <button className="btn-header" onClick={openStatistics}>

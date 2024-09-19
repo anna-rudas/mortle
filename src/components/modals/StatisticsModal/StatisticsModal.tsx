@@ -63,26 +63,28 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
     <div className="modal-con">
       <div className="modal-content-statistics">
         <CloseButton handleClick={closeStatistics} />
-        <h2 className="modal-title">Statistics</h2>
+        <h2 className="text-title">Statistics</h2>
         <div className="statistics-sum-con">
           <div className="statistics-box">
-            <div className="box-text">played</div>
-            <div className="box-number">{timesPlayed}</div>
+            <div className="text-subtitle">played</div>
+            <div className="text-input-large">{timesPlayed}</div>
           </div>
           <div className="statistics-box">
-            <div className="box-text">Win %</div>
-            <div className="box-number">{winPercent}</div>
+            <div className="text-subtitle">Win %</div>
+            <div className="text-input-large">{winPercent}</div>
           </div>
         </div>
-        <p className="chart-title">Guess distribution</p>
+        <p className="text-subtitle">Guess distribution</p>
         <div className="chart-con">
           {barChartData.map((current, index) => {
             return (
               <div className="bar-con" key={index}>
                 <div className="bar" style={{ height: current + "%" }}>
-                  <div className="bar-percentage">{current}%</div>
+                  <div className="text-normal bar-percentage">{current}%</div>
                 </div>
-                <div className="bar-chart-number">{index + 1}</div>
+                <div className="text-subtitle bar-chart-number">
+                  {index + 1}
+                </div>
               </div>
             );
           })}

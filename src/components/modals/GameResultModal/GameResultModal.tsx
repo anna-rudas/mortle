@@ -50,14 +50,16 @@ function GameResultModal() {
       {!isReview && (
         <div className="modal-content-results">
           <CloseButton handleClick={toggleReview} />
-          <h2 className="modal-title">Results</h2>
-          <div className="results-title">{resultReactionText()}</div>
-          <div className="results-text">
+          <h2 className="text-title">Results</h2>
+          <div className="text-subtitle results-title">
+            {resultReactionText()}
+          </div>
+          <div className="text-normal results-text">
             <div>The solution was:</div>
-            <div className="results-solution">{solutionWordDef?.word}</div>
+            <div className="text-input-large">{solutionWordDef?.word}</div>
           </div>
           {solutionWordDef && (
-            <div className="results-def">
+            <div className="text-normal results-def">
               {solutionWordDef.meanings.map((currentMeaning, index: number) => {
                 let tempIndex = 1;
                 if (window.innerHeight >= 900) {

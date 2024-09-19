@@ -5,7 +5,7 @@ export default function LoadingGame() {
   return (
     <div className="modal-con">
       <div className="modal-content-centered">
-        <h2 className="modal-title">Loading</h2>
+        <h2 className="text-title">Loading</h2>
         <div className="little-monsters-con">
           <div className="little-game-monster-con">
             <div className="little-game-monster"></div>

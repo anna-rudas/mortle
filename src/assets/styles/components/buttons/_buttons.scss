@@ -26,7 +26,6 @@
 .btn-primary {
   @extend .border;
   @extend .box-shadow;
-  @extend .base-text;
   @extend .text-btn;
   border-radius: $border-radius-medium;
   background-color: $text-bubble;
