@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AppContext } from "../../../context/context";
-import Background from "../../features/Background/Background";
 import Game from "../../features/Game/Game";
 import Header from "../../features/Header/Header";
 import HowToPlay from "../../modals/HowToPlayModal/HowToPlayModal";
@@ -16,6 +15,7 @@ import {
   wordLength,
   numberOfTries,
 } from "../../../data/constants";
+import PageWrapper from "../../templates/PageWrapper/PageWrapper";
 
 function MainPage() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -104,25 +104,29 @@ function MainPage() {
   }, []);
 
   return (
-    <div className="wrapper">
-      <Background />
-      <div className="game-content">
-        <Header openHowToPlay={openHowToPlay} openStatistics={openStatistics} />
-        {!isLoading && solutionWordDef?.word != "undefined" && <Game />}
-        {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
-        {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
-      </div>
-      {isGameOver && <GameResult />}
-      {isLoading && <LoadingGame />}
-      {isWordInvalidWarning && (
-        <WarningModal warningMsg={invalidSubmitWarning} />
-      )}
-      {((!isLoading && solutionWordDef?.word == "undefined") ||
-        (!isLoading && !solutionWordDef)) && (
-        <ErrorModal errorMsg={generalErrorMsg} />
-      )}
-      {isFetching && <LoadingSecondary />}
-    </div>
+    <PageWrapper>
+      <>
+        <div className="game-content">
+          <Header
+            openHowToPlay={openHowToPlay}
+            openStatistics={openStatistics}
+          />
+          {!isLoading && solutionWordDef?.word != "undefined" && <Game />}
+          {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
+          {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
+        </div>
+        {isGameOver && <GameResult />}
+        {isLoading && <LoadingGame />}
+        {isWordInvalidWarning && (
+          <WarningModal warningMsg={invalidSubmitWarning} />
+        )}
+        {((!isLoading && solutionWordDef?.word == "undefined") ||
+          (!isLoading && !solutionWordDef)) && (
+          <ErrorModal errorMsg={generalErrorMsg} />
+        )}
+        {isFetching && <LoadingSecondary />}
+      </>
+    </PageWrapper>
   );
 }
 

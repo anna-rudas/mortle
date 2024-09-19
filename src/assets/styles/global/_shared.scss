@@ -1,17 +1,3 @@
-.wrapper {
-  height: 100%;
-  width: 100%;
-}
-
-.game-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: $padding-base;
-}
-
 .border {
   border: 2px solid $border;
 }

@@ -1,10 +1,9 @@
 import React from "react";
-import Background from "../../features/Background/Background";
+import PageWrapper from "../../templates/PageWrapper/PageWrapper";
 
 function ErrorPage() {
   return (
-    <div className="wrapper">
-      <Background />
+    <PageWrapper>
       <div className="modal-con">
         <div className="modal-content-centered">
           <h2 className="text-title">Sorry</h2>
@@ -13,7 +12,7 @@ function ErrorPage() {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
 
