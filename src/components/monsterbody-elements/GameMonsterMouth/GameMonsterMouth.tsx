@@ -19,22 +19,22 @@ function GameMonsterMouth() {
   };
 
   return (
-    <div className="game-monster-mouth">
-      <div className="game-teeth-con">
+    <div className="game-monster-mouth-container">
+      <div className="game-monster-teeth-container">
         {inputLetters.map((currRow, rowIndex) => {
           return (
-            <div key={rowIndex} className="game-teeth-row">
+            <div key={rowIndex} className="game-monster-teeth-row">
               {currRow.map((currLetter, columnIndex) => {
                 return (
                   <div
                     {...className(
-                      "game-tooth-con",
+                      "game-monster-tooth-container",
                       colorInputLetter(rowIndex, columnIndex)
                     )}
                     key={columnIndex}
                   >
                     <input
-                      className="text-input-small game-tooth-input"
+                      className="text-input-small game-monster-tooth-input"
                       type="text"
                       maxLength={1}
                       autoComplete="off"

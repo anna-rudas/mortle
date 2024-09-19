@@ -1,3 +1,5 @@
+//general
+
 .border {
   border: 2px solid $border;
 }
@@ -11,6 +13,42 @@
   height: 100%;
   fill: inherit;
 }
+
+//modals
+
+.modal-container {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $padding-base;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+}
+
+.modal-container-no-bg {
+  background-color: rgba(0, 0, 0, 0) !important;
+  backdrop-filter: none;
+}
+
+.modal-content {
+  @extend .box-shadow;
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $text-bubble;
+  width: 90%;
+  height: fit-content;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: $gap-base * 4;
+  cursor: default;
+}
+
+//letter coloring
 
 .letter-correct {
   background-color: $letter-correct-spot;

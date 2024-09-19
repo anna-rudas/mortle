@@ -1,0 +1,91 @@
+.keyboard-monster-mouth-container {
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $monster-mouth;
+  padding: $padding-base;
+  width: 100%;
+  height: 80%;
+  @include small-screen {
+    padding: 7px;
+  }
+}
+
+.keyboard-monster-teeth-container {
+  background-color: $letter-no-spot;
+  border-radius: $border-radius-medium;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $gap-base;
+  padding: $gap-base;
+  width: 100%;
+  height: 100%;
+  @include large-height {
+    border-radius: $border-radius-large;
+  }
+  @include medium-height {
+    padding: 2px;
+    gap: 2px;
+  }
+}
+
+.keyboard-monster-teeth-row {
+  display: flex;
+  gap: $gap-base;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  flex-grow: 1;
+  @include medium-height {
+    gap: 2px;
+  }
+}
+
+.keyboard-monster-tooth-container {
+  @extend .monster-tooth-container;
+  max-height: 70px;
+  min-height: 10px;
+  height: 100%;
+  min-width: 10px;
+  max-width: 50px;
+  width: 100%;
+}
+
+.keyboard-monster-tooth-button {
+  cursor: pointer;
+  @extend .monster-tooth;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  padding: 5px;
+}
+
+.keyboard-monster-teeth-container > :last-child > :first-child,
+.keyboard-monster-teeth-container > :last-child > :last-child {
+  flex-grow: 2;
+  max-width: 80px;
+}
+
+.keyboard-monster-teeth-container > :nth-child(2)::before,
+.keyboard-monster-teeth-container > :nth-child(2)::after {
+  content: " ";
+  width: 15px;
+  pointer-events: none;
+}
+
+.keyboard-monster-teeth-row svg {
+  fill: $text-darkest;
+  stroke: $text-darkest;
+  width: 100%;
+  height: 100%;
+  max-width: 40px;
+  min-width: 20px;
+  min-height: 20px;
+  max-height: 40px;
+  @include small-screen {
+    min-height: 15px;
+  }
+}

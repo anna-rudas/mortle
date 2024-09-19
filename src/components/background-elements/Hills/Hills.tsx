@@ -2,7 +2,7 @@ import React from "react";
 
 function Hills() {
   return (
-    <div className="hills-con">
+    <div className="hills-container">
       <svg
         className="hill-furthest"
         xmlns="http://www.w3.org/2000/svg"

@@ -1,0 +1,16 @@
+.btn-icon-base {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  max-width: 35px;
+  max-height: 35px;
+  @include large-height {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  @include large-screen {
+    max-width: 40px;
+    max-height: 40px;
+  }
+}

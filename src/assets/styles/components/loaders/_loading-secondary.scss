@@ -1,0 +1,45 @@
+.loading-secondary-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 2px;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+.loading-square {
+  width: 20px;
+  height: 20px;
+  background-color: $text-darkest;
+  border-radius: 4px;
+  opacity: 0;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.square-pulse-animation {
+  animation-name: pulse;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+$delayAmounts: (1s, 2s, 3s, 4s);
+
+@each $delay in $delayAmounts {
+  .anim-delay-#{$delay} {
+    @extend .square-pulse-animation;
+    animation-delay: #{$delay};
+  }
+}

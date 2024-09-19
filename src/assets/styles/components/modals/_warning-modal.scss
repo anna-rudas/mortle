@@ -1,0 +1,21 @@
+.warning-modal-container {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: $padding-base;
+  padding-bottom: 25px;
+}
+
+.warning-modal-content {
+  @extend .modal-content;
+  height: 100%;
+  max-height: 130px;
+  max-width: 560px;
+  position: relative;
+  padding: $padding-base * 3;
+  align-items: center;
+  text-align: center;
+}

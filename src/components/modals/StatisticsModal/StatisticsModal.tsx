@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StatsData } from "../../../types/types";
 import { getStats } from "../../../utilities/helpers";
-import CloseButton from "../../buttons/CloseButton/CloseButton";
+import ModalContainer from "../../templates/ModalContainer/ModalContainer";
 
 interface StatisticsModalProps {
   closeStatistics: () => void;
@@ -60,37 +60,37 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
   }, []);
 
   return (
-    <div className="modal-con">
-      <div className="modal-content-statistics">
-        <CloseButton handleClick={closeStatistics} />
-        <h2 className="text-title">Statistics</h2>
-        <div className="statistics-sum-con">
-          <div className="statistics-box">
-            <div className="text-subtitle">played</div>
-            <div className="text-input-large">{timesPlayed}</div>
-          </div>
-          <div className="statistics-box">
-            <div className="text-subtitle">Win %</div>
-            <div className="text-input-large">{winPercent}</div>
-          </div>
+    <ModalContainer
+      modalTitle="Statistics"
+      handleCancel={closeStatistics}
+      modalContentStyle="modal-content-statistics"
+    >
+      <div className="statistics-summary-container">
+        <div className="statistics-summary-box">
+          <span className="text-subtitle">played</span>
+          <span className="text-input-large">{timesPlayed}</span>
         </div>
-        <p className="text-subtitle">Guess distribution</p>
-        <div className="chart-con">
-          {barChartData.map((current, index) => {
-            return (
-              <div className="bar-con" key={index}>
-                <div className="bar" style={{ height: current + "%" }}>
-                  <div className="text-normal bar-percentage">{current}%</div>
-                </div>
-                <div className="text-subtitle bar-chart-number">
-                  {index + 1}
-                </div>
-              </div>
-            );
-          })}
+        <div className="statistics-summary-box">
+          <span className="text-subtitle">Win %</span>
+          <span className="text-input-large">{winPercent}</span>
         </div>
       </div>
-    </div>
+      <p className="text-subtitle">Guess distribution</p>
+      <div className="statistics-chart-container">
+        {barChartData.map((current, index) => {
+          return (
+            <div className="bar-chart-container" key={index}>
+              <div className="bar-chart" style={{ height: current + "%" }}>
+                <div className="text-normal bar-chart-percentage">
+                  {current}%
+                </div>
+              </div>
+              <div className="text-subtitle bar-chart-number">{index + 1}</div>
+            </div>
+          );
+        })}
+      </div>
+    </ModalContainer>
   );
 }
 

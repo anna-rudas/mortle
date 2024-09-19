@@ -1,0 +1,13 @@
+.btn-primary {
+  @extend .border;
+  @extend .box-shadow;
+  @extend .text-btn;
+  border-radius: $border-radius-medium;
+  background-color: $text-bubble;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  cursor: pointer;
+}

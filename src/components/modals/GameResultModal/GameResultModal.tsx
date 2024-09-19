@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import ArrowIcon from "../../../assets/icons/ArrowIcon";
 import { resultTexts } from "../../../data/constants";
 import { AppContext } from "../../../context/context";
-import CloseButton from "../../buttons/CloseButton/CloseButton";
 import PrimaryButton from "../../buttons/PrimaryButton/PrimaryButton";
+import ModalContainer from "../../templates/ModalContainer/ModalContainer";
 
 function GameResultModal() {
   const [isReview, setIsReview] = useState(false);
@@ -42,58 +42,69 @@ function GameResultModal() {
   });
 
   return (
-    <div
-      className={`fade-in-animation modal-con  ${
-        isReview ? "modal-con-no-bg" : ""
-      }`}
-    >
-      {!isReview && (
-        <div className="modal-content-results">
-          <CloseButton handleClick={toggleReview} />
-          <h2 className="text-title">Results</h2>
-          <div className="text-subtitle results-title">
-            {resultReactionText()}
-          </div>
-          <div className="text-normal results-text">
-            <div>The solution was:</div>
-            <div className="text-input-large">{solutionWordDef?.word}</div>
-          </div>
-          {solutionWordDef && (
-            <div className="text-normal results-def">
-              {solutionWordDef.meanings.map((currentMeaning, index: number) => {
-                let tempIndex = 1;
-                if (window.innerHeight >= 900) {
-                  tempIndex = 2;
-                }
-                if (window.innerHeight <= 720) {
-                  tempIndex = 0;
-                }
-
-                if (index > tempIndex) {
-                  return;
-                } else
-                  return (
-                    <div key={index}>
-                      {`(${currentMeaning.partOfSpeech}) ${currentMeaning.definitions[0].definition}`}
-                    </div>
-                  );
-              })}
+    <>
+      <ModalContainer
+        modalTitle={`${!isReview ? "Results" : ""}`}
+        modalContentStyle={`${
+          isReview ? "modal-content-game-review" : "modal-content-game-results"
+        }`}
+        modalContainerStyle={`fade-in-animation ${
+          isReview && "modal-container-no-bg"
+        }`}
+        handleCancel={toggleReview}
+      >
+        <>
+          {isReview ? (
+            <div className="arrow-btn-container" onClick={toggleReview}>
+              <span className="arrow-btn">
+                <ArrowIcon />
+              </span>
             </div>
+          ) : (
+            <>
+              <div className="text-subtitle game-results-title">
+                {resultReactionText()}
+              </div>
+              <div className="text-normal game-results-text">
+                <div>The solution was:</div>
+                <div className="text-input-large">{solutionWordDef?.word}</div>
+              </div>
+              {solutionWordDef && (
+                <div className="text-normal game-results-definition">
+                  {solutionWordDef.meanings.map(
+                    (currentMeaning, index: number) => {
+                      let tempIndex = 1;
+                      if (window.innerHeight >= 900) {
+                        tempIndex = 2;
+                      }
+                      if (window.innerHeight <= 720) {
+                        tempIndex = 0;
+                      }
+
+                      if (index > tempIndex) {
+                        return;
+                      } else
+                        return (
+                          <div key={index}>
+                            {`(${currentMeaning.partOfSpeech}) ${currentMeaning.definitions[0].definition}`}
+                          </div>
+                        );
+                    }
+                  )}
+                </div>
+              )}
+              <div className="game-results-button-container">
+                <PrimaryButton
+                  handleClick={resetGame}
+                  buttonText="Play again"
+                />
+                <PrimaryButton handleClick={toggleReview} buttonText="Review" />
+              </div>
+            </>
           )}
-          <div className="results-btn-con">
-            <PrimaryButton handleClick={resetGame} buttonText="Play again" />
-            <PrimaryButton handleClick={toggleReview} buttonText="Review" />
-          </div>
-        </div>
-      )}
-      {isReview && (
-        <div className="modal-content-review" onClick={toggleReview}>
-          <button className="btn-arrow">
-            <ArrowIcon />
-          </button>
-        </div>
-      )}
-    </div>
+        </>
+      </ModalContainer>
+    </>
   );
 }
 

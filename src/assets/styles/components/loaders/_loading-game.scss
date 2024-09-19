@@ -1,11 +1,31 @@
-.little-monsters-con {
+.loading-game-container {
   display: flex;
   width: 100%;
   gap: $gap-base * 2;
   justify-content: center;
 }
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1);
+  }
+  12% {
+    transform: scale(0.9, 1.1);
+  }
+  25% {
+    transform: scale(1.1, 0.9);
+  }
+  37% {
+    transform: scale(0.95, 1.05);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
 
-.monsters-con {
+.monsters-container {
   display: flex;
   flex-direction: column;
   gap: 0px;
@@ -14,12 +34,12 @@
   animation: bounce 1s infinite;
 }
 
-.little-game-monster-con {
-  @extend .monsters-con;
+.little-game-monster-container {
+  @extend .monsters-container;
 }
 
-.little-keyboard-monster-con {
-  @extend .monsters-con;
+.little-keyboard-monster-container {
+  @extend .monsters-container;
   animation-delay: 0.5s;
 }
 

@@ -9,15 +9,15 @@ interface HeaderProps {
 
 function Header({ openHowToPlay, openStatistics }: HeaderProps) {
   return (
-    <div className="header-con">
-      <div className="header">
-        <button className="btn-header" onClick={openHowToPlay}>
+    <div className="header-container">
+      <div className="header-content">
+        <button className="header-button" onClick={openHowToPlay}>
           <QuestionMarkIcon />
         </button>
         <a href="." className="text-game-title">
           Mortle
         </a>
-        <button className="btn-header" onClick={openStatistics}>
+        <button className="header-button" onClick={openStatistics}>
           <StatsIcon />
         </button>
       </div>

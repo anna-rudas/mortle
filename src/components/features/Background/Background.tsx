@@ -1,11 +1,11 @@
 import React from "react";
-import Cloud from "../Cloud/Cloud";
-import Hills from "../Hills/Hills";
+import Cloud from "../../background-elements/Cloud/Cloud";
+import Hills from "../../background-elements/Hills/Hills";
 
 function Background() {
   return (
-    <div className="background-con">
-      <div className="sun"></div>
+    <div className="background-container">
+      <div className="background-sun"></div>
       <Cloud size="small" />
       <Cloud size="large" />
       <Hills />

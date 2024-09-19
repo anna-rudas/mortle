@@ -1,4 +1,15 @@
-.howto-con {
+.how-to-play-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-base * 2;
+  @include small-height {
+    gap: $gap-base;
+  }
+  width: 100%;
+  max-width: 450px;
+}
+
+.how-to-play-examples-container {
   display: flex;
   flex-direction: column;
   gap: $gap-base * 2;
@@ -7,13 +18,7 @@
   }
 }
 
-.howto-text-con {
-  @extend .howto-con;
-  width: 100%;
-  max-width: 450px;
-}
-
-.examples {
+.how-to-play-examples {
   display: flex;
   flex-direction: column;
   gap: $gap-base;
@@ -22,12 +27,12 @@
   }
 }
 
-.example-word {
+.how-to-play-example-word {
   display: flex;
   gap: $gap-base * 2;
 }
 
-.letter-box {
+.how-to-play-letter-box {
   padding: $padding-base;
   @extend .border;
   @extend .box-shadow;
@@ -45,4 +50,8 @@
     width: 35px;
     height: 35px;
   }
+}
+
+.modal-content-how-to-play {
+  align-items: flex-start;
 }

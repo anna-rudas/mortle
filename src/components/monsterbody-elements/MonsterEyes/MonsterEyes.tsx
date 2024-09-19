@@ -26,7 +26,7 @@ function MonsterEyes({ monsterType, numberOfEyes }: MonsterEyesProps) {
   };
 
   return (
-    <div className="eyes-con">
+    <div className="eyes-container">
       {numberOfEyesHelper.map((curr, idx) => {
         return (
           <div key={idx} className={monsterEyesClass()}>

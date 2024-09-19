@@ -6,8 +6,8 @@ interface WarningModalProps {
 
 function WarningModal({ warningMsg }: WarningModalProps) {
   return (
-    <div className="modal-con-secondary fade-out-animation">
-      <div className="modal-content-warning">
+    <div className="warning-modal-container fade-out-animation">
+      <div className="warning-modal-content">
         <div className="text-normal">{warningMsg}</div>
       </div>
     </div>

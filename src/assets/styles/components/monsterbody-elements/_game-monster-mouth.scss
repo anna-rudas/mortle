@@ -1,0 +1,60 @@
+.game-monster-mouth-container {
+  @extend .border;
+  border-radius: $border-radius-large;
+  background-color: $monster-mouth;
+  padding: $padding-base;
+  width: 100%;
+  aspect-ratio: 1;
+  @include small-screen {
+    padding: 7px;
+  }
+}
+
+.game-monster-teeth-container {
+  background-color: $letter-no-spot;
+  border-radius: $border-radius-medium;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  gap: $gap-base;
+  padding: $gap-base;
+  @include large-height {
+    border-radius: $border-radius-large;
+  }
+  @include medium-height {
+    padding: 2px;
+    gap: 2px;
+  }
+}
+
+.game-monster-teeth-row {
+  display: flex;
+  gap: $gap-base;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  @include medium-height {
+    gap: 2px;
+  }
+}
+
+.game-monster-tooth-container {
+  @extend .monster-tooth-container;
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.game-monster-tooth-input {
+  @extend .monster-tooth;
+  padding: 0;
+  text-align: center;
+  caret-color: transparent;
+  cursor: default;
+  &:focus {
+    outline: none;
+  }
+}

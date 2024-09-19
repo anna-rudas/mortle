@@ -2,8 +2,8 @@ import React from "react";
 
 function LoadingSecondary() {
   return (
-    <div className="modal-con modal-con-no-bg ">
-      <div className="modal-content-loading">
+    <div className="modal-container modal-container-no-bg ">
+      <div className="loading-secondary-content">
         <div className="loading-square anim-delay-1s"></div>
         <div className="loading-square anim-delay-2s"></div>
         <div className="loading-square anim-delay-3s"></div>

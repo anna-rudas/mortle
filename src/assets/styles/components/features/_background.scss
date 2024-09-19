@@ -1,4 +1,4 @@
-.background-con {
+.background-container {
   height: 100%;
   width: 100%;
   background-color: $sky;
@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.sun {
+.background-sun {
   max-height: 200px;
   max-width: 200px;
   min-height: 100px;
@@ -21,36 +21,4 @@
   top: 15%;
   left: 10%;
   z-index: 1;
-}
-
-.hills-con {
-  position: absolute;
-  bottom: 0;
-  top: 40%;
-  width: 100%;
-  z-index: 1;
-  overflow: clip;
-  display: flex;
-  justify-content: center;
-
-  .hill {
-    position: absolute;
-    bottom: 0;
-    min-height: 40vh;
-  }
-
-  .hill-closest {
-    @extend .hill;
-    fill: $hill-closest;
-  }
-
-  .hill-middle {
-    @extend .hill;
-    fill: $hill-middle;
-  }
-
-  .hill-furthest {
-    @extend .hill;
-    fill: $hill-furthest;
-  }
 }

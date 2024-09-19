@@ -1,8 +1,35 @@
-.results-title {
+.modal-content-game-review {
+  @extend .modal-content;
+  align-items: center;
+  max-width: 560px;
+  top: -45px;
+  position: absolute;
+  padding: $padding-base;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.arrow-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  cursor: pointer;
+  height: 50px;
+}
+
+.arrow-btn {
+  @extend .btn-icon-base;
+  position: relative;
+  fill: $text-bubble;
+  transform: rotate(-90deg);
+}
+
+.game-results-title {
   text-align: center;
 }
 
-.results-text {
+.game-results-text {
   display: flex;
   flex-direction: column;
   gap: $gap-base;
@@ -10,7 +37,7 @@
   align-items: center;
 }
 
-.results-def {
+.game-results-definition {
   display: flex;
   flex-direction: column;
   gap: $gap-base;
@@ -18,11 +45,16 @@
   align-items: flex-start;
 }
 
-.results-btn-con {
+.game-results-button-container {
   display: flex;
   gap: 20px;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   flex-direction: column;
+}
+
+.modal-content-game-results {
+  align-items: center;
+  max-width: 560px;
 }

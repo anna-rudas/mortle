@@ -1,9 +1,23 @@
-.feet-con {
+.feet-container {
   width: 90%;
   height: 10%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.feet-container-large {
+  @extend .feet-container;
+  min-height: 40px;
+  max-height: 50px;
+  padding: 0 $padding-base * 2;
+}
+
+.feet-container-small {
+  @extend .feet-container;
+  min-height: 13px;
+  max-height: 10px;
+  padding: 0 10px;
 }
 
 .foot {
@@ -13,26 +27,12 @@
   position: relative;
 }
 
-.feet-con-large {
-  @extend .feet-con;
-  min-height: 40px;
-  max-height: 50px;
-  padding: 0 $padding-base * 2;
-}
-
 .foot-large {
   @extend .foot;
   max-height: 50px;
   max-width: 50px;
   min-height: 30px;
   min-width: 30px;
-}
-
-.feet-con-small {
-  @extend .feet-con;
-  min-height: 13px;
-  max-height: 10px;
-  padding: 0 10px;
 }
 
 .foot-small {
@@ -45,6 +45,58 @@
     box-shadow: none !important;
     background-color: $text-darkest !important;
     animation: none !important;
+  }
+}
+
+@keyframes vertical-feet {
+  0% {
+    height: 100%;
+  }
+
+  3% {
+    height: 90%;
+  }
+
+  5% {
+    height: 100%;
+  }
+
+  7% {
+    height: 90%;
+  }
+
+  10% {
+    height: 100%;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes horizontal-feet {
+  0% {
+    margin-bottom: 0%;
+  }
+
+  3% {
+    margin-bottom: 10%;
+  }
+
+  5% {
+    margin-bottom: 0%;
+  }
+
+  7% {
+    margin-bottom: 10%;
+  }
+
+  10% {
+    margin-bottom: 0%;
+  }
+
+  100% {
+    margin-bottom: 0%;
   }
 }
 
@@ -66,7 +118,7 @@
   animation-delay: $delay;
 }
 
-@mixin pts-base($is-vertical) {
+@mixin feet-part-base($is-vertical) {
   position: absolute;
   @extend .box-shadow;
   @if ($is-vertical == true) {
@@ -79,7 +131,7 @@
 }
 
 .left-horizontal-part {
-  @include pts-base(false);
+  @include feet-part-base(false);
   border-radius: 50px 0 0 50px;
   bottom: 4px;
   left: 0;
@@ -87,14 +139,14 @@
 }
 
 .left-vertical-part {
-  @include pts-base(true);
+  @include feet-part-base(true);
   bottom: 0;
   right: 0;
   top: -4px;
 }
 
 .right-horizontal-part {
-  @include pts-base(false);
+  @include feet-part-base(false);
   border-radius: 0 50px 50px 0;
   bottom: 4px;
   left: 0;
@@ -102,7 +154,7 @@
 }
 
 .right-vertical-part {
-  @include pts-base(true);
+  @include feet-part-base(true);
   border-radius: 0 0 50px 50px;
   bottom: 0;
   left: 0;

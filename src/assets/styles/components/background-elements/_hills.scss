@@ -1,0 +1,31 @@
+.hills-container {
+  position: absolute;
+  bottom: 0;
+  top: 40%;
+  width: 100%;
+  z-index: 1;
+  overflow: clip;
+  display: flex;
+  justify-content: center;
+}
+
+.hill {
+  position: absolute;
+  bottom: 0;
+  min-height: 40vh;
+}
+
+.hill-closest {
+  @extend .hill;
+  fill: $hill-closest;
+}
+
+.hill-middle {
+  @extend .hill;
+  fill: $hill-middle;
+}
+
+.hill-furthest {
+  @extend .hill;
+  fill: $hill-furthest;
+}

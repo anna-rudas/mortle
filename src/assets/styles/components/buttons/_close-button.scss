@@ -1,0 +1,7 @@
+.btn-close {
+  @extend .btn-icon-base;
+  position: absolute;
+  top: $padding-base;
+  right: $padding-base;
+  fill: $text-bubble;
+}

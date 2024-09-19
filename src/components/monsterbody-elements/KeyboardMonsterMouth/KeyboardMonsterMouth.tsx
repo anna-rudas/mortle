@@ -94,17 +94,17 @@ function KeyboardMonsterMouth() {
   };
 
   return (
-    <div className="keyboard-monster-mouth">
-      <div className="keyboard-teeth-con">
+    <div className="keyboard-monster-mouth-container">
+      <div className="keyboard-monster-teeth-container">
         {keyboardLetters.map((currentRow, currentRowIndex) => {
           return (
-            <div key={currentRowIndex} className="keyboard-teeth-row">
+            <div key={currentRowIndex} className="keyboard-monster-teeth-row">
               {currentRow.map((currentLetter, currentLetterIndex) => {
                 return (
                   <div
                     key={currentLetterIndex}
                     {...className(
-                      "keyboard-tooth-con",
+                      "keyboard-monster-tooth-container",
                       colorKeyboardLetter(currentLetter)
                     )}
                   >
@@ -116,7 +116,7 @@ function KeyboardMonsterMouth() {
                           currentLetter
                         )
                       }
-                      className="text-input-small keyboard-tooth-btn"
+                      className="text-input-small keyboard-monster-tooth-button"
                     >
                       {currentLetter}
                     </button>

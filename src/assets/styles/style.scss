@@ -2,24 +2,31 @@
 @import "./global/colors";
 @import "./global/mixins";
 @import "./global/fonts";
-@import "./global/animations";
-@import "./components//buttons/buttons";
-@import "./components/features/cloud";
-@import "./components/features/background";
-@import "./components/features/header";
-@import "./components/features/game";
-@import "./components/features/monster-mouths";
-@import "./components/templates/monster-eyes";
-@import "./components/templates/monster-feet";
-@import "./components/features/monster-body";
-@import "./global/modals";
-@import "./components/modals/howto";
-@import "./components/modals/stats";
-@import "./components/modals/results";
-@import "./components/loaders/loading";
 @import "./global/shared";
-@import "./components/templates/page-wrapper";
+@import "./global/animations";
+@import "./global/buttons";
+@import "./components/background-elements/cloud";
+@import "./components/background-elements/hills";
+@import "./components/buttons/close-button";
+@import "./components/buttons/primary-button";
+@import "./components/features/background";
+@import "./components/features/game";
+@import "./components/features/header";
+@import "./components/features/monster-body";
+@import "./components/loaders/loading-game";
+@import "./components/loaders/loading-secondary";
+@import "./components/modals/howto";
+@import "./components/modals/results";
+@import "./components/modals/stats";
+@import "./components/modals/warning-modal";
+@import "./components/monsterbody-elements/game-monster-mouth";
+@import "./components/monsterbody-elements/keyboard-monster-mouth";
+@import "./components/monsterbody-elements/monster-eyes";
+@import "./components/monsterbody-elements/monster-feet";
+@import "./components/monsterbody-elements/monsterbody-elements-shared";
 @import "./components/pages/main-page";
+@import "./components/templates/modal-container";
+@import "./components/templates/page-wrapper";
 
 html,
 #root,

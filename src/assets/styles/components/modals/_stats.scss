@@ -1,4 +1,4 @@
-.statistics-sum-con {
+.statistics-summary-container {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -6,7 +6,7 @@
   margin-bottom: $gap-base * 3;
 }
 
-.statistics-box {
+.statistics-summary-box {
   @extend .border;
   @extend .box-shadow;
   border-radius: $border-radius-medium;
@@ -22,7 +22,7 @@
   }
 }
 
-.chart-con {
+.statistics-chart-container {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -30,7 +30,7 @@
   gap: $gap-base * 2;
 }
 
-.bar-con {
+.bar-chart-container {
   width: 20%;
   min-width: 20px;
   max-width: 60px;
@@ -42,7 +42,7 @@
   gap: $gap-base;
 }
 
-.bar {
+.bar-chart {
   background-color: $border;
   width: 100%;
   display: flex;
@@ -52,11 +52,15 @@
   min-height: 30px;
 }
 
-.bar-percentage {
+.bar-chart-percentage {
   color: $text-lightest;
   background-color: $border;
 }
 
 .bar-chart-number {
   height: 10%;
+}
+
+.modal-content-statistics {
+  align-items: center;
 }

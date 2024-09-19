@@ -3,7 +3,7 @@ import MonsterBody from "../MonsterBody/MonsterBody";
 
 function Game() {
   return (
-    <div className="game-con">
+    <div className="game-container">
       <MonsterBody monsterType="game" />
       <MonsterBody monsterType="keyboard" />
     </div>

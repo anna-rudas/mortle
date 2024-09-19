@@ -7,7 +7,7 @@ interface MonsterFeetProps {
 
 function MonsterFeet({ monsterType, size }: MonsterFeetProps) {
   return (
-    <div className={`feet-con-${size}`}>
+    <div className={`feet-container-${size}`}>
       <div className={`foot-${size}`}>
         <div className={`${monsterType}-left-vertical-part`}></div>
         <div className={`${monsterType}-left-horizontal-part`}></div>

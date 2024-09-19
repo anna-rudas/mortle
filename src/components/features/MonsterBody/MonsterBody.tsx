@@ -1,8 +1,8 @@
 import React from "react";
-import MonsterEyes from "../../templates/MonsterEyes/MonsterEyes";
-import MonsterFeet from "../../templates/MonsterFeet/MonsterFeet";
-import KeyboardMonsterMouth from "../KeyboardMonsterMouth/KeyboardMonsterMouth";
-import GameMonsterMouth from "../GameMonsterMouth/GameMonsterMouth";
+import MonsterEyes from "../../monsterbody-elements/MonsterEyes/MonsterEyes";
+import MonsterFeet from "../../monsterbody-elements/MonsterFeet/MonsterFeet";
+import KeyboardMonsterMouth from "../../monsterbody-elements/KeyboardMonsterMouth/KeyboardMonsterMouth";
+import GameMonsterMouth from "../../monsterbody-elements/GameMonsterMouth/GameMonsterMouth";
 
 interface MonsterBodyProps {
   monsterType: "game" | "keyboard";
@@ -10,7 +10,7 @@ interface MonsterBodyProps {
 
 function MonsterBody({ monsterType }: MonsterBodyProps) {
   return (
-    <div className={`${monsterType}-monster-body-con`}>
+    <div className={`${monsterType}-monster-body-container`}>
       <div className={`${monsterType}-monster-face`}>
         <MonsterEyes monsterType={monsterType} />
         {monsterType === "game" ? (

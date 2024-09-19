@@ -1,0 +1,27 @@
+.modal-content-centered {
+  @extend .modal-content;
+  height: 90%;
+  max-height: 200px;
+  max-width: 350px;
+  position: relative;
+  padding: $padding-base * 3;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-content-info {
+  @extend .modal-content;
+  position: relative;
+  padding: $padding-base * 5;
+  @include small-screen {
+    padding: $padding-base * 3 $padding-base * 2;
+    width: 100%;
+  }
+  @include small-height {
+    gap: $gap-base * 2;
+    padding: $padding-base * 2 $padding-base * 2;
+  }
+  @include large-height {
+    gap: $gap-base * 6;
+  }
+}
