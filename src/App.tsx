@@ -1,132 +1,13 @@
-import React, { useEffect, useContext, useState } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
-import Background from "./components/features/Background/Background";
-import Game from "./components/features/Game/Game";
-import Header from "./components/features/Header/Header";
-import HowToPlay from "./components/modals/HowToPlay/HowToPlay";
-import Statistics from "./components/modals/Statistics/Statistics";
-import GameResult from "./components/modals/GameResult/GameResult";
-import LoadingGame from "./components/loaders/LoadingGame/LoadingGame";
-import AppContextProvider, { AppContext } from "./context/context";
-import {
-  wordLength,
-  numberOfTries,
-  generalErrorMsg,
-  invalidSubmitWarning,
-} from "./data/constants";
+import AppContextProvider from "./context/context";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorPage from "./components/modals/ErrorPage/ErrorPage";
-import WarningModal from "./components/modals/WarningModal/WarningModal";
-import ErrorModal from "./components/modals/ErrorModal/ErrorModal";
-import LoadingSecondary from "./components/loaders/LoadingSecondary/LoadingSecondary";
+import ErrorPage from "./components/pages/ErrorPage/ErrorPage";
+
+import MainPage from "./components/pages/MainPage/MainPage";
 
 function App() {
-  const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
-  const [isStatisticsOpen, setIsStatisticsOpen] = useState(false);
-
-  const {
-    currentRow,
-    setCurrentRow,
-    currentColumn,
-    setCurrentColumn,
-    inputLetters,
-    setInputLetterValue,
-    solutionWordDef,
-    lastDoneRow,
-    setLastDoneRow,
-    checkInputWord,
-    isFetching,
-    setIsFetching,
-    isWordInvalidWarning,
-    isGameOver,
-    isLoading,
-    resetGame,
-  } = useContext(AppContext);
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyEvent);
-    return () => document.removeEventListener("keydown", handleKeyEvent);
-  });
-
-  const handleKeyEvent = async (event: KeyboardEvent) => {
-    if (
-      !isGameOver &&
-      !isStatisticsOpen &&
-      !isHowToPlayOpen &&
-      !isLoading &&
-      !isFetching &&
-      !isWordInvalidWarning
-    ) {
-      if (currentRow < numberOfTries) {
-        if (event.key === "Backspace") {
-          if (
-            inputLetters[currentRow][currentColumn] === "" &&
-            currentColumn != 0
-          ) {
-            setInputLetterValue("", true);
-            setCurrentColumn(currentColumn - 1);
-          } else {
-            setInputLetterValue("");
-          }
-        } else if (event.key === "Enter") {
-          setIsFetching(true);
-          const isInputWordValid = await checkInputWord(currentRow);
-          setIsFetching(false);
-          if (!isInputWordValid) {
-            return;
-          }
-
-          setLastDoneRow(lastDoneRow + 1);
-          setCurrentRow(currentRow + 1);
-          setCurrentColumn(0);
-        } else if (event.key.length == 1) {
-          setInputLetterValue(event.key.toLocaleUpperCase());
-          if (currentColumn != wordLength - 1) {
-            setCurrentColumn(currentColumn + 1);
-          }
-        }
-      }
-    }
-  };
-
-  const openHowToPlay = () => {
-    setIsHowToPlayOpen(true);
-  };
-  const closeHowToPlay = () => {
-    setIsHowToPlayOpen(false);
-  };
-  const openStatistics = () => {
-    setIsStatisticsOpen(true);
-  };
-  const closeStatistics = () => {
-    setIsStatisticsOpen(false);
-  };
-
-  useEffect(() => {
-    resetGame();
-  }, []);
-
-  return (
-    <div className="wrapper">
-      <Background />
-      <div className="game-content">
-        <Header openHowToPlay={openHowToPlay} openStatistics={openStatistics} />
-        {!isLoading && solutionWordDef?.word != "undefined" && <Game />}
-        {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
-        {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
-      </div>
-      {isGameOver && <GameResult />}
-      {isLoading && <LoadingGame />}
-      {isWordInvalidWarning && (
-        <WarningModal warningMsg={invalidSubmitWarning} />
-      )}
-      {((!isLoading && solutionWordDef?.word == "undefined") ||
-        (!isLoading && !solutionWordDef)) && (
-        <ErrorModal errorMsg={generalErrorMsg} />
-      )}
-      {isFetching && <LoadingSecondary />}
-    </div>
-  );
+  return <MainPage />;
 }
 
 const logError = (error: Error) => {

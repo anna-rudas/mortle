@@ -1,10 +1,8 @@
 @import "./global/variables";
 @import "./global/colors";
-@import "./global/fonts";
 @import "./global/mixins";
-@import "./global/shared";
+@import "./global/fonts";
 @import "./global/animations";
-@import "./global/modals";
 @import "./components//buttons/buttons";
 @import "./components/features/cloud";
 @import "./components/features/background";
@@ -14,7 +12,9 @@
 @import "./components/templates/monster-eyes";
 @import "./components/templates/monster-feet";
 @import "./components/features/monster-body";
+@import "./global/modals";
 @import "./components/modals/howto";
 @import "./components/modals/stats";
 @import "./components/modals/results";
 @import "./components/loaders/loading";
+@import "./global/shared";
