@@ -38,7 +38,7 @@ function GameMonsterMouth() {
                       type="text"
                       maxLength={1}
                       autoComplete="off"
-                      disabled={currentRow != rowIndex}
+                      disabled={currentRow !== rowIndex}
                       value={currLetter}
                       readOnly
                     ></input>

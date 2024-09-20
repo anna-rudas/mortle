@@ -27,7 +27,7 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
 
   const calcWinPer = (data: StatsData[]) => {
     const timesPlayed = data.length;
-    if (timesPlayed == 0) {
+    if (timesPlayed === 0) {
       return 0;
     } else {
       const timesWon = data.filter((currentData) => currentData.guessed);
@@ -38,7 +38,7 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
   const calcBarPer = (data: StatsData[]): number[] => {
     const temp = [0, 0, 0, 0, 0];
     const timesWon = data.filter((currentData) => currentData.guessed);
-    if (timesWon.length == 0) {
+    if (timesWon.length === 0) {
       return temp;
     } else {
       timesWon.map((current) => {

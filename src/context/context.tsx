@@ -128,11 +128,11 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     const inputWord = inputLetters[currentRow];
 
     if (
-      inputWord.join("").toUpperCase() == solutionWordDef?.word.toUpperCase()
+      inputWord.join("").toUpperCase() === solutionWordDef?.word.toUpperCase()
     ) {
       handleGameOver(true);
       return true;
-    } else if (inputWord.join("").split("").length == wordLength) {
+    } else if (inputWord.join("").split("").length === wordLength) {
       //---real data
       const getInputWordDef: WordDefinition | null = await getWordDefinition(
         inputWord.join("")
@@ -143,7 +143,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
 
       if (getInputWordDef) {
         //input word is valid (5 letters and def)
-        if (currentRow == wordLength - 1) {
+        if (currentRow === wordLength - 1) {
           handleGameOver(false);
         }
         return true;
@@ -170,7 +170,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     return inputWord.map((inputLetter, inputLetterIndex) => {
       if (solutionWord.indexOf(inputLetter) < 0) {
         return "letter-no";
-      } else if (solutionWord[inputLetterIndex] == inputLetter) {
+      } else if (solutionWord[inputLetterIndex] === inputLetter) {
         return "letter-correct";
       } else {
         //the letter is in the solution, but in the wrong spot

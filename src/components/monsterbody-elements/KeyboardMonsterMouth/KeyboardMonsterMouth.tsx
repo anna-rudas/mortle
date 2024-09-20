@@ -46,17 +46,17 @@ function KeyboardMonsterMouth() {
         //clicked backspace
         if (
           inputLetters[currentRow][currentColumn] === "" &&
-          currentColumn != 0
+          currentColumn !== 0
         ) {
           setInputLetterValue("", true);
           setCurrentColumn(currentColumn - 1);
         } else {
           setInputLetterValue("");
         }
-      } else if (typeof currentLetter == "string") {
+      } else if (typeof currentLetter === "string") {
         //clicked letter
         setInputLetterValue(currentLetter);
-        if (currentColumn != wordLength - 1) {
+        if (currentColumn !== wordLength - 1) {
           setCurrentColumn(currentColumn + 1);
         }
       }
@@ -66,7 +66,7 @@ function KeyboardMonsterMouth() {
   const colorKeyboardLetter = (
     currentLetter: string | JSX.Element
   ): LetterColorClass | null => {
-    if (typeof currentLetter == "string") {
+    if (typeof currentLetter === "string") {
       //order of colors: correct, wrong, no
       for (const colorClass of letterColoringClasses) {
         for (let i = lastDoneRow - 1; i >= 0; i--) {
@@ -81,8 +81,8 @@ function KeyboardMonsterMouth() {
           if (
             colorClassResults.some(
               (currentColorClass, classIdx) =>
-                currentColorClass == colorClass &&
-                inputLetters[i][classIdx] == currentLetter
+                currentColorClass === colorClass &&
+                inputLetters[i][classIdx] === currentLetter
             )
           ) {
             return colorClass;

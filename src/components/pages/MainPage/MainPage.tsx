@@ -53,7 +53,7 @@ function MainPage() {
         if (event.key === "Backspace") {
           if (
             inputLetters[currentRow][currentColumn] === "" &&
-            currentColumn != 0
+            currentColumn !== 0
           ) {
             setInputLetterValue("", true);
             setCurrentColumn(currentColumn - 1);
@@ -71,9 +71,9 @@ function MainPage() {
           setLastDoneRow(lastDoneRow + 1);
           setCurrentRow(currentRow + 1);
           setCurrentColumn(0);
-        } else if (event.key.length == 1) {
+        } else if (event.key.length === 1) {
           setInputLetterValue(event.key.toLocaleUpperCase());
-          if (currentColumn != wordLength - 1) {
+          if (currentColumn !== wordLength - 1) {
             setCurrentColumn(currentColumn + 1);
           }
         }
@@ -113,7 +113,7 @@ function MainPage() {
             openHowToPlay={openHowToPlay}
             openStatistics={openStatistics}
           />
-          {!isLoading && solutionWordDef?.word != "undefined" && <Game />}
+          {!isLoading && solutionWordDef?.word !== "undefined" && <Game />}
           {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
           {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
         </div>
@@ -122,7 +122,7 @@ function MainPage() {
         {isWordInvalidWarning && (
           <WarningModal warningMsg={invalidSubmitWarning} />
         )}
-        {((!isLoading && solutionWordDef?.word == "undefined") ||
+        {((!isLoading && solutionWordDef?.word === "undefined") ||
           (!isLoading && !solutionWordDef)) && (
           <ErrorModal errorMsg={generalErrorMsg} />
         )}
