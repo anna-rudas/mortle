@@ -29,10 +29,9 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
     const timesPlayed = data.length;
     if (timesPlayed === 0) {
       return 0;
-    } else {
-      const timesWon = data.filter((currentData) => currentData.guessed);
-      return Math.round((timesWon.length / timesPlayed) * 100);
     }
+    const timesWon = data.filter((currentData) => currentData.guessed);
+    return Math.round((timesWon.length / timesPlayed) * 100);
   };
 
   const calcBarPer = (data: StatsData[]): number[] => {
@@ -40,19 +39,18 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
     const timesWon = data.filter((currentData) => currentData.guessed);
     if (timesWon.length === 0) {
       return temp;
-    } else {
-      timesWon.map((current) => {
-        if (current.guessedAt) {
-          temp[current.guessedAt - 1] = temp[current.guessedAt - 1] + 1;
-        }
-      });
-
-      const chartData = temp.map((current) =>
-        Math.round((current / timesWon.length) * 100)
-      );
-
-      return chartData;
     }
+    timesWon.map((current) => {
+      if (current.guessedAt) {
+        temp[current.guessedAt - 1] = temp[current.guessedAt - 1] + 1;
+      }
+    });
+
+    const chartData = temp.map((current) =>
+      Math.round((current / timesWon.length) * 100)
+    );
+
+    return chartData;
   };
 
   useEffect(() => {

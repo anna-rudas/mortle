@@ -22,13 +22,13 @@ function GameResultModal() {
 
     if (!currentGameResultsData.guessed) {
       return resultTexts.lose[randomIndex];
-    } else {
-      if (currentGameResultsData.guessedAt === 1) {
-        return resultTexts.winFirst[randomIndex];
-      } else if (currentGameResultsData.guessedAt === 5) {
-        return resultTexts.winLast[randomIndex];
-      } else return resultTexts.winMiddle[randomIndex];
     }
+    if (currentGameResultsData.guessedAt === 1) {
+      return resultTexts.winFirst[randomIndex];
+    } else if (currentGameResultsData.guessedAt === 5) {
+      return resultTexts.winLast[randomIndex];
+    }
+    return resultTexts.winMiddle[randomIndex];
   };
   const showReview = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
@@ -85,12 +85,12 @@ function GameResultModal() {
 
                       if (index > tempIndex) {
                         return;
-                      } else
-                        return (
-                          <div key={index}>
-                            {`(${currentMeaning.partOfSpeech}) ${currentMeaning.definitions[0].definition}`}
-                          </div>
-                        );
+                      }
+                      return (
+                        <div key={index}>
+                          {`(${currentMeaning.partOfSpeech}) ${currentMeaning.definitions[0].definition}`}
+                        </div>
+                      );
                     }
                   )}
                 </div>

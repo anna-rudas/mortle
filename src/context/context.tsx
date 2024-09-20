@@ -144,16 +144,16 @@ function AppContextProvider({ children }: AppContextProviderProps) {
           handleGameOver({ hasGuessed: false });
         }
         return true;
-      } else {
-        //input word is not valid (no def)
-        showInvalidWordWarning();
-        return false;
       }
-    } else {
-      //input word is not valid (not 5 letters)
+
+      //input word is not valid (no def)
       showInvalidWordWarning();
       return false;
     }
+
+    //input word is not valid (not 5 letters)
+    showInvalidWordWarning();
+    return false;
   };
 
   const compareInputAndSolution = (rowIndex: number): LetterColorClass[] => {
@@ -169,33 +169,31 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         return "letter-no";
       } else if (solutionWord[inputLetterIndex] === inputLetter) {
         return "letter-correct";
-      } else {
-        //the letter is in the solution, but in the wrong spot
+      }
+      //the letter is in the solution, but in the wrong spot
 
-        const incorrectIndexes = [];
-        let correctTimesInSolution = 0;
+      const incorrectIndexes = [];
+      let correctTimesInSolution = 0;
 
-        for (let j = 0; j < inputWord.length; j++) {
-          if (inputWord[j] === inputLetter) {
-            if (inputWord[j] === solutionWord[j]) {
-              correctTimesInSolution++;
-            } else {
-              incorrectIndexes.push(j);
-            }
+      for (let j = 0; j < inputWord.length; j++) {
+        if (inputWord[j] === inputLetter) {
+          if (inputWord[j] === solutionWord[j]) {
+            correctTimesInSolution++;
+          } else {
+            incorrectIndexes.push(j);
           }
         }
+      }
 
-        const timesInSolution = solutionWord.split(inputLetter).length - 1;
-        const wrongTimesInInput = timesInSolution - correctTimesInSolution;
+      const timesInSolution = solutionWord.split(inputLetter).length - 1;
+      const wrongTimesInInput = timesInSolution - correctTimesInSolution;
 
-        for (let j = 0; j < incorrectIndexes.length; j++) {
-          if (inputLetterIndex === incorrectIndexes[j]) {
-            if (j < wrongTimesInInput) {
-              return "letter-wrong";
-            } else {
-              return "letter-no";
-            }
+      for (let j = 0; j < incorrectIndexes.length; j++) {
+        if (inputLetterIndex === incorrectIndexes[j]) {
+          if (j < wrongTimesInInput) {
+            return "letter-wrong";
           }
+          return "letter-no";
         }
       }
       return "letter-no";
