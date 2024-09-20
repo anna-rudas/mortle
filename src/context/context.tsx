@@ -125,17 +125,14 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   };
 
   const checkInputWord = async (currentRow: number) => {
-    const inputWord = inputLetters[currentRow];
-
-    if (
-      inputWord.join("").toUpperCase() === solutionWordDef?.word.toUpperCase()
-    ) {
+    const inputWord = inputLetters[currentRow].join("");
+    if (inputWord.toUpperCase() === solutionWordDef?.word.toUpperCase()) {
       handleGameOver(true);
       return true;
-    } else if (inputWord.join("").split("").length === wordLength) {
+    } else if (inputWord.length === wordLength) {
       //---real data
       const getInputWordDef: WordDefinition | null = await getWordDefinition(
-        inputWord.join("")
+        inputWord
       );
 
       //---test data
