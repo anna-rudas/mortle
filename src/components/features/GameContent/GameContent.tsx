@@ -1,7 +1,7 @@
 import React from "react";
 import MonsterBody from "../MonsterBody/MonsterBody";
 
-function Game() {
+function GameContent() {
   return (
     <div className="game-container">
       <MonsterBody monsterType="game" />
@@ -10,4 +10,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default GameContent;

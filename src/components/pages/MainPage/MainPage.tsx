@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AppContext } from "../../../context/context";
-import Game from "../../features/Game/Game";
+import Game from "../../features/GameContent/GameContent";
 import Header from "../../features/Header/Header";
 import HowToPlay from "../../modals/HowToPlayModal/HowToPlayModal";
 import Statistics from "../../modals/StatisticsModal/StatisticsModal";
