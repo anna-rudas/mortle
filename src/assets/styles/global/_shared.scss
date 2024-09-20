@@ -51,58 +51,58 @@
 //letter coloring
 
 .letter-correct {
-  background-color: $letter-correct-spot;
-  color: $text-darkest;
+  background-color: $letter-correct-spot !important;
+  color: $text-darkest !important;
   input:disabled {
-    opacity: 1;
-    -webkit-opacity: 1;
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
+    opacity: 1 !important;
+    -webkit-opacity: 1 !important;
+    color: $text-darkest !important;
+    -webkit-text-fill-color: $text-darkest !important;
   }
   span {
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
+    color: $text-darkest !important;
+    -webkit-text-fill-color: $text-darkest !important;
   }
   button {
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
+    color: $text-darkest !important;
+    -webkit-text-fill-color: $text-darkest !important;
   }
 }
 
 .letter-wrong {
-  background-color: $letter-wrong-spot;
-  color: $text-darkest;
+  background-color: $letter-wrong-spot !important;
+  color: $text-darkest !important;
   input:disabled {
-    opacity: 1;
-    -webkit-opacity: 1;
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
+    opacity: 1 !important;
+    -webkit-opacity: 1 !important;
+    color: $text-darkest !important;
+    -webkit-text-fill-color: $text-darkest !important;
   }
   span {
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
+    color: $text-darkest !important;
+    -webkit-text-fill-color: $text-darkest !important;
   }
   button {
-    color: $text-darkest;
-    -webkit-text-fill-color: $text-darkest;
+    color: $text-darkest !important;
+    -webkit-text-fill-color: $text-darkest !important;
   }
 }
 
 .letter-no {
-  background-color: $letter-no-spot;
-  color: $text-lightest;
+  background-color: $letter-no-spot !important;
+  color: $text-lightest !important;
   input:disabled {
-    opacity: 1;
-    -webkit-opacity: 1;
-    color: $text-lightest;
-    -webkit-text-fill-color: $text-lightest;
+    opacity: 1 !important;
+    -webkit-opacity: 1 !important;
+    color: $text-lightest !important;
+    -webkit-text-fill-color: $text-lightest !important;
   }
   span {
-    color: $text-lightest;
-    -webkit-text-fill-color: $text-lightest;
+    color: $text-lightest !important;
+    -webkit-text-fill-color: $text-lightest !important;
   }
   button {
-    color: $text-lightest;
-    -webkit-text-fill-color: $text-lightest;
+    color: $text-lightest !important;
+    -webkit-text-fill-color: $text-lightest !important;
   }
 }
