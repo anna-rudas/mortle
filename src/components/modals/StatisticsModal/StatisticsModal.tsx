@@ -12,14 +12,17 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
   const [winPercent, setWinPercent] = useState(0);
   const [barChartData, setBarChartData] = useState<number[]>([]);
 
+  const closeModal = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      closeStatistics();
+    }
+  };
+
   useEffect(() => {
-    const closeModal = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        closeStatistics();
-      }
-    };
-    window.removeEventListener("keydown", closeModal);
     window.addEventListener("keydown", closeModal);
+    return () => {
+      window.removeEventListener("keydown", closeModal);
+    };
   });
 
   const calcWinPer = (data: StatsData[]) => {

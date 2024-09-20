@@ -40,11 +40,6 @@ function MainPage() {
     resetGame,
   } = useContext(AppContext);
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyEvent);
-    return () => document.removeEventListener("keydown", handleKeyEvent);
-  });
-
   const handleKeyEvent = async (event: KeyboardEvent) => {
     if (
       !isGameOver &&
@@ -85,6 +80,13 @@ function MainPage() {
       }
     }
   };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyEvent);
+    return () => {
+      document.removeEventListener("keydown", handleKeyEvent);
+    };
+  });
 
   const openHowToPlay = () => {
     setIsHowToPlayOpen(true);

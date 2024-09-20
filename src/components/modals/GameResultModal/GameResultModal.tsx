@@ -30,15 +30,17 @@ function GameResultModal() {
       } else return resultTexts.winMiddle[randomIndex];
     }
   };
+  const showReview = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setIsReview(true);
+    }
+  };
 
   useEffect(() => {
-    const showReview = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsReview(true);
-      }
-    };
-    window.removeEventListener("keydown", showReview);
     window.addEventListener("keydown", showReview);
+    return () => {
+      window.removeEventListener("keydown", showReview);
+    };
   });
 
   return (

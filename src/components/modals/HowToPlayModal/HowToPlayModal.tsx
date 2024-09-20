@@ -10,14 +10,17 @@ interface HowToPlayModalProps {
 }
 
 function HowToPlayModal({ closeHowToPlay }: HowToPlayModalProps) {
+  const closeModal = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      closeHowToPlay();
+    }
+  };
+
   useEffect(() => {
-    const closeModal = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        closeHowToPlay();
-      }
-    };
-    window.removeEventListener("keydown", closeModal);
     window.addEventListener("keydown", closeModal);
+    return () => {
+      window.removeEventListener("keydown", closeModal);
+    };
   });
 
   return (
