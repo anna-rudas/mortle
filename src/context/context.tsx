@@ -127,7 +127,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const checkInputWord = async (currentRow: number) => {
     const inputWord = inputLetters[currentRow].join("");
     if (inputWord.toUpperCase() === solutionWordDef?.word.toUpperCase()) {
-      handleGameOver(true);
+      handleGameOver({ hasGuessed: true });
       return true;
     } else if (inputWord.length === wordLength) {
       //---real data
@@ -141,7 +141,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
       if (getInputWordDef) {
         //input word is valid (5 letters and def)
         if (currentRow === wordLength - 1) {
-          handleGameOver(false);
+          handleGameOver({ hasGuessed: false });
         }
         return true;
       } else {
@@ -208,7 +208,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     saveStats(updatedStatistics);
   };
 
-  const handleGameOver = (hasGuessed: boolean) => {
+  const handleGameOver = ({ hasGuessed }: { hasGuessed: boolean }) => {
     setIsGameOver(true);
     if (hasGuessed) {
       updateSavedStatistics({ guessed: true, guessedAt: currentRow + 1 });
