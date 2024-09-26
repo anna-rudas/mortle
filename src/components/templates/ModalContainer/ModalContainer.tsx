@@ -5,7 +5,7 @@ interface ModalContainerProps {
   modalTitle?: string;
   modalText?: string;
   children?: JSX.Element[] | JSX.Element;
-  handleCancel: { (): void } | null;
+  handleCancel?: { (): void } | null;
   modalContentStyle?: string;
   modalContainerStyle?: string;
 }
