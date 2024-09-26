@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import AppContextProvider from "./context/context";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "./components/pages/ErrorPage/ErrorPage";
-
 import MainPage from "./components/pages/MainPage/MainPage";
 
 function App() {

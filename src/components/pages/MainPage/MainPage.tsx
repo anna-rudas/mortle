@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AppContext } from "../../../context/context";
-import Game from "../../features/GameContent/GameContent";
+import GameContent from "../../features/GameContent/GameContent";
 import Header from "../../features/Header/Header";
-import HowToPlay from "../../modals/HowToPlayModal/HowToPlayModal";
-import Statistics from "../../modals/StatisticsModal/StatisticsModal";
-import GameResult from "../../modals/GameResultModal/GameResultModal";
+import HowToPlayModal from "../../modals/HowToPlayModal/HowToPlayModal";
+import StatisticsModal from "../../modals/StatisticsModal/StatisticsModal";
+import GameResultModal from "../../modals/GameResultModal/GameResultModal";
 import LoadingGame from "../../loaders/LoadingGame/LoadingGame";
 import WarningModal from "../../modals/WarningModal/WarningModal";
 import ErrorModal from "../../modals/ErrorModal/ErrorModal";
@@ -113,11 +113,17 @@ function MainPage() {
             openHowToPlay={openHowToPlay}
             openStatistics={openStatistics}
           />
-          {!isLoading && solutionWordDef?.word !== "undefined" && <Game />}
-          {isHowToPlayOpen && <HowToPlay closeHowToPlay={closeHowToPlay} />}
-          {isStatisticsOpen && <Statistics closeStatistics={closeStatistics} />}
+          {!isLoading && solutionWordDef?.word !== "undefined" && (
+            <GameContent />
+          )}
+          {isHowToPlayOpen && (
+            <HowToPlayModal closeHowToPlay={closeHowToPlay} />
+          )}
+          {isStatisticsOpen && (
+            <StatisticsModal closeStatistics={closeStatistics} />
+          )}
         </div>
-        {isGameOver && <GameResult />}
+        {isGameOver && <GameResultModal />}
         {isLoading && <LoadingGame />}
         {isWordInvalidWarning && (
           <WarningModal warningMsg={invalidSubmitWarning} />
