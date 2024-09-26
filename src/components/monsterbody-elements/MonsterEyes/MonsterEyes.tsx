@@ -6,12 +6,10 @@ interface MonsterEyesProps {
   numberOfEyes: number;
 }
 
-const defaultProps: MonsterEyesProps = {
-  monsterType: "game",
-  numberOfEyes: 2,
-};
-
-function MonsterEyes({ monsterType, numberOfEyes }: MonsterEyesProps) {
+function MonsterEyes({
+  monsterType = "game",
+  numberOfEyes = 2,
+}: MonsterEyesProps) {
   const { isGameOver, currentGameResultsData } = useContext(AppContext);
 
   const numberOfEyesHelper = new Array(numberOfEyes).fill(0);
@@ -37,7 +35,5 @@ function MonsterEyes({ monsterType, numberOfEyes }: MonsterEyesProps) {
     </div>
   );
 }
-
-MonsterEyes.defaultProps = defaultProps;
 
 export default MonsterEyes;

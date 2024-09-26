@@ -5,7 +5,7 @@ interface MonsterFeetProps {
   size?: "large" | "small";
 }
 
-function MonsterFeet({ monsterType, size }: MonsterFeetProps) {
+function MonsterFeet({ monsterType, size = "large" }: MonsterFeetProps) {
   return (
     <div className={`feet-container-${size}`}>
       <div className={`foot-${size}`}>
@@ -19,9 +19,5 @@ function MonsterFeet({ monsterType, size }: MonsterFeetProps) {
     </div>
   );
 }
-
-MonsterFeet.defaultProps = {
-  size: "large",
-};
 
 export default MonsterFeet;
