@@ -25,7 +25,8 @@ function GameResultModal() {
     }
     if (currentGameResultsData.guessedAt === 1) {
       return resultTexts.winFirst[randomIndex];
-    } else if (currentGameResultsData.guessedAt === 5) {
+    }
+    if (currentGameResultsData.guessedAt === 5) {
       return resultTexts.winLast[randomIndex];
     }
     return resultTexts.winMiddle[randomIndex];

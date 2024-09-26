@@ -17,7 +17,8 @@ function MonsterEyes({
   const monsterEyesClass = (): string => {
     if (isGameOver && currentGameResultsData.guessed) {
       return "eyes-happy";
-    } else if (isGameOver && !currentGameResultsData.guessed) {
+    }
+    if (isGameOver && !currentGameResultsData.guessed) {
       return "eyes-sad";
     }
     return "eye-border";

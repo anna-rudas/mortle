@@ -167,7 +167,8 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     return inputWord.map((inputLetter, inputLetterIndex) => {
       if (solutionWord.indexOf(inputLetter) < 0) {
         return "letter-no";
-      } else if (solutionWord[inputLetterIndex] === inputLetter) {
+      }
+      if (solutionWord[inputLetterIndex] === inputLetter) {
         return "letter-correct";
       }
       //the letter is in the solution, but in the wrong spot
