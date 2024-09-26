@@ -3,7 +3,7 @@ import { AppContext } from "../../../context/context";
 
 interface MonsterEyesProps {
   monsterType: "game" | "keyboard";
-  numberOfEyes: number;
+  numberOfEyes?: number;
 }
 
 function MonsterEyes({
