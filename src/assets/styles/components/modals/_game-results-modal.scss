@@ -1,10 +1,10 @@
 .modal-content-game-review {
   @extend .modal-content;
   align-items: center;
-  max-width: 560px;
+  max-width: 560px !important;
   top: -45px;
-  position: absolute;
-  padding: $padding-base;
+  position: absolute !important;
+  padding: $padding-base !important;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
