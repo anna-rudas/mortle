@@ -71,17 +71,6 @@ function GameResultModal() {
               <div className="text-normal game-results-definition">
                 {solutionWordDef.meanings.map(
                   (currentMeaning, index: number) => {
-                    let tempIndex = 1;
-                    if (window.innerHeight >= 900) {
-                      tempIndex = 2;
-                    }
-                    if (window.innerHeight <= 720) {
-                      tempIndex = 0;
-                    }
-
-                    if (index > tempIndex) {
-                      return;
-                    }
                     return (
                       <div key={index}>
                         {`(${currentMeaning.partOfSpeech}) ${currentMeaning.definitions[0].definition}`}

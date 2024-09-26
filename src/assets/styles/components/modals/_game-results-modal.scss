@@ -41,8 +41,13 @@
   display: flex;
   flex-direction: column;
   gap: $gap-base;
-  justify-content: center;
+  justify-content: start;
   align-items: flex-start;
+  padding: $padding-base;
+  background-color: $text-bubble-secondary;
+  border-radius: $border-radius-medium;
+  max-height: 150px;
+  overflow-y: scroll;
 }
 
 .game-results-button-container {
