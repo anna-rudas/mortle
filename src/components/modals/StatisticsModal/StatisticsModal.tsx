@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { StatsData } from "../../../types/types";
-import { getStats } from "../../../utilities/helpers";
+import { calculatePercentage, getStats } from "../../../utilities/helpers";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
+import { numberOfTries } from "../../../data/constants";
 
 interface StatisticsModalProps {
   closeStatistics: () => void;
 }
 
 function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
-  const [timesPlayed, setTimesPlayed] = useState(0);
+  const [gameCount, setGameCount] = useState(0);
   const [winPercent, setWinPercent] = useState(0);
   const [barChartData, setBarChartData] = useState<number[]>([]);
 
@@ -25,39 +26,46 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
     };
   });
 
-  const calcWinPer = (data: StatsData[]) => {
-    const timesPlayed = data.length;
+  const calculateWinPercentage = (statisticsData: StatsData[]) => {
+    const timesPlayed = statisticsData.length;
     if (timesPlayed === 0) {
       return 0;
     }
-    const timesWon = data.filter((currentData) => currentData.guessed);
-    return Math.round((timesWon.length / timesPlayed) * 100);
+    const timesWon = statisticsData.filter(
+      (currentStat) => currentStat.guessed
+    ).length;
+    return calculatePercentage(timesWon, timesPlayed);
   };
 
-  const calcBarPer = (data: StatsData[]): number[] => {
-    const temp = [0, 0, 0, 0, 0];
-    const timesWon = data.filter((currentData) => currentData.guessed);
-    if (timesWon.length === 0) {
-      return temp;
+  const calculateBarChartPercentage = (
+    statisticsData: StatsData[]
+  ): number[] => {
+    const barChartData: number[] = [];
+    const timesWon = statisticsData.filter(
+      (currentData) => currentData.guessed
+    ).length;
+
+    for (let i = 0; i < numberOfTries; i++) {
+      const currentGuessedAtCount = statisticsData.filter(
+        (currentData) => currentData.guessedAt === i + 1
+      ).length;
+
+      const currentGuessedAtPercentage = calculatePercentage(
+        currentGuessedAtCount,
+        timesWon
+      );
+
+      barChartData[i] = currentGuessedAtPercentage;
     }
-    timesWon.map((current) => {
-      if (current.guessedAt) {
-        temp[current.guessedAt - 1] = temp[current.guessedAt - 1] + 1;
-      }
-    });
 
-    const chartData = temp.map((current) =>
-      Math.round((current / timesWon.length) * 100)
-    );
-
-    return chartData;
+    return barChartData;
   };
 
   useEffect(() => {
     const savedStatistics = getStats();
-    setTimesPlayed(savedStatistics.length);
-    setWinPercent(calcWinPer(savedStatistics));
-    setBarChartData(calcBarPer(savedStatistics));
+    setGameCount(savedStatistics.length);
+    setWinPercent(calculateWinPercentage(savedStatistics));
+    setBarChartData(calculateBarChartPercentage(savedStatistics));
   }, []);
 
   return (
@@ -69,7 +77,7 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
       <div className="statistics-summary-container">
         <div className="statistics-summary-box">
           <span className="text-subtitle">played</span>
-          <span className="text-input-large">{timesPlayed}</span>
+          <span className="text-input-large">{gameCount}</span>
         </div>
         <div className="statistics-summary-box">
           <span className="text-subtitle">Win %</span>

@@ -43,3 +43,7 @@ export const getStats = (): StatsData[] => {
 export const saveStats = (statsToSave: StatsData[]) => {
   localStorage.setItem(statisticsKey, JSON.stringify(statsToSave));
 };
+
+export const calculatePercentage = (value: number, total: number) => {
+  return Math.round((value / total) * 100);
+};
