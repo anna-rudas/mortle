@@ -45,5 +45,5 @@ export const saveStats = (statsToSave: StatsData[]) => {
 };
 
 export const calculatePercentage = (value: number, total: number) => {
-  return Math.round((value / total) * 100);
+  return total == 0 ? 0 : Math.round((value / total) * 100);
 };
