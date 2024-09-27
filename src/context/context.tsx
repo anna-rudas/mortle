@@ -117,34 +117,34 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   };
 
   const checkInputWord = async (currentRow: number) => {
-    const inputWord = inputLetters[currentRow].join("");
-    if (inputWord.toUpperCase() === solutionWordDef?.word.toUpperCase()) {
-      handleGameOver({ hasGuessed: true });
-      return true;
-    } else if (inputWord.length === wordLength) {
-      //---real data
-      const getInputWordDef: WordDefinition | null = await getWordDefinition(
-        inputWord
-      );
-
-      //---test data
-      //const getInputWordDef: WordDefinition | null = getWordDefinitionTest();
-
-      if (getInputWordDef) {
-        //input word is valid (5 letters and def)
-        if (currentRow === wordLength - 1) {
-          handleGameOver({ hasGuessed: false });
-        }
+    if (solutionWordDef) {
+      const inputWord = inputLetters[currentRow].join("").replace(/ /g, "");
+      if (inputWord.toUpperCase() === solutionWordDef.word.toUpperCase()) {
+        handleGameOver({ hasGuessed: true });
         return true;
       }
+      if (inputWord.length === wordLength) {
+        const getInputWordDef: WordDefinition | null = await getWordDefinition(
+          inputWord
+        );
 
-      //input word is not valid (no def)
+        if (getInputWordDef) {
+          //input word is valid (5 letters and def)
+          if (currentRow === numberOfTries - 1) {
+            handleGameOver({ hasGuessed: false });
+          }
+          return true;
+        }
+
+        //input word is not valid (no def)
+        showInvalidWordWarning();
+        return false;
+      }
+
+      //input word is not valid (not 5 letters)
       showInvalidWordWarning();
       return false;
     }
-
-    //input word is not valid (not 5 letters)
-    showInvalidWordWarning();
     return false;
   };
 

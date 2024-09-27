@@ -50,31 +50,34 @@ function MainPage() {
       !isWordInvalidWarning
     ) {
       if (currentRow < numberOfTries) {
-        if (event.key === "Backspace") {
-          if (
-            inputLetters[currentRow][currentColumn] === "" &&
-            currentColumn !== 0
-          ) {
-            setInputLetterValue("", true);
-            setCurrentColumn(currentColumn - 1);
-          } else {
-            setInputLetterValue("");
-          }
-        } else if (event.key === "Enter") {
-          setIsFetching(true);
-          const isInputWordValid = await checkInputWord(currentRow);
-          setIsFetching(false);
-          if (!isInputWordValid) {
-            return;
-          }
+        //check key is not space
+        if (event.key != " ") {
+          if (event.key === "Backspace") {
+            if (
+              inputLetters[currentRow][currentColumn] === "" &&
+              currentColumn !== 0
+            ) {
+              setInputLetterValue("", true);
+              setCurrentColumn(currentColumn - 1);
+            } else {
+              setInputLetterValue("");
+            }
+          } else if (event.key === "Enter") {
+            setIsFetching(true);
+            const isInputWordValid = await checkInputWord(currentRow);
+            setIsFetching(false);
+            if (!isInputWordValid) {
+              return;
+            }
 
-          setLastDoneRow(lastDoneRow + 1);
-          setCurrentRow(currentRow + 1);
-          setCurrentColumn(0);
-        } else if (event.key.length === 1) {
-          setInputLetterValue(event.key.toLocaleUpperCase());
-          if (currentColumn !== wordLength - 1) {
-            setCurrentColumn(currentColumn + 1);
+            setLastDoneRow(lastDoneRow + 1);
+            setCurrentRow(currentRow + 1);
+            setCurrentColumn(0);
+          } else if (event.key.length === 1) {
+            setInputLetterValue(event.key.toLocaleUpperCase());
+            if (currentColumn !== wordLength - 1) {
+              setCurrentColumn(currentColumn + 1);
+            }
           }
         }
       }
