@@ -101,20 +101,12 @@ function AppContextProvider({ children }: AppContextProviderProps) {
 
   const getSolutionWithDefinition = async () => {
     const loopMax = 10;
-    let loopCounter = 0;
 
-    while (loopCounter < loopMax) {
-      loopCounter++;
-
-      //----real data
+    for (let i = 0; i < loopMax; i++) {
       const randomWord: string = await getRandomWord();
       const randomWordDef: WordDefinition | null = await getWordDefinition(
         randomWord
       );
-
-      //----test data
-      //const randomWordDef = getWordDefinitionTest();
-
       if (randomWordDef && !filter.isProfane(randomWordDef.word)) {
         setSolutionWordDef(randomWordDef);
         return;
