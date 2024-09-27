@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import {
   howToPlayContent,
   letterColoringClasses,
 } from "../../../data/constants";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
+import { AppContext } from "../../../context/context";
 
-interface HowToPlayModalProps {
-  closeHowToPlay: () => void;
-}
+function HowToPlayModal() {
+  const { setIsHowToPlayModalOpen } = useContext(AppContext);
 
-function HowToPlayModal({ closeHowToPlay }: HowToPlayModalProps) {
   const closeModal = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
-      closeHowToPlay();
+      setIsHowToPlayModalOpen(false);
     }
   };
 
@@ -26,7 +25,9 @@ function HowToPlayModal({ closeHowToPlay }: HowToPlayModalProps) {
   return (
     <ModalContainer
       modalTitle="How to play"
-      handleCancel={closeHowToPlay}
+      handleCancel={() => {
+        setIsHowToPlayModalOpen(false);
+      }}
       modalContentStyle="modal-content-how-to-play"
     >
       <div className="how-to-play-text-container">

@@ -31,6 +31,10 @@ interface AppContextInterface {
   getSolutionWithDefinition: () => Promise<void>;
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
+  isHowToPlayModalOpen: boolean;
+  setIsHowToPlayModalOpen: (value: boolean) => void;
+  isStatisticsModalOpen: boolean;
+  setIsStatisticsModalOpen: (value: boolean) => void;
 }
 
 const defaultContextValue: AppContextInterface = {
@@ -54,6 +58,10 @@ const defaultContextValue: AppContextInterface = {
   getSolutionWithDefinition: async () => {},
   isLoading: true,
   setIsLoading: () => {},
+  isHowToPlayModalOpen: false,
+  setIsHowToPlayModalOpen: () => {},
+  isStatisticsModalOpen: false,
+  setIsStatisticsModalOpen: () => {},
 };
 
 export const AppContext =
@@ -62,6 +70,7 @@ export const AppContext =
 type AppContextProviderProps = { children?: ReactNode };
 
 function AppContextProvider({ children }: AppContextProviderProps) {
+  //game content
   const [currentRow, setCurrentRow] = useState(0);
   const [currentColumn, setCurrentColumn] = useState(0);
   const [inputLetters, setInputLetters] = useState<readonly string[][]>(
@@ -71,16 +80,21 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     null
   );
   const [lastDoneRow, setLastDoneRow] = useState(0);
+  //game state
   const [isWordInvalidWarning, setIsWordInvalidWarning] = useState(false);
-  const [isFetching, setIsFetching] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [currentGameResultsData, setCurrentGameResultsData] =
     useState<StatsData>({ guessed: false });
+  //loading check
+  const [isFetching, setIsFetching] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  //msc
   const { showBoundary } = useErrorBoundary();
   const blockList = process.env.REACT_APP_BLOCKLIST;
   const filter = new Filter({ list: blockList?.split(" ") });
+  //modals open check
+  const [isHowToPlayModalOpen, setIsHowToPlayModalOpen] = useState(false);
+  const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
 
   const setInputLetterValue = (newVal: string, isPrevVal?: boolean) => {
     const tempInputLetters: string[][] = [...inputLetters];
@@ -246,6 +260,10 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         getSolutionWithDefinition,
         isLoading,
         setIsLoading,
+        isHowToPlayModalOpen,
+        setIsHowToPlayModalOpen,
+        isStatisticsModalOpen,
+        setIsStatisticsModalOpen,
       }}
     >
       {children}

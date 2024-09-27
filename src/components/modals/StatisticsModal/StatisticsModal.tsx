@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { StatsData } from "../../../types/types";
 import { calculatePercentage, getStats } from "../../../utilities/helpers";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
 import { numberOfTries } from "../../../data/constants";
+import { AppContext } from "../../../context/context";
 
-interface StatisticsModalProps {
-  closeStatistics: () => void;
-}
-
-function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
+function StatisticsModal() {
+  const { setIsStatisticsModalOpen } = useContext(AppContext);
   const [gameCount, setGameCount] = useState(0);
   const [winPercent, setWinPercent] = useState(0);
   const [barChartData, setBarChartData] = useState<number[]>([]);
 
   const closeModal = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
-      closeStatistics();
+      setIsStatisticsModalOpen(false);
     }
   };
 
@@ -71,7 +69,9 @@ function StatisticsModal({ closeStatistics }: StatisticsModalProps) {
   return (
     <ModalContainer
       modalTitle="Statistics"
-      handleCancel={closeStatistics}
+      handleCancel={() => {
+        setIsStatisticsModalOpen(false);
+      }}
       modalContentStyle="modal-content-statistics"
     >
       <div className="statistics-summary-container">

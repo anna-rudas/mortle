@@ -1,9 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { AppContext } from "../../../context/context";
-import GameContent from "../../features/GameContent/GameContent";
-import Header from "../../features/Header/Header";
-import HowToPlayModal from "../../modals/HowToPlayModal/HowToPlayModal";
-import StatisticsModal from "../../modals/StatisticsModal/StatisticsModal";
 import GameResultModal from "../../modals/GameResultModal/GameResultModal";
 import LoadingGame from "../../loaders/LoadingGame/LoadingGame";
 import WarningModal from "../../modals/WarningModal/WarningModal";
@@ -16,11 +12,9 @@ import {
   numberOfTries,
 } from "../../../data/constants";
 import PageWrapper from "../../templates/PageWrapper/PageWrapper";
+import GameContent from "../../features/GameContent/GameContent";
 
 function MainPage() {
-  const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
-  const [isStatisticsOpen, setIsStatisticsOpen] = useState(false);
-
   const {
     currentRow,
     setCurrentRow,
@@ -38,13 +32,15 @@ function MainPage() {
     isGameOver,
     isLoading,
     resetGame,
+    isStatisticsModalOpen,
+    isHowToPlayModalOpen,
   } = useContext(AppContext);
 
   const handleKeyEvent = async (event: KeyboardEvent) => {
     if (
       !isGameOver &&
-      !isStatisticsOpen &&
-      !isHowToPlayOpen &&
+      !isStatisticsModalOpen &&
+      !isHowToPlayModalOpen &&
       !isLoading &&
       !isFetching &&
       !isWordInvalidWarning
@@ -91,19 +87,6 @@ function MainPage() {
     };
   });
 
-  const openHowToPlay = () => {
-    setIsHowToPlayOpen(true);
-  };
-  const closeHowToPlay = () => {
-    setIsHowToPlayOpen(false);
-  };
-  const openStatistics = () => {
-    setIsStatisticsOpen(true);
-  };
-  const closeStatistics = () => {
-    setIsStatisticsOpen(false);
-  };
-
   useEffect(() => {
     resetGame();
   }, []);
@@ -111,21 +94,7 @@ function MainPage() {
   return (
     <PageWrapper>
       <>
-        <div className="game-content">
-          <Header
-            openHowToPlay={openHowToPlay}
-            openStatistics={openStatistics}
-          />
-          {!isLoading && solutionWordDef?.word !== "undefined" && (
-            <GameContent />
-          )}
-          {isHowToPlayOpen && (
-            <HowToPlayModal closeHowToPlay={closeHowToPlay} />
-          )}
-          {isStatisticsOpen && (
-            <StatisticsModal closeStatistics={closeStatistics} />
-          )}
-        </div>
+        <GameContent />
         {isGameOver && <GameResultModal />}
         {isLoading && <LoadingGame />}
         {isWordInvalidWarning && (
