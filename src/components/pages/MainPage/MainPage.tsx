@@ -23,8 +23,6 @@ function MainPage() {
     inputLetters,
     setInputLetterValue,
     solutionWordDef,
-    lastDoneRow,
-    setLastDoneRow,
     checkInputWord,
     isFetching,
     setIsFetching,
@@ -66,7 +64,6 @@ function MainPage() {
               return;
             }
 
-            setLastDoneRow(lastDoneRow + 1);
             setCurrentRow(currentRow + 1);
             setCurrentColumn(0);
           } else if (event.key.length === 1) {

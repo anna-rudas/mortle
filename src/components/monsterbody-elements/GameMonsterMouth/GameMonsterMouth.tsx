@@ -4,14 +4,14 @@ import { className } from "../../../utilities/helpers";
 import { LetterColorClass } from "../../../types/types";
 
 function GameMonsterMouth() {
-  const { currentRow, inputLetters, lastDoneRow, compareInputAndSolution } =
+  const { currentRow, inputLetters, compareInputAndSolution } =
     useContext(AppContext);
 
   const colorInputLetter = (
     rowIndex: number,
     columnIndex: number
   ): LetterColorClass | null => {
-    if (lastDoneRow <= rowIndex) {
+    if (currentRow <= rowIndex) {
       return null;
     }
     const coloring = compareInputAndSolution(rowIndex);

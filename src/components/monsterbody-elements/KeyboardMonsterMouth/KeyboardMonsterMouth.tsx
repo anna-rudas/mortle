@@ -17,8 +17,6 @@ function KeyboardMonsterMouth() {
     setCurrentColumn,
     inputLetters,
     setInputLetterValue,
-    lastDoneRow,
-    setLastDoneRow,
     checkInputWord,
     compareInputAndSolution,
     setIsFetching,
@@ -39,7 +37,6 @@ function KeyboardMonsterMouth() {
           return;
         }
 
-        setLastDoneRow(lastDoneRow + 1);
         setCurrentRow(currentRow + 1);
         setCurrentColumn(0);
       } else if (rowIndex === 2 && letterIndex === 8) {
@@ -69,7 +66,7 @@ function KeyboardMonsterMouth() {
     if (typeof currentLetter === "string") {
       //order of colors: correct, wrong, no
       for (const colorClass of letterColoringClasses) {
-        for (let i = lastDoneRow - 1; i >= 0; i--) {
+        for (let i = currentRow - 1; i >= 0; i--) {
           if (!inputLetters[i].includes(currentLetter)) {
             //if letter not in current row, skip
             continue;

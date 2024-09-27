@@ -18,8 +18,6 @@ interface AppContextInterface {
   inputLetters: readonly string[][];
   setInputLetterValue: (newVal: string, isPrevVal?: boolean) => void;
   solutionWordDef: WordDefinition | null;
-  lastDoneRow: number;
-  setLastDoneRow: (value: number) => void;
   isWordInvalidWarning: boolean;
   checkInputWord: (currentRow: number) => Promise<boolean>;
   compareInputAndSolution: (rowIndex: number) => LetterColorClass[];
@@ -45,8 +43,6 @@ const defaultContextValue: AppContextInterface = {
   inputLetters: [],
   setInputLetterValue: () => {},
   solutionWordDef: { word: "", meanings: [] },
-  lastDoneRow: 0,
-  setLastDoneRow: () => {},
   isWordInvalidWarning: false,
   checkInputWord: async () => false,
   compareInputAndSolution: () => [],
@@ -79,7 +75,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [solutionWordDef, setSolutionWordDef] = useState<WordDefinition | null>(
     null
   );
-  const [lastDoneRow, setLastDoneRow] = useState(0);
   //game state
   const [isWordInvalidWarning, setIsWordInvalidWarning] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -233,7 +228,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     );
     setCurrentRow(0);
     setCurrentColumn(0);
-    setLastDoneRow(0);
     getSolutionWithDefinition().then(() => setIsLoading(false));
   };
 
@@ -247,8 +241,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         inputLetters,
         setInputLetterValue,
         solutionWordDef,
-        lastDoneRow,
-        setLastDoneRow,
         isWordInvalidWarning,
         checkInputWord,
         compareInputAndSolution,
