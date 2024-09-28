@@ -168,38 +168,37 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     const solutionWord = solutionWordDef.word.toLocaleUpperCase();
 
     return inputWord.map((inputLetter, inputLetterIndex) => {
-      if (solutionWord.indexOf(inputLetter) < 0) {
+      if (!solutionWord.includes(inputLetter)) {
+        //the letter is not in the solution
         return "letter-no";
       }
       if (solutionWord[inputLetterIndex] === inputLetter) {
+        //the letter is in the solution and in the correct spot
         return "letter-correct";
       }
       //the letter is in the solution, but in the wrong spot
 
-      const incorrectIndexes = [];
-      let correctTimesInSolution = 0;
+      const letterInWrongSpotIndexes = inputWord
+        .map((letter, i) =>
+          letter === inputLetter && letter !== solutionWord[i] ? i : -1
+        )
+        .filter((i) => i >= 0);
 
-      for (let j = 0; j < inputWord.length; j++) {
-        if (inputWord[j] === inputLetter) {
-          if (inputWord[j] === solutionWord[j]) {
-            correctTimesInSolution++;
-          } else {
-            incorrectIndexes.push(j);
-          }
-        }
+      const letterInCorrectSpotCount = inputWord.filter(
+        (letter, i) => letter === inputLetter && letter === solutionWord[i]
+      ).length;
+
+      const letterInSolutionCount = solutionWord.split(inputLetter).length - 1;
+
+      const letterIndexesToMarkWrong = letterInWrongSpotIndexes.slice(
+        0,
+        letterInSolutionCount - letterInCorrectSpotCount
+      );
+
+      if (letterIndexesToMarkWrong.includes(inputLetterIndex)) {
+        return "letter-wrong";
       }
 
-      const timesInSolution = solutionWord.split(inputLetter).length - 1;
-      const wrongTimesInInput = timesInSolution - correctTimesInSolution;
-
-      for (let j = 0; j < incorrectIndexes.length; j++) {
-        if (inputLetterIndex === incorrectIndexes[j]) {
-          if (j < wrongTimesInInput) {
-            return "letter-wrong";
-          }
-          return "letter-no";
-        }
-      }
       return "letter-no";
     });
   };
