@@ -23,7 +23,7 @@ function MainPage() {
     inputLetters,
     setInputLetterValue,
     solutionWordDef,
-    checkInputWord,
+    isInputWordValid,
     isFetching,
     setIsFetching,
     isWordInvalidWarning,
@@ -34,15 +34,19 @@ function MainPage() {
     isHowToPlayModalOpen,
   } = useContext(AppContext);
 
-  const handleKeyEvent = async (event: KeyboardEvent) => {
-    if (
+  const isKeyInputAllowed = () => {
+    return (
       !isGameOver &&
       !isStatisticsModalOpen &&
       !isHowToPlayModalOpen &&
       !isLoading &&
       !isFetching &&
       !isWordInvalidWarning
-    ) {
+    );
+  };
+
+  const handleKeyEvent = async (event: KeyboardEvent) => {
+    if (isKeyInputAllowed()) {
       if (currentRow < numberOfTries) {
         //check key is not space
         if (event.key != " ") {
@@ -58,9 +62,9 @@ function MainPage() {
             }
           } else if (event.key === "Enter") {
             setIsFetching(true);
-            const isInputWordValid = await checkInputWord(currentRow);
+            const isInputWordValidResult = await isInputWordValid(currentRow);
             setIsFetching(false);
-            if (!isInputWordValid) {
+            if (!isInputWordValidResult) {
               return;
             }
 

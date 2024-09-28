@@ -19,7 +19,7 @@ interface AppContextInterface {
   setInputLetterValue: (newVal: string, isPrevVal?: boolean) => void;
   solutionWordDef: WordDefinition | null;
   isWordInvalidWarning: boolean;
-  checkInputWord: (currentRow: number) => Promise<boolean>;
+  isInputWordValid: (currentRow: number) => Promise<boolean>;
   compareInputAndSolution: (rowIndex: number) => LetterColorClass[];
   isFetching: boolean;
   setIsFetching: (value: boolean) => void;
@@ -44,7 +44,7 @@ const defaultContextValue: AppContextInterface = {
   setInputLetterValue: () => {},
   solutionWordDef: { word: "", meanings: [] },
   isWordInvalidWarning: false,
-  checkInputWord: async () => false,
+  isInputWordValid: async () => false,
   compareInputAndSolution: () => [],
   isFetching: false,
   setIsFetching: () => {},
@@ -76,7 +76,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     null
   );
   //game state
-  const [isWordInvalidWarning, setIsWordInvalidWarning] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [currentGameResultsData, setCurrentGameResultsData] =
     useState<StatsData>({ guessed: false });
@@ -90,6 +89,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   //modals open check
   const [isHowToPlayModalOpen, setIsHowToPlayModalOpen] = useState(false);
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
+  const [isWordInvalidWarning, setIsWordInvalidWarning] = useState(false);
 
   const setInputLetterValue = (newVal: string, isPrevVal?: boolean) => {
     const tempInputLetters: string[][] = [...inputLetters];
@@ -125,7 +125,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     showBoundary("Could not get solution word.");
   };
 
-  const checkInputWord = async (currentRow: number) => {
+  const isInputWordValid = async (currentRow: number) => {
     if (solutionWordDef) {
       const inputWord = inputLetters[currentRow].join("").replace(/ /g, "");
       if (inputWord.toUpperCase() === solutionWordDef.word.toUpperCase()) {
@@ -242,7 +242,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         setInputLetterValue,
         solutionWordDef,
         isWordInvalidWarning,
-        checkInputWord,
+        isInputWordValid,
         compareInputAndSolution,
         isFetching,
         setIsFetching,

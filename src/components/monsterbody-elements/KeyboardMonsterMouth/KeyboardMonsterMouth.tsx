@@ -17,7 +17,7 @@ function KeyboardMonsterMouth() {
     setCurrentColumn,
     inputLetters,
     setInputLetterValue,
-    checkInputWord,
+    isInputWordValid,
     compareInputAndSolution,
     setIsFetching,
   } = useContext(AppContext);
@@ -31,9 +31,9 @@ function KeyboardMonsterMouth() {
       if (rowIndex === 2 && letterIndex === 0) {
         //clicked enter
         setIsFetching(true);
-        const isInputWordValid = await checkInputWord(currentRow);
+        const isInputWordValidResult = await isInputWordValid(currentRow);
         setIsFetching(false);
-        if (!isInputWordValid) {
+        if (!isInputWordValidResult) {
           return;
         }
 
