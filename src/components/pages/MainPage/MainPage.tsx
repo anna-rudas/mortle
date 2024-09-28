@@ -101,8 +101,7 @@ function MainPage() {
         {isWordInvalidWarning && (
           <WarningModal warningMsg={invalidSubmitWarning} />
         )}
-        {((!isLoading && solutionWordDef?.word === "undefined") ||
-          (!isLoading && !solutionWordDef)) && (
+        {!isLoading && !solutionWordDef && (
           <ErrorModal errorMsg={generalErrorMsg} />
         )}
         {isFetching && <LoadingSecondary />}

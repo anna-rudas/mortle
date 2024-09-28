@@ -6,18 +6,12 @@ import StatisticsModal from "../../modals/StatisticsModal/StatisticsModal";
 import { AppContext } from "../../../context/context";
 
 function GameContent() {
-  const {
-    isLoading,
-    solutionWordDef,
-    isStatisticsModalOpen,
-    isHowToPlayModalOpen,
-  } = useContext(AppContext);
+  const { isLoading, isStatisticsModalOpen, isHowToPlayModalOpen } =
+    useContext(AppContext);
   return (
     <div className="game-content">
       <Header />
-      {!isLoading && solutionWordDef?.word !== "undefined" && (
-        <MonsterContainer />
-      )}
+      {!isLoading && <MonsterContainer />}
       {isHowToPlayModalOpen && <HowToPlayModal />}
       {isStatisticsModalOpen && <StatisticsModal />}
     </div>

@@ -113,12 +113,14 @@ function AppContextProvider({ children }: AppContextProviderProps) {
 
     for (let i = 0; i < loopMax; i++) {
       const randomWord: string = await getRandomWord();
-      const randomWordDef: WordDefinition | null = await getWordDefinition(
-        randomWord
-      );
-      if (randomWordDef && !filter.isProfane(randomWordDef.word)) {
-        setSolutionWordDef(randomWordDef);
-        return;
+      if (randomWord !== "undefined") {
+        const randomWordDef: WordDefinition | null = await getWordDefinition(
+          randomWord
+        );
+        if (randomWordDef && !filter.isProfane(randomWordDef.word)) {
+          setSolutionWordDef(randomWordDef);
+          return;
+        }
       }
     }
 
