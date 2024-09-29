@@ -17,15 +17,13 @@ function MonsterEyes({
   const monsterEyesClass = (): string => {
     const currentGameResult = statistics.at(-1);
 
-    if (!currentGameResult) {
-      throw new Error("Statistics is empty");
-    }
-
-    if (isGameOver && currentGameResult.guessed) {
-      return "eyes-happy";
-    }
-    if (isGameOver && !currentGameResult.guessed) {
-      return "eyes-sad";
+    if (currentGameResult) {
+      if (isGameOver && currentGameResult.guessed) {
+        return "eyes-happy";
+      }
+      if (isGameOver && !currentGameResult.guessed) {
+        return "eyes-sad";
+      }
     }
     return "eye-border";
   };
