@@ -9,8 +9,7 @@ function GameResultModal() {
   const [isReview, setIsReview] = useState(false);
   const [hasFadeInAnimationRun, setHasFadeInAnimationRun] = useState(false);
 
-  const { solutionWordDef, currentGameResultsData, resetGame } =
-    useContext(AppContext);
+  const { solutionWordDef, resetGame, statistics } = useContext(AppContext);
 
   const toggleReview = () => {
     setIsReview(!isReview);
@@ -24,13 +23,19 @@ function GameResultModal() {
     const min = 0;
     const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    if (!currentGameResultsData.guessed) {
+    const currentGameResult = statistics.at(-1);
+
+    if (!currentGameResult) {
+      throw new Error("Statistics is empty");
+    }
+
+    if (!currentGameResult.guessed) {
       return resultTexts.lose[randomIndex];
     }
-    if (currentGameResultsData.guessedAt === 1) {
+    if (currentGameResult.guessedAt === 1) {
       return resultTexts.winFirst[randomIndex];
     }
-    if (currentGameResultsData.guessedAt === 5) {
+    if (currentGameResult.guessedAt === 5) {
       return resultTexts.winLast[randomIndex];
     }
     return resultTexts.winMiddle[randomIndex];

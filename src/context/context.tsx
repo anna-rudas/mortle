@@ -1,14 +1,10 @@
 import React, { ReactNode, createContext, useState } from "react";
-import { wordLength, numberOfTries } from "../data/constants";
+import { wordLength, numberOfTries, statisticsKey } from "../data/constants";
 import { WordDefinition, LetterColorClass, StatsData } from "../types/types";
-import {
-  getWordDefinition,
-  getRandomWord,
-  getStats,
-  saveStats,
-} from "../utilities/helpers";
+import { getWordDefinition, getRandomWord } from "../utilities/helpers";
 import { useErrorBoundary } from "react-error-boundary";
 import Filter from "bad-words";
+import useLocalStorageState from "use-local-storage-state";
 
 interface AppContextInterface {
   currentRow: number;
@@ -24,7 +20,6 @@ interface AppContextInterface {
   isFetching: boolean;
   setIsFetching: (value: boolean) => void;
   isGameOver: boolean;
-  currentGameResultsData: StatsData;
   resetGame: () => void;
   getSolutionWithDefinition: () => Promise<void>;
   isLoading: boolean;
@@ -33,6 +28,7 @@ interface AppContextInterface {
   setIsHowToPlayModalOpen: (value: boolean) => void;
   isStatisticsModalOpen: boolean;
   setIsStatisticsModalOpen: (value: boolean) => void;
+  statistics: StatsData[];
 }
 
 const defaultContextValue: AppContextInterface = {
@@ -49,7 +45,6 @@ const defaultContextValue: AppContextInterface = {
   isFetching: false,
   setIsFetching: () => {},
   isGameOver: false,
-  currentGameResultsData: { guessed: false },
   resetGame: () => {},
   getSolutionWithDefinition: async () => {},
   isLoading: true,
@@ -58,6 +53,7 @@ const defaultContextValue: AppContextInterface = {
   setIsHowToPlayModalOpen: () => {},
   isStatisticsModalOpen: false,
   setIsStatisticsModalOpen: () => {},
+  statistics: [],
 };
 
 export const AppContext =
@@ -77,8 +73,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   );
   //game state
   const [isGameOver, setIsGameOver] = useState(false);
-  const [currentGameResultsData, setCurrentGameResultsData] =
-    useState<StatsData>({ guessed: false });
   //loading check
   const [isFetching, setIsFetching] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -90,6 +84,13 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [isHowToPlayModalOpen, setIsHowToPlayModalOpen] = useState(false);
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
   const [isWordInvalidWarning, setIsWordInvalidWarning] = useState(false);
+
+  const [statistics, setStatistics] = useLocalStorageState<StatsData[]>(
+    statisticsKey,
+    {
+      defaultValue: [],
+    }
+  );
 
   const setInputLetterValue = (newVal: string, isPrevVal?: boolean) => {
     const tempInputLetters: string[][] = [...inputLetters];
@@ -131,7 +132,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     if (solutionWordDef) {
       const inputWord = inputLetters[currentRow].join("").replace(/ /g, "");
       if (inputWord.toUpperCase() === solutionWordDef.word.toUpperCase()) {
-        handleGameOver({ hasGuessed: true });
+        handleGameOver({ guessed: true });
         return true;
       }
       if (inputWord.length === wordLength) {
@@ -142,7 +143,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         if (getInputWordDef) {
           //input word is valid (5 letters and def)
           if (currentRow === numberOfTries - 1) {
-            handleGameOver({ hasGuessed: false });
+            handleGameOver({ guessed: false });
           }
           return true;
         }
@@ -203,27 +204,20 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     });
   };
 
-  const updateSavedStatistics = (currGameData: StatsData) => {
-    const savedStatistics = getStats();
-    const updatedStatistics = [...savedStatistics, currGameData];
-    saveStats(updatedStatistics);
-  };
-
-  const handleGameOver = ({ hasGuessed }: { hasGuessed: boolean }) => {
+  const handleGameOver = ({ guessed }: { guessed: boolean }) => {
     setIsGameOver(true);
-    if (hasGuessed) {
-      updateSavedStatistics({ guessed: true, guessedAt: currentRow + 1 });
-      setCurrentGameResultsData({ guessed: true, guessedAt: currentRow + 1 });
-    } else {
-      updateSavedStatistics({ guessed: false });
-      setCurrentGameResultsData({ guessed: false });
-    }
+    setStatistics([
+      ...statistics,
+      {
+        guessed,
+        guessedAt: guessed ? currentRow + 1 : undefined,
+      },
+    ]);
   };
 
   const resetGame = () => {
     setIsLoading(true);
     setIsGameOver(false);
-    setCurrentGameResultsData({ guessed: false });
     setInputLetters(
       new Array(numberOfTries).fill(0).map(() => new Array(wordLength).fill(""))
     );
@@ -248,7 +242,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         isFetching,
         setIsFetching,
         isGameOver,
-        currentGameResultsData,
         resetGame,
         getSolutionWithDefinition,
         isLoading,
@@ -257,6 +250,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         setIsHowToPlayModalOpen,
         isStatisticsModalOpen,
         setIsStatisticsModalOpen,
+        statistics,
       }}
     >
       {children}

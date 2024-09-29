@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { StatsData } from "../../../types/types";
-import { calculatePercentage, getStats } from "../../../utilities/helpers";
+import { calculatePercentage } from "../../../utilities/helpers";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
 import { numberOfTries } from "../../../data/constants";
 import { AppContext } from "../../../context/context";
 
 function StatisticsModal() {
-  const { setIsStatisticsModalOpen } = useContext(AppContext);
+  const { setIsStatisticsModalOpen, statistics } = useContext(AppContext);
   const [gameCount, setGameCount] = useState(0);
   const [winPercent, setWinPercent] = useState(0);
   const [barChartData, setBarChartData] = useState<number[]>([]);
@@ -60,10 +60,9 @@ function StatisticsModal() {
   };
 
   useEffect(() => {
-    const savedStatistics = getStats();
-    setGameCount(savedStatistics.length);
-    setWinPercent(calculateWinPercentage(savedStatistics));
-    setBarChartData(calculateBarChartPercentage(savedStatistics));
+    setGameCount(statistics.length);
+    setWinPercent(calculateWinPercentage(statistics));
+    setBarChartData(calculateBarChartPercentage(statistics));
   }, []);
 
   return (

@@ -10,15 +10,21 @@ function MonsterEyes({
   monsterType = "game",
   numberOfEyes = 2,
 }: MonsterEyesProps) {
-  const { isGameOver, currentGameResultsData } = useContext(AppContext);
+  const { isGameOver, statistics } = useContext(AppContext);
 
   const numberOfEyesHelper = new Array(numberOfEyes).fill(0);
 
   const monsterEyesClass = (): string => {
-    if (isGameOver && currentGameResultsData.guessed) {
+    const currentGameResult = statistics.at(-1);
+
+    if (!currentGameResult) {
+      throw new Error("Statistics is empty");
+    }
+
+    if (isGameOver && currentGameResult.guessed) {
       return "eyes-happy";
     }
-    if (isGameOver && !currentGameResultsData.guessed) {
+    if (isGameOver && !currentGameResult.guessed) {
       return "eyes-sad";
     }
     return "eye-border";
