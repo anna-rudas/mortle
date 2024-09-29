@@ -12,7 +12,10 @@ function MonsterBody({ monsterType }: MonsterBodyProps) {
   return (
     <div className={`${monsterType}-monster-body-container`}>
       <div className={`${monsterType}-monster-face`}>
-        <MonsterEyes monsterType={monsterType} />
+        <MonsterEyes
+          monsterType={monsterType}
+          numberOfEyes={monsterType === "keyboard" ? 3 : 2}
+        />
         {monsterType === "game" ? (
           <GameMonsterMouth />
         ) : (
