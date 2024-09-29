@@ -22,7 +22,7 @@ function MainPage() {
     setCurrentColumn,
     inputLetters,
     setInputLetterValue,
-    solutionWordDef,
+    solutionWordDefinition,
     isInputWordValid,
     isFetching,
     setIsFetching,
@@ -100,10 +100,10 @@ function MainPage() {
         {isGameOver && <GameResultModal />}
         {isLoading && <LoadingGame />}
         {isWordInvalidWarning && (
-          <WarningModal warningMsg={invalidSubmitWarning} />
+          <WarningModal warningMessage={invalidSubmitWarning} />
         )}
-        {!isLoading && !solutionWordDef && (
-          <ErrorModal errorMsg={generalErrorMsg} />
+        {!isLoading && !solutionWordDefinition && (
+          <ErrorModal errorMessage={generalErrorMsg} />
         )}
         {isFetching && <LoadingSecondary />}
       </>

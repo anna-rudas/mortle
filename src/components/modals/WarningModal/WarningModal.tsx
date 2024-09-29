@@ -1,14 +1,14 @@
 import React from "react";
 
 interface WarningModalProps {
-  warningMsg: string;
+  warningMessage: string;
 }
 
-function WarningModal({ warningMsg }: WarningModalProps) {
+function WarningModal({ warningMessage }: WarningModalProps) {
   return (
     <div className="warning-modal-container fade-out-animation">
       <div className="warning-modal-content">
-        <div className="text-normal">{warningMsg}</div>
+        <div className="text-normal">{warningMessage}</div>
       </div>
     </div>
   );

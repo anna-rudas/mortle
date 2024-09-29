@@ -13,7 +13,7 @@ interface AppContextInterface {
   setCurrentColumn: (value: number) => void;
   inputLetters: readonly string[][];
   setInputLetterValue: (newVal: string, isPrevVal?: boolean) => void;
-  solutionWordDef: WordDefinition | null;
+  solutionWordDefinition: WordDefinition | null;
   isWordInvalidWarning: boolean;
   isInputWordValid: (currentRow: number) => Promise<boolean>;
   compareInputAndSolution: (rowIndex: number) => LetterColorClass[];
@@ -39,7 +39,7 @@ const defaultContextValue: AppContextInterface = {
   setCurrentColumn: () => {},
   inputLetters: [],
   setInputLetterValue: () => {},
-  solutionWordDef: { word: "", meanings: [] },
+  solutionWordDefinition: { word: "", meanings: [] },
   isWordInvalidWarning: false,
   isInputWordValid: async () => false,
   compareInputAndSolution: () => [],
@@ -70,9 +70,8 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [inputLetters, setInputLetters] = useState<readonly string[][]>(
     new Array(numberOfTries).fill(0).map(() => new Array(wordLength).fill(""))
   );
-  const [solutionWordDef, setSolutionWordDef] = useState<WordDefinition | null>(
-    null
-  );
+  const [solutionWordDefinition, setSolutionWordDefinition] =
+    useState<WordDefinition | null>(null);
   //game state
   const [isGameOver, setIsGameOver] = useState(false);
   //loading check
@@ -96,12 +95,12 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     }
   );
 
-  const setInputLetterValue = (newVal: string, isPrevVal?: boolean) => {
+  const setInputLetterValue = (newValue: string, isPrevValue?: boolean) => {
     const tempInputLetters: string[][] = [...inputLetters];
-    if (isPrevVal) {
-      tempInputLetters[currentRow][currentColumn - 1] = newVal;
+    if (isPrevValue) {
+      tempInputLetters[currentRow][currentColumn - 1] = newValue;
     } else {
-      tempInputLetters[currentRow][currentColumn] = newVal;
+      tempInputLetters[currentRow][currentColumn] = newValue;
     }
     setInputLetters(tempInputLetters);
   };
@@ -127,11 +126,13 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     for (let i = 0; i < loopMax; i++) {
       const randomWord: string = await getRandomWord();
       if (randomWord !== "undefined") {
-        const randomWordDef: WordDefinition | null = await getWordDefinition(
-          randomWord
-        );
-        if (randomWordDef && !filter.isProfane(randomWordDef.word)) {
-          setSolutionWordDef(randomWordDef);
+        const randomWordDefinition: WordDefinition | null =
+          await getWordDefinition(randomWord);
+        if (
+          randomWordDefinition &&
+          !filter.isProfane(randomWordDefinition.word)
+        ) {
+          setSolutionWordDefinition(randomWordDefinition);
           return;
         }
       }
@@ -141,18 +142,19 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   };
 
   const isInputWordValid = async (currentRow: number) => {
-    if (solutionWordDef) {
+    if (solutionWordDefinition) {
       const inputWord = inputLetters[currentRow].join("").replace(/ /g, "");
-      if (inputWord.toUpperCase() === solutionWordDef.word.toUpperCase()) {
+      if (
+        inputWord.toUpperCase() === solutionWordDefinition.word.toUpperCase()
+      ) {
         handleGameOver({ guessed: true });
         return true;
       }
       if (inputWord.length === wordLength) {
-        const getInputWordDef: WordDefinition | null = await getWordDefinition(
-          inputWord
-        );
+        const getInputWordDefinition: WordDefinition | null =
+          await getWordDefinition(inputWord);
 
-        if (getInputWordDef) {
+        if (getInputWordDefinition) {
           //input word is valid (5 letters and def)
           if (currentRow === numberOfTries - 1) {
             handleGameOver({ guessed: false });
@@ -173,12 +175,12 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   };
 
   const compareInputAndSolution = (rowIndex: number): LetterColorClass[] => {
-    if (!solutionWordDef) {
+    if (!solutionWordDefinition) {
       throw new Error("Solution word unreachable.");
     }
 
     const inputWord = inputLetters[rowIndex];
-    const solutionWord = solutionWordDef.word.toLocaleUpperCase();
+    const solutionWord = solutionWordDefinition.word.toLocaleUpperCase();
 
     return inputWord.map((inputLetter, inputLetterIndex) => {
       if (!solutionWord.includes(inputLetter)) {
@@ -247,7 +249,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         setCurrentColumn,
         inputLetters,
         setInputLetterValue,
-        solutionWordDef,
+        solutionWordDefinition,
         isWordInvalidWarning,
         isInputWordValid,
         compareInputAndSolution,

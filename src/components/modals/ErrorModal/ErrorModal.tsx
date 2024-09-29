@@ -2,11 +2,11 @@ import React from "react";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
 
 interface ErrorModalProps {
-  errorMsg: string;
+  errorMessage: string;
 }
 
-function ErrorModal({ errorMsg }: ErrorModalProps) {
-  return <ModalContainer modalTitle="Sorry" modalText={errorMsg} />;
+function ErrorModal({ errorMessage }: ErrorModalProps) {
+  return <ModalContainer modalTitle="Sorry" modalText={errorMessage} />;
 }
 
 export default ErrorModal;

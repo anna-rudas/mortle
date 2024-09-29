@@ -11,8 +11,8 @@ function StatisticsModal() {
   const [winPercent, setWinPercent] = useState(0);
   const [barChartData, setBarChartData] = useState<number[]>([]);
 
-  const closeModal = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
+  const closeModal = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
       setIsStatisticsModalOpen(false);
     }
   };

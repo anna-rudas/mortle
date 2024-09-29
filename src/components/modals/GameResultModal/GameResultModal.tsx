@@ -9,7 +9,8 @@ function GameResultModal() {
   const [isReview, setIsReview] = useState(false);
   const [hasFadeInAnimationRun, setHasFadeInAnimationRun] = useState(false);
 
-  const { solutionWordDef, resetGame, statistics } = useContext(AppContext);
+  const { solutionWordDefinition, resetGame, statistics } =
+    useContext(AppContext);
 
   const toggleReview = () => {
     setIsReview(!isReview);
@@ -70,11 +71,13 @@ function GameResultModal() {
             </div>
             <div className="text-normal game-results-text">
               <div>The solution was:</div>
-              <div className="text-input-large">{solutionWordDef?.word}</div>
+              <div className="text-input-large">
+                {solutionWordDefinition?.word}
+              </div>
             </div>
-            {solutionWordDef && (
+            {solutionWordDefinition && (
               <div className="text-normal game-results-definition">
-                {solutionWordDef.meanings.map(
+                {solutionWordDefinition.meanings.map(
                   (currentMeaning, index: number) => {
                     return (
                       <div key={index}>

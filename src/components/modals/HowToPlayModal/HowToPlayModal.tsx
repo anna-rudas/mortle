@@ -9,8 +9,8 @@ import { AppContext } from "../../../context/context";
 function HowToPlayModal() {
   const { setIsHowToPlayModalOpen } = useContext(AppContext);
 
-  const closeModal = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
+  const closeModal = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
       setIsHowToPlayModalOpen(false);
     }
   };

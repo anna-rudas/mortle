@@ -1,10 +1,5 @@
 import { WordDefinition } from "../types/types";
-import { wordDefTest } from "../data/test-data";
 import { wordLength } from "../data/constants";
-
-export const getWordDefinitionTest = (): WordDefinition => {
-  return wordDefTest;
-};
 
 export async function getRandomWord(): Promise<string> {
   return fetch(

@@ -30,9 +30,9 @@ function MonsterEyes({
 
   return (
     <div className="eyes-container">
-      {numberOfEyesHelper.map((curr, idx) => {
+      {numberOfEyesHelper.map((current, index) => {
         return (
-          <div key={idx} className={monsterEyesClass()}>
+          <div key={index} className={monsterEyesClass()}>
             <div className={`eye-ball-${monsterType}`}></div>
           </div>
         );
