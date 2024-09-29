@@ -32,6 +32,7 @@ function MainPage() {
     resetGame,
     isStatisticsModalOpen,
     isHowToPlayModalOpen,
+    clearInvalidWordWarningTimeout,
   } = useContext(AppContext);
 
   const isKeyInputAllowed = () => {
@@ -40,8 +41,7 @@ function MainPage() {
       !isStatisticsModalOpen &&
       !isHowToPlayModalOpen &&
       !isLoading &&
-      !isFetching &&
-      !isWordInvalidWarning
+      !isFetching
     );
   };
 
@@ -61,6 +61,7 @@ function MainPage() {
               setInputLetterValue("");
             }
           } else if (event.key === "Enter") {
+            clearInvalidWordWarningTimeout();
             setIsFetching(true);
             const isInputWordValidResult = await isInputWordValid(currentRow);
             setIsFetching(false);

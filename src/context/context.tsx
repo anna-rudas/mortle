@@ -29,6 +29,7 @@ interface AppContextInterface {
   isStatisticsModalOpen: boolean;
   setIsStatisticsModalOpen: (value: boolean) => void;
   statistics: StatsData[];
+  clearInvalidWordWarningTimeout: () => void;
 }
 
 const defaultContextValue: AppContextInterface = {
@@ -54,6 +55,7 @@ const defaultContextValue: AppContextInterface = {
   isStatisticsModalOpen: false,
   setIsStatisticsModalOpen: () => {},
   statistics: [],
+  clearInvalidWordWarningTimeout: () => {},
 };
 
 export const AppContext =
@@ -80,6 +82,8 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const { showBoundary } = useErrorBoundary();
   const blockList = process.env.REACT_APP_BLOCKLIST;
   const filter = new Filter({ list: blockList?.split(" ") });
+  const [invalidWordWarningTimeoutId, setInvalidWordWarningTimeoutId] =
+    useState<NodeJS.Timeout | null>(null);
   //modals open check
   const [isHowToPlayModalOpen, setIsHowToPlayModalOpen] = useState(false);
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
@@ -104,9 +108,17 @@ function AppContextProvider({ children }: AppContextProviderProps) {
 
   const showInvalidWordWarning = () => {
     setIsWordInvalidWarning(true);
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setIsWordInvalidWarning(false);
     }, 2000);
+    setInvalidWordWarningTimeoutId(timeoutId);
+  };
+
+  const clearInvalidWordWarningTimeout = () => {
+    if (invalidWordWarningTimeoutId) {
+      clearTimeout(invalidWordWarningTimeoutId);
+      setIsWordInvalidWarning(false);
+    }
   };
 
   const getSolutionWithDefinition = async () => {
@@ -251,6 +263,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         isStatisticsModalOpen,
         setIsStatisticsModalOpen,
         statistics,
+        clearInvalidWordWarningTimeout,
       }}
     >
       {children}
