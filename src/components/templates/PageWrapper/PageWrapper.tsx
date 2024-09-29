@@ -10,6 +10,12 @@ function PageWrapper({ children }: PageWrapperProps) {
     <div className="wrapper">
       <Background />
       {children}
+      <footer className="page-footer text-normal">
+        made by
+        <a target="_blank" rel="noreferrer" href="https://annarudas.com/">
+          anna
+        </a>
+      </footer>
     </div>
   );
 }

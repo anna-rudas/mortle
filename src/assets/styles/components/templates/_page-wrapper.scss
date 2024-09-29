@@ -1,4 +1,22 @@
 .wrapper {
   height: 100%;
   width: 100%;
+  position: relative;
+}
+
+.page-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  z-index: 5;
+  position: fixed;
+  bottom: 0;
+
+  a {
+    margin-left: 5px;
+    text-decoration: underline;
+    color: $text-darkest;
+  }
 }
