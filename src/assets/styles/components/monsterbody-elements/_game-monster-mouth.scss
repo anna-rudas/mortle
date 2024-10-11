@@ -1,8 +1,8 @@
 .game-monster-mouth-container {
   @extend .border;
-  border-radius: $border-radius-large;
+  border-radius: $border-radius-lg;
   background-color: $monster-mouth;
-  padding: $padding-base;
+  padding: $padding-xs;
   width: 100%;
   aspect-ratio: 1;
   @include small-screen {
@@ -12,16 +12,16 @@
 
 .game-monster-teeth-container {
   background-color: $letter-no-spot;
-  border-radius: $border-radius-medium;
+  border-radius: $border-radius-md;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   aspect-ratio: 1;
-  gap: $gap-base;
-  padding: $gap-base;
+  gap: $gap-xs;
+  padding: $gap-xs;
   @include large-height {
-    border-radius: $border-radius-large;
+    border-radius: $border-radius-lg;
   }
   @include medium-height {
     padding: 2px;
@@ -31,7 +31,7 @@
 
 .game-monster-teeth-row {
   display: flex;
-  gap: $gap-base;
+  gap: $gap-xs;
   justify-content: center;
   align-items: center;
   width: 100%;

@@ -1,7 +1,7 @@
 .loading-game-container {
   display: flex;
   width: 100%;
-  gap: $gap-base * 2;
+  gap: $gap-sm;
   justify-content: center;
 }
 @keyframes bounce {
@@ -47,12 +47,12 @@
   width: 55px;
   height: 60px;
   background-color: $text-darkest;
-  border-radius: $border-radius-small;
+  border-radius: $border-radius-sm;
 }
 
 .little-keyboard-monster {
   width: 70px;
   height: 40px;
   background-color: $text-darkest;
-  border-radius: $border-radius-small;
+  border-radius: $border-radius-sm;
 }

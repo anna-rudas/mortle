@@ -1,11 +1,11 @@
 .monster-tooth-container {
   background-color: $monster-teeth;
-  border-radius: $border-radius-small;
+  border-radius: $border-radius-sm;
   display: flex;
   justify-content: center;
   align-content: center;
   @include large-height {
-    border-radius: $border-radius-medium;
+    border-radius: $border-radius-md;
   }
 }
 

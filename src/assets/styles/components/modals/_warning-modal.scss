@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding: $padding-base;
+  padding: $padding-xs;
   padding-bottom: 25px;
 }
 
@@ -15,7 +15,7 @@
   max-height: 130px;
   max-width: 560px;
   position: relative;
-  padding: $padding-base * 3;
+  padding: $padding-md;
   align-items: center;
   text-align: center;
 }

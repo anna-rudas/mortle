@@ -4,7 +4,7 @@
   max-width: 560px !important;
   top: -45px;
   position: absolute !important;
-  padding: $padding-base !important;
+  padding: $padding-xs !important;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -32,7 +32,7 @@
 .game-results-text {
   display: flex;
   flex-direction: column;
-  gap: $gap-base;
+  gap: $gap-xs;
   justify-content: center;
   align-items: center;
 }
@@ -40,12 +40,12 @@
 .game-results-definition {
   display: flex;
   flex-direction: column;
-  gap: $gap-base;
+  gap: $gap-xs;
   justify-content: start;
   align-items: flex-start;
-  padding: $padding-base;
+  padding: $padding-xs;
   background-color: $text-bubble-secondary;
-  border-radius: $border-radius-medium;
+  border-radius: $border-radius-md;
   max-height: 150px;
   overflow-y: scroll;
   @include small-height {
