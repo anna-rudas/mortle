@@ -35,6 +35,8 @@
     "last 2 Chrome versions"
   ],
   "dependencies": {
+    "@sentry/cli": "^2.37.0",
+    "@sentry/react": "^8.35.0",
     "bad-words": "^3.0.4",
     "fontfaceobserver": "^2.3.0",
     "react": "^18.2.0",
