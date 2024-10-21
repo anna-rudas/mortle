@@ -125,20 +125,20 @@ function AppContextProvider({ children }: AppContextProviderProps) {
 
     for (let i = 0; i < loopMax; i++) {
       const randomWord: string = await getRandomWord();
-      if (randomWord !== "undefined") {
-        const randomWordDefinition: WordDefinition | null =
-          await getWordDefinition(randomWord);
-        if (
-          randomWordDefinition &&
-          !filter.isProfane(randomWordDefinition.word)
-        ) {
-          setSolutionWordDefinition(randomWordDefinition);
-          return;
-        }
+      if (!randomWord) {
+        showBoundary("Could not get solution word.");
+        return;
+      }
+      const randomWordDefinition: WordDefinition | null =
+        await getWordDefinition(randomWord);
+      if (
+        randomWordDefinition &&
+        !filter.isProfane(randomWordDefinition.word)
+      ) {
+        setSolutionWordDefinition(randomWordDefinition);
+        break;
       }
     }
-
-    showBoundary("Could not get solution word.");
   };
 
   const isInputWordValid = async (currentRow: number) => {
