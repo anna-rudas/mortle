@@ -3,7 +3,7 @@ import { wordLength, numberOfTries, statisticsKey } from "../data/constants";
 import { WordDefinition, LetterColorClass, StatsData } from "../types/types";
 import { getWordDefinition, getRandomWord } from "../utilities/helpers";
 import { useErrorBoundary } from "react-error-boundary";
-import Filter from "bad-words";
+import { Filter } from "bad-words";
 import useLocalStorageState from "use-local-storage-state";
 
 interface AppContextInterface {
@@ -79,10 +79,10 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
   //msc
   const { showBoundary } = useErrorBoundary();
-  const blockList = process.env.REACT_APP_BLOCKLIST;
+  const blockList = import.meta.env.REACT_APP_BLOCKLIST;
   const filter = new Filter({ list: blockList?.split(" ") });
   const [invalidWordWarningTimeoutId, setInvalidWordWarningTimeoutId] =
-    useState<NodeJS.Timeout | null>(null);
+    useState<number | null>(null);
   //modals open check
   const [isHowToPlayModalOpen, setIsHowToPlayModalOpen] = useState(false);
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);

@@ -1,4 +1,3 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
 import AppContextProvider from "./context/context";
 import { ErrorBoundary } from "react-error-boundary";
@@ -6,6 +5,7 @@ import ErrorPage from "./components/pages/ErrorPage/ErrorPage";
 import MainPage from "./components/pages/MainPage/MainPage";
 import FontFaceObserver from "fontfaceobserver";
 import * as Sentry from "@sentry/react";
+import "./assets/styles/style.scss";
 
 Sentry.init({
   dsn: "https://3db0636a5c32f8b82f0f196b491db61e@o4508161927348224.ingest.de.sentry.io/4508161929052241",
