@@ -1,4 +1,3 @@
-import React from "react";
 import EnterIcon from "../assets/icons/EnterIcon";
 import BackspaceIcon from "../assets/icons/BackspaceIcon";
 import { LetterColorClass } from "../types/types";

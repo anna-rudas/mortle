@@ -1,4 +1,3 @@
-import React from "react";
 import Background from "../../features/Background/Background";
 
 interface PageWrapperProps {

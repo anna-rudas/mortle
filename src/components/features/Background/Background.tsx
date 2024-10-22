@@ -1,4 +1,3 @@
-import React from "react";
 import Cloud from "../../background-elements/Cloud/Cloud";
 import Hills from "../../background-elements/Hills/Hills";
 

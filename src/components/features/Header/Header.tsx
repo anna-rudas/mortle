@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import QuestionMarkIcon from "../../../assets/icons/QuestionMarkIcon";
 import StatsIcon from "../../../assets/icons/StatsIcon";
 import { AppContext } from "../../../context/context";

@@ -1,4 +1,3 @@
-import React from "react";
 import MonsterBody from "../MonsterBody/MonsterBody";
 
 function MonsterContainer() {

@@ -1,4 +1,3 @@
-import React from "react";
 import CloseIcon from "../../../assets/icons/CloseIcon";
 
 interface CloseButtonProps {

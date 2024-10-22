@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 import { wordLength, numberOfTries, statisticsKey } from "../data/constants";
 import { WordDefinition, LetterColorClass, StatsData } from "../types/types";
 import { getWordDefinition, getRandomWord } from "../utilities/helpers";
@@ -79,7 +79,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
   //msc
   const { showBoundary } = useErrorBoundary();
-  const blockList = import.meta.env.REACT_APP_BLOCKLIST;
+  const blockList = import.meta.env.VITE_BLOCKLIST;
   const filter = new Filter({ list: blockList?.split(" ") });
   const [invalidWordWarningTimeoutId, setInvalidWordWarningTimeoutId] =
     useState<number | null>(null);

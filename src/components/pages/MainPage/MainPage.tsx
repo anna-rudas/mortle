@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { AppContext } from "../../../context/context";
 import GameResultModal from "../../modals/GameResultModal/GameResultModal";
 import LoadingGame from "../../loaders/LoadingGame/LoadingGame";

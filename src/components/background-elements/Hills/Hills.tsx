@@ -1,5 +1,3 @@
-import React from "react";
-
 function Hills() {
   return (
     <div className="hills-container">

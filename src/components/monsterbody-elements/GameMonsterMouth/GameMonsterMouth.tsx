@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../../context/context";
 import { className } from "../../../utilities/helpers";
 import { LetterColorClass } from "../../../types/types";

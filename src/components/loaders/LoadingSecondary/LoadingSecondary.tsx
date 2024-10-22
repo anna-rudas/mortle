@@ -1,5 +1,3 @@
-import React from "react";
-
 function LoadingSecondary() {
   return (
     <div className="modal-container modal-container-no-bg ">

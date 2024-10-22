@@ -1,4 +1,3 @@
-import React from "react";
 import MonsterFeet from "../../monsterbody-elements/MonsterFeet/MonsterFeet";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
 

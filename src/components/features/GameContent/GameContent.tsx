@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import MonsterContainer from "../../features/MonsterContainer/MonsterContainer";
 import Header from "../../features/Header/Header";
 import HowToPlayModal from "../../modals/HowToPlayModal/HowToPlayModal";

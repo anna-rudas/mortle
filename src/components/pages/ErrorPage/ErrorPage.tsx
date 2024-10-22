@@ -1,4 +1,3 @@
-import React from "react";
 import PageWrapper from "../../templates/PageWrapper/PageWrapper";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
 

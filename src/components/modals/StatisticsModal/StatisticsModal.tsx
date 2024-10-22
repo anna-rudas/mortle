@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { StatsData } from "../../../types/types";
 import { calculatePercentage } from "../../../utilities/helpers";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";

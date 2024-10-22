@@ -1,4 +1,3 @@
-import React from "react";
 import MonsterEyes from "../../monsterbody-elements/MonsterEyes/MonsterEyes";
 import MonsterFeet from "../../monsterbody-elements/MonsterFeet/MonsterFeet";
 import KeyboardMonsterMouth from "../../monsterbody-elements/KeyboardMonsterMouth/KeyboardMonsterMouth";

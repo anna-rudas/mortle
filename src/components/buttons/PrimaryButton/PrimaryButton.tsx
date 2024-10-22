@@ -1,5 +1,3 @@
-import React from "react";
-
 interface PrimaryButtonProps {
   handleClick: () => void;
   buttonText: string;

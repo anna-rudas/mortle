@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import ArrowIcon from "../../../assets/icons/ArrowIcon";
 import { resultTexts } from "../../../data/constants";
 import { AppContext } from "../../../context/context";
