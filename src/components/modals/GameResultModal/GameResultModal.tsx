@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import ArrowIcon from "../../../assets/icons/ArrowIcon";
-import { resultTexts } from "../../../data/constants";
 import { AppContext } from "../../../context/context";
 import PrimaryButton from "../../buttons/PrimaryButton/PrimaryButton";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
@@ -9,37 +8,13 @@ function GameResultModal() {
   const [isReview, setIsReview] = useState(false);
   const [hasFadeInAnimationRun, setHasFadeInAnimationRun] = useState(false);
 
-  const { solutionWordDefinition, resetGame, statistics } =
-    useContext(AppContext);
+  const { solutionWordDefinition, resetGame } = useContext(AppContext);
 
   const toggleReview = () => {
     setIsReview(!isReview);
     if (!hasFadeInAnimationRun) {
       setHasFadeInAnimationRun(true);
     }
-  };
-
-  const resultReactionText = () => {
-    const max = 4;
-    const min = 0;
-    const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    const currentGameResult = statistics.at(-1);
-
-    if (!currentGameResult) {
-      throw new Error("Statistics is empty");
-    }
-
-    if (!currentGameResult.guessed) {
-      return resultTexts.lose[randomIndex];
-    }
-    if (currentGameResult.guessedAt === 1) {
-      return resultTexts.winFirst[randomIndex];
-    }
-    if (currentGameResult.guessedAt === 5) {
-      return resultTexts.winLast[randomIndex];
-    }
-    return resultTexts.winMiddle[randomIndex];
   };
 
   return (
@@ -66,9 +41,6 @@ function GameResultModal() {
           }`}
         >
           <>
-            <div className="text-subtitle game-results-title">
-              {resultReactionText()}
-            </div>
             <div className="text-normal game-results-text">
               <div>The solution was:</div>
               <div className="text-input-large">

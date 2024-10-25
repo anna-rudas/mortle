@@ -47,34 +47,3 @@ export const letterColoringClasses: LetterColorClass[] = [
   "letter-wrong",
   "letter-no",
 ];
-
-export const resultTexts = {
-  winFirst: [
-    "Oh my god, first try? Congrats!",
-    "That's crazy, you got it on the first try!",
-    "Amazing!",
-    "Oh my god! That was quick.",
-    "This is too easy for you!",
-  ],
-  winLast: [
-    "Phew, that was close.",
-    "Very last minute, but you got it!",
-    "Better late than never!",
-    "Wow! Cutting it close.",
-    "You make me believe in miracles.",
-  ],
-  winMiddle: [
-    "Nice one!",
-    "You got it!",
-    "Yay, you've guessed it!",
-    "Cheers!",
-    "You've guessed it!",
-  ],
-  lose: [
-    "Aw shucks, better luck next time.",
-    "Well, you tried.",
-    "Not the end of the world.",
-    "It happens.",
-    "Aw that's sad. But you can just try again!",
-  ],
-};
