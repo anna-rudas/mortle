@@ -33,7 +33,7 @@ function GameResultModal() {
         </ModalContainer>
       ) : (
         <ModalContainer
-          handleCancel={toggleReview}
+          handleCancel={resetGame}
           modalTitle="Results"
           modalContentStyle="modal-content-game-results"
           modalContainerStyle={`${
