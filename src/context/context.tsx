@@ -82,7 +82,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const blockList = import.meta.env.VITE_BLOCKLIST;
   const filter = new Filter({ list: blockList?.split(" ") });
   const [invalidWordWarningTimeoutId, setInvalidWordWarningTimeoutId] =
-    useState<number | null>(null);
+    useState<NodeJS.Timeout | null>(null);
   //modals open check
   const [isHowToPlayModalOpen, setIsHowToPlayModalOpen] = useState(false);
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
