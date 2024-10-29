@@ -139,7 +139,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
       const randomWordWithDefinition = await getWordFromDatabase(
         randomIndex.toString()
       );
-      console.log(randomWordWithDefinition);
       if (randomWordWithDefinition) {
         setSolutionWordDefinition(randomWordWithDefinition);
       } else {
