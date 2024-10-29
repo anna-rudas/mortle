@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useMemo, useState } from "react";
 import { wordLength, numberOfTries, statisticsKey } from "../data/constants";
 import {
   WordWithDefinition,
@@ -34,6 +34,8 @@ interface AppContextInterface {
   setIsStatisticsModalOpen: (value: boolean) => void;
   statistics: StatsData[];
   clearInvalidWordWarningTimeout: () => void;
+  handleGameOver: ({ guessed }: { guessed: boolean }) => void;
+  inputWord: string | null;
 }
 
 const defaultContextValue: AppContextInterface = {
@@ -60,6 +62,8 @@ const defaultContextValue: AppContextInterface = {
   setIsStatisticsModalOpen: () => {},
   statistics: [],
   clearInvalidWordWarningTimeout: () => {},
+  handleGameOver: () => {},
+  inputWord: null,
 };
 
 export const AppContext =
@@ -96,6 +100,13 @@ function AppContextProvider({ children }: AppContextProviderProps) {
       defaultValue: [],
     }
   );
+
+  const inputWord = useMemo(() => {
+    if (currentRow < numberOfTries) {
+      return inputLetters[currentRow].join("").replace(/ /g, "");
+    }
+    return null;
+  }, [currentRow, inputLetters]);
 
   const setInputLetterValue = (newValue: string, isPrevValue?: boolean) => {
     const tempInputLetters: string[][] = [...inputLetters];
@@ -147,23 +158,14 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     }
   };
 
-  const isInputWordValid = async (currentRow: number) => {
-    if (solutionWordDefinition) {
-      const inputWord = inputLetters[currentRow].join("").replace(/ /g, "");
-      if (
-        inputWord.toUpperCase() === solutionWordDefinition.word.toUpperCase()
-      ) {
-        handleGameOver({ guessed: true });
-        return true;
-      }
+  const isInputWordValid = async () => {
+    if (solutionWordDefinition && inputWord) {
       if (inputWord.length === wordLength) {
         try {
           const isWordValid: boolean = await isWordInDatabase(inputWord);
           if (isWordValid) {
             //input word is valid (5 letters and def)
-            if (currentRow === numberOfTries - 1) {
-              handleGameOver({ guessed: false });
-            }
+
             return true;
           }
         } catch {
@@ -274,6 +276,8 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         setIsStatisticsModalOpen,
         statistics,
         clearInvalidWordWarningTimeout,
+        handleGameOver,
+        inputWord,
       }}
     >
       {children}

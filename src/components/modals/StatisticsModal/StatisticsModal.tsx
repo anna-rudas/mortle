@@ -63,7 +63,7 @@ function StatisticsModal() {
     setGameCount(statistics.length);
     setWinPercent(calculateWinPercentage(statistics));
     setBarChartData(calculateBarChartPercentage(statistics));
-  }, []);
+  }, [statistics]);
 
   return (
     <ModalContainer

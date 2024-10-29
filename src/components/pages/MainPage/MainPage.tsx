@@ -31,7 +31,21 @@ function MainPage() {
     isStatisticsModalOpen,
     isHowToPlayModalOpen,
     clearInvalidWordWarningTimeout,
+    handleGameOver,
+    inputWord,
   } = useContext(AppContext);
+
+  const isInputWordSolution = () => {
+    if (solutionWordDefinition && inputWord) {
+      return (
+        inputWord.toUpperCase() === solutionWordDefinition.word.toUpperCase()
+      );
+    }
+  };
+
+  const isPlayerOutOfTries = () => {
+    return currentRow === numberOfTries - 1;
+  };
 
   const isKeyInputAllowed = () => {
     return (
@@ -67,7 +81,12 @@ function MainPage() {
             if (!isInputWordValidResult) {
               return;
             }
-
+            //is game over
+            if (isInputWordSolution()) {
+              handleGameOver({ guessed: true });
+            } else if (isPlayerOutOfTries()) {
+              handleGameOver({ guessed: false });
+            }
             setCurrentRow(currentRow + 1);
             setCurrentColumn(0);
           } else if (event.key.length === 1) {
