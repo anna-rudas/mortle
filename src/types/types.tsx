@@ -3,11 +3,11 @@ export type StatsData = {
   guessedAt?: number;
 };
 
-export type WordDefinition = {
+export type WordWithDefinition = {
   word: string;
   meanings: Array<{
     partOfSpeech: string;
-    definitions: Array<{ definition: string }>;
+    definition: string;
   }>;
 };
 

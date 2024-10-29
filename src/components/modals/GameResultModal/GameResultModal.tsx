@@ -50,10 +50,10 @@ function GameResultModal() {
             {solutionWordDefinition && (
               <div className="text-normal game-results-definition">
                 {solutionWordDefinition.meanings.map(
-                  (currentMeaning, index: number) => {
+                  (meaning, index: number) => {
                     return (
                       <div key={index}>
-                        {`(${currentMeaning.partOfSpeech}) ${currentMeaning.definitions[0].definition}`}
+                        {`(${meaning.partOfSpeech}) ${meaning.definition}`}
                       </div>
                     );
                   }

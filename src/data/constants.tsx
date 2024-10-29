@@ -5,6 +5,8 @@ import { LetterColorClass } from "../types/types";
 export const wordLength = 5;
 export const numberOfTries = 5;
 export const statisticsKey = "savedMortleStatistics";
+export const wordsCollectionKey = "words";
+export const numberOfWordsInDatabase = 6682;
 
 export const generalErrorMsg =
   "Unexpected error. Refresh the page or try again later.";

@@ -1,10 +1,14 @@
 import { ReactNode, createContext, useState } from "react";
 import { wordLength, numberOfTries, statisticsKey } from "../data/constants";
-import { WordDefinition, LetterColorClass, StatsData } from "../types/types";
-import { getWordDefinition, getRandomWord } from "../utilities/helpers";
+import {
+  WordWithDefinition,
+  LetterColorClass,
+  StatsData,
+} from "../types/types";
 import { useErrorBoundary } from "react-error-boundary";
-import { Filter } from "bad-words";
 import useLocalStorageState from "use-local-storage-state";
+import { getWordFromDatabase, isWordInDatabase } from "../firestore/firestore";
+import { generateRandomWordIndex } from "../utilities/helpers";
 
 interface AppContextInterface {
   currentRow: number;
@@ -13,7 +17,7 @@ interface AppContextInterface {
   setCurrentColumn: (value: number) => void;
   inputLetters: readonly string[][];
   setInputLetterValue: (newVal: string, isPrevVal?: boolean) => void;
-  solutionWordDefinition: WordDefinition | null;
+  solutionWordDefinition: WordWithDefinition | null;
   isWordInvalidWarning: boolean;
   isInputWordValid: (currentRow: number) => Promise<boolean>;
   compareInputAndSolution: (rowIndex: number) => LetterColorClass[];
@@ -71,7 +75,7 @@ function AppContextProvider({ children }: AppContextProviderProps) {
     new Array(numberOfTries).fill(0).map(() => new Array(wordLength).fill(""))
   );
   const [solutionWordDefinition, setSolutionWordDefinition] =
-    useState<WordDefinition | null>(null);
+    useState<WordWithDefinition | null>(null);
   //game state
   const [isGameOver, setIsGameOver] = useState(false);
   //loading check
@@ -79,8 +83,6 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
   //msc
   const { showBoundary } = useErrorBoundary();
-  const blockList = import.meta.env.VITE_BLOCKLIST;
-  const filter = new Filter({ list: blockList?.split(" ") });
   const [invalidWordWarningTimeoutId, setInvalidWordWarningTimeoutId] =
     useState<NodeJS.Timeout | null>(null);
   //modals open check
@@ -121,23 +123,19 @@ function AppContextProvider({ children }: AppContextProviderProps) {
   };
 
   const getSolutionWithDefinition = async () => {
-    const loopMax = 10;
-
-    for (let i = 0; i < loopMax; i++) {
-      const randomWord: string = await getRandomWord();
-      if (!randomWord) {
+    try {
+      const randomIndex = generateRandomWordIndex();
+      const randomWordWithDefinition = await getWordFromDatabase(
+        randomIndex.toString()
+      );
+      console.log(randomWordWithDefinition);
+      if (randomWordWithDefinition) {
+        setSolutionWordDefinition(randomWordWithDefinition);
+      } else {
         showBoundary("Could not get solution word.");
-        return;
       }
-      const randomWordDefinition: WordDefinition | null =
-        await getWordDefinition(randomWord);
-      if (
-        randomWordDefinition &&
-        !filter.isProfane(randomWordDefinition.word)
-      ) {
-        setSolutionWordDefinition(randomWordDefinition);
-        break;
-      }
+    } catch {
+      showBoundary("Could not get solution word.");
     }
   };
 
@@ -151,23 +149,21 @@ function AppContextProvider({ children }: AppContextProviderProps) {
         return true;
       }
       if (inputWord.length === wordLength) {
-        const getInputWordDefinition: WordDefinition | null =
-          await getWordDefinition(inputWord);
-
-        if (getInputWordDefinition) {
-          //input word is valid (5 letters and def)
-          if (currentRow === numberOfTries - 1) {
-            handleGameOver({ guessed: false });
+        try {
+          const isWordValid: boolean = await isWordInDatabase(inputWord);
+          if (isWordValid) {
+            //input word is valid (5 letters and def)
+            if (currentRow === numberOfTries - 1) {
+              handleGameOver({ guessed: false });
+            }
+            return true;
           }
-          return true;
+        } catch {
+          showBoundary("Could not get solution word.");
         }
-
-        //input word is not valid (no def)
-        showInvalidWordWarning();
-        return false;
       }
 
-      //input word is not valid (not 5 letters)
+      //input word is not valid (not 5 letters or no def)
       showInvalidWordWarning();
       return false;
     }
