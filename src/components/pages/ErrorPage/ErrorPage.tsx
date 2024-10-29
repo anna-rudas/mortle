@@ -1,12 +1,17 @@
 import PageWrapper from "../../templates/PageWrapper/PageWrapper";
 import ModalContainer from "../../templates/ModalContainer/ModalContainer";
+import { generalErrorMsg } from "../../../data/constants";
 
-function ErrorPage() {
+interface ErrorPageProps {
+  error: Error;
+}
+
+function ErrorPage({ error }: ErrorPageProps) {
   return (
     <PageWrapper>
       <ModalContainer
         modalTitle="Sorry"
-        modalText="Unexpected error. Refresh the page or try again later."
+        modalText={error.message ?? generalErrorMsg}
       />
     </PageWrapper>
   );

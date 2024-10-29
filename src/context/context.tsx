@@ -132,10 +132,18 @@ function AppContextProvider({ children }: AppContextProviderProps) {
       if (randomWordWithDefinition) {
         setSolutionWordDefinition(randomWordWithDefinition);
       } else {
-        showBoundary("Could not get solution word.");
+        showBoundary(
+          new Error(
+            "Could not get solution word. Refresh the page or try again later."
+          )
+        );
       }
     } catch {
-      showBoundary("Could not get solution word.");
+      showBoundary(
+        new Error(
+          "Error getting solution word. Refresh the page or try again later."
+        )
+      );
     }
   };
 
@@ -159,7 +167,11 @@ function AppContextProvider({ children }: AppContextProviderProps) {
             return true;
           }
         } catch {
-          showBoundary("Could not get solution word.");
+          showBoundary(
+            new Error(
+              "Could not check word. Refresh the page or try again later."
+            )
+          );
         }
       }
 

@@ -3,10 +3,8 @@ import { AppContext } from "../../../context/context";
 import GameResultModal from "../../modals/GameResultModal/GameResultModal";
 import LoadingGame from "../../loaders/LoadingGame/LoadingGame";
 import WarningModal from "../../modals/WarningModal/WarningModal";
-import ErrorModal from "../../modals/ErrorModal/ErrorModal";
 import LoadingSecondary from "../../loaders/LoadingSecondary/LoadingSecondary";
 import {
-  generalErrorMsg,
   invalidSubmitWarning,
   wordLength,
   numberOfTries,
@@ -41,7 +39,8 @@ function MainPage() {
       !isStatisticsModalOpen &&
       !isHowToPlayModalOpen &&
       !isLoading &&
-      !isFetching
+      !isFetching &&
+      solutionWordDefinition
     );
   };
 
@@ -91,6 +90,7 @@ function MainPage() {
 
   useEffect(() => {
     resetGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -101,9 +101,6 @@ function MainPage() {
         {isLoading && <LoadingGame />}
         {isWordInvalidWarning && (
           <WarningModal warningMessage={invalidSubmitWarning} />
-        )}
-        {!isLoading && !solutionWordDefinition && (
-          <ErrorModal errorMessage={generalErrorMsg} />
         )}
         {isFetching && <LoadingSecondary />}
       </>
