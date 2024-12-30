@@ -26,5 +26,14 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "warn",
       "no-else-return": "error",
     },
+    overrides: [
+      {
+        files: ["*.test.ts", "*.test.tsx"],
+        plugins: ["jest"],
+        env: {
+          "jest/globals": true,
+        },
+      },
+    ],
   }
 );
