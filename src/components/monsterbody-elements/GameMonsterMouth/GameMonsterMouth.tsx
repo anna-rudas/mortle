@@ -34,6 +34,7 @@ function GameMonsterMouth() {
                     key={columnIndex}
                   >
                     <input
+                      data-testid="toothInput"
                       className="text-input-small game-monster-tooth-input"
                       type="text"
                       maxLength={1}
