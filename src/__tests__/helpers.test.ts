@@ -1,4 +1,4 @@
-import { calculatePercentage } from "../src/utilities/helpers";
+import { calculatePercentage } from "../utilities/helpers";
 
 test("calculates integer percentage", () => {
   expect(calculatePercentage(10, 100)).toEqual(10);
