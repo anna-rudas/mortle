@@ -3,7 +3,7 @@ import MainPage from "../components/pages/MainPage/MainPage";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import AppContextProvider from "../context/context";
-import { mockSolutionWordWithDefinition } from "../__mocks__/solutionWordDefinitionMock";
+import { mockSolutionWord } from "../__mocks__/solutionWordDefinitionMocks";
 import { getWordFromDatabase } from "../firestore/firestore";
 
 jest.mock("../firestore/firestore", () => ({
@@ -13,9 +13,7 @@ jest.mock("../firestore/firestore", () => ({
 
 describe(GameMonsterMouth, () => {
   beforeEach(() => {
-    (getWordFromDatabase as jest.Mock).mockResolvedValue(
-      mockSolutionWordWithDefinition
-    );
+    (getWordFromDatabase as jest.Mock).mockResolvedValue(mockSolutionWord);
   });
 
   jest.setTimeout(10000);
@@ -34,28 +32,28 @@ describe(GameMonsterMouth, () => {
       expect(loadingText).toBeNull();
     });
 
-    const toothInputs = getAllByTestId("toothInput");
+    const rowInputs = getAllByTestId("toothInput");
     //does not matter where the focus is
-    fireEvent.keyDown(toothInputs[0], { key: "c", code: "KeyC", charCode: 67 });
-    fireEvent.keyDown(toothInputs[0], { key: "h", code: "KeyH", charCode: 72 });
-    fireEvent.keyDown(toothInputs[0], { key: "a", code: "KeyA", charCode: 65 });
+    fireEvent.keyDown(rowInputs[0], { key: "c" });
+    fireEvent.keyDown(rowInputs[0], { key: "h" });
+    fireEvent.keyDown(rowInputs[0], { key: "a" });
 
     await waitFor(() => {
-      expect((toothInputs[0] as HTMLInputElement).value).toBe("C");
-      expect((toothInputs[1] as HTMLInputElement).value).toBe("H");
-      expect((toothInputs[2] as HTMLInputElement).value).toBe("A");
+      expect((rowInputs[0] as HTMLInputElement).value).toBe("C");
+      expect((rowInputs[1] as HTMLInputElement).value).toBe("H");
+      expect((rowInputs[2] as HTMLInputElement).value).toBe("A");
     });
 
-    fireEvent.keyDown(toothInputs[0], {
+    fireEvent.keyDown(rowInputs[0], {
       key: "Backspace",
       code: "Backspace",
       charCode: 8,
     });
 
     await waitFor(() => {
-      expect((toothInputs[0] as HTMLInputElement).value).toBe("C");
-      expect((toothInputs[1] as HTMLInputElement).value).toBe("H");
-      expect((toothInputs[2] as HTMLInputElement).value).toBe("");
+      expect((rowInputs[0] as HTMLInputElement).value).toBe("C");
+      expect((rowInputs[1] as HTMLInputElement).value).toBe("H");
+      expect((rowInputs[2] as HTMLInputElement).value).toBe("");
     });
   });
 });
