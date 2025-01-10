@@ -1,4 +1,3 @@
-import GameMonsterMouth from "../components/monsterbody-elements/GameMonsterMouth/GameMonsterMouth";
 import MainPage from "../components/pages/MainPage/MainPage";
 import {
   render,
@@ -28,9 +27,8 @@ describe("colors letters correctly (solution: mockSolutionWord)", () => {
   jest.setTimeout(10000);
 
   test("handles double letters in input correctly (input: HHHHH)", async () => {
-    const { getAllByTestId } = render(
+    const { getAllByTestId, getByTestId } = render(
       <AppContextProvider>
-        <GameMonsterMouth />
         <MainPage />
       </AppContextProvider>
     );
@@ -45,6 +43,7 @@ describe("colors letters correctly (solution: mockSolutionWord)", () => {
     const firstRowInputs = firstRowContainers.map((rowItem) => {
       return within(rowItem).getByRole("textbox");
     });
+    const keyboardLetterContainerH = getByTestId("keyboardLetterContainer-H");
 
     //does not matter where the focus is
     fireEvent.keyDown(firstRowInputs[0], {
@@ -83,13 +82,16 @@ describe("colors letters correctly (solution: mockSolutionWord)", () => {
       expect(firstRowContainers[2].classList.contains("letter-no")).toBe(true);
       expect(firstRowContainers[3].classList.contains("letter-no")).toBe(true);
       expect(firstRowContainers[4].classList.contains("letter-no")).toBe(true);
+
+      expect(
+        keyboardLetterContainerH.classList.contains("letter-correct")
+      ).toBe(true);
     });
   });
 
   test("handles double letters correctly (input: HXHHH)", async () => {
-    const { getAllByTestId } = render(
+    const { getAllByTestId, getByTestId } = render(
       <AppContextProvider>
-        <GameMonsterMouth />
         <MainPage />
       </AppContextProvider>
     );
@@ -104,6 +106,8 @@ describe("colors letters correctly (solution: mockSolutionWord)", () => {
     const firstRowInputs = firstRowContainers.map((rowItem) => {
       return within(rowItem).getByRole("textbox");
     });
+    const keyboardLetterContainerH = getByTestId("keyboardLetterContainer-H");
+    const keyboardLetterContainerX = getByTestId("keyboardLetterContainer-X");
 
     //does not matter where the focus is
     fireEvent.keyDown(firstRowInputs[0], {
@@ -142,6 +146,13 @@ describe("colors letters correctly (solution: mockSolutionWord)", () => {
       expect(firstRowContainers[2].classList.contains("letter-no")).toBe(true);
       expect(firstRowContainers[3].classList.contains("letter-no")).toBe(true);
       expect(firstRowContainers[4].classList.contains("letter-no")).toBe(true);
+
+      expect(keyboardLetterContainerH.classList.contains("letter-wrong")).toBe(
+        true
+      );
+      expect(keyboardLetterContainerX.classList.contains("letter-no")).toBe(
+        true
+      );
     });
   });
 });
