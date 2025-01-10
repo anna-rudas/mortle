@@ -99,6 +99,7 @@ function KeyboardMonsterMouth() {
               {currentRow.map((currentLetter, currentLetterIndex) => {
                 return (
                   <div
+                    data-testid={`keyboardLetterContainer-${currentLetter}`}
                     key={currentLetterIndex}
                     {...className(
                       "keyboard-monster-tooth-container",

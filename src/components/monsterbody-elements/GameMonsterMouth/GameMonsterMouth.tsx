@@ -27,6 +27,7 @@ function GameMonsterMouth() {
               {currRow.map((currLetter, columnIndex) => {
                 return (
                   <div
+                    data-testid={`row-${rowIndex}`}
                     {...className(
                       "game-monster-tooth-container",
                       colorInputLetter(rowIndex, columnIndex)
@@ -34,6 +35,7 @@ function GameMonsterMouth() {
                     key={columnIndex}
                   >
                     <input
+                      data-testid="toothInput"
                       className="text-input-small game-monster-tooth-input"
                       type="text"
                       maxLength={1}
